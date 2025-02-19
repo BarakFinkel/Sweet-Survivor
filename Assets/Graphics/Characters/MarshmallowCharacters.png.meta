@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: e1220f0d90f78e348a0a6680eeb51c12
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8753579735136422902
+    second: MarshmallowCharacters_0
+  - first:
+      213: 6334883078326350299
+    second: MarshmallowCharacters_1
+  - first:
+      213: 1632186221311463644
+    second: MarshmallowCharacters_2
+  - first:
+      213: 7201860966225948863
+    second: MarshmallowCharacters_3
+  - first:
+      213: -7165522856316303084
+    second: MarshmallowCharacters_4
+  - first:
+      213: 47063146362376009
+    second: MarshmallowCharacters_5
+  - first:
+      213: 4479419138868785941
+    second: MarshmallowCharacters_6
+  - first:
+      213: -7383167588582355939
+    second: MarshmallowCharacters_7
+  - first:
+      213: 5532686240191112833
+    second: MarshmallowCharacters_8
+  - first:
+      213: 4017601455444224391
+    second: MarshmallowCharacters_9
+  - first:
+      213: -2779281619388834372
+    second: MarshmallowCharacters_10
+  - first:
+      213: 6312486271663607936
+    second: MarshmallowCharacters_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MarshmallowCharacters_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1236
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb4dd10466fa7970800000000000000
+      internalID: 8753579735136422902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_1
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1237
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd1764998960ae750800000000000000
+      internalID: 6334883078326350299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_2
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 1237
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd09e8878b0b6a610800000000000000
+      internalID: 1632186221311463644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_3
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 1236
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb036a5446622f360800000000000000
+      internalID: 7201860966225948863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 874
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 419035f3de2fe8c90800000000000000
+      internalID: -7165522856316303084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_5
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 873
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f01f8aea337a000800000000000000
+      internalID: 47063146362376009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_6
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 873
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5133c5c49f71a2e30800000000000000
+      internalID: 4479419138868785941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_7
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 874
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1c0f552238b98990800000000000000
+      internalID: -7383167588582355939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_8
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 505
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186684072dc08cc40800000000000000
+      internalID: 5532686240191112833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_9
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 503
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78968d0dc3361c730800000000000000
+      internalID: 4017601455444224391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_10
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 504
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd5e89a7120e69d0800000000000000
+      internalID: -2779281619388834372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarshmallowCharacters_11
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 507
+        width: 170
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0801a00b1d47a9750800000000000000
+      internalID: 6312486271663607936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 35b5db405bf01c94ab33c8991e7a4957
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MarshmallowCharacters_0: 8753579735136422902
+      MarshmallowCharacters_1: 6334883078326350299
+      MarshmallowCharacters_10: -2779281619388834372
+      MarshmallowCharacters_11: 6312486271663607936
+      MarshmallowCharacters_2: 1632186221311463644
+      MarshmallowCharacters_3: 7201860966225948863
+      MarshmallowCharacters_4: -7165522856316303084
+      MarshmallowCharacters_5: 47063146362376009
+      MarshmallowCharacters_6: 4479419138868785941
+      MarshmallowCharacters_7: -7383167588582355939
+      MarshmallowCharacters_8: 5532686240191112833
+      MarshmallowCharacters_9: 4017601455444224391
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
