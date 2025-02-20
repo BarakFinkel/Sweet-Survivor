@@ -5,24 +5,30 @@ public class EnemyMovement : MonoBehaviour
     [Header("Elements")]
     private Player player;
     
-    [Header("Settings")]
+    [Header("General Settings")]
     [SerializeField] private float moveSpeed;
-
-    void Start()
-    {
-        player = FindFirstObjectByType<Player>();
-
-        if (player == null)
-        {
-            Debug.LogWarning("No player found, destroying enemy.");
-            Destroy(gameObject);
-        }
-    }
+    private bool canMove = false;
 
     void Update()
+    {
+        if (player != null && canMove)
+            FollowPlayer();
+    }
+
+    private void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         Vector2 targetPosition = (Vector2)(transform.position) + direction * moveSpeed * Time.deltaTime;
         transform.position = targetPosition;
+    }
+
+    public void SetPlayer(Player _player)
+    {
+        this.player = _player;
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
     }
 }
