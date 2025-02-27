@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour
     private EnemyMovement enemyMovement;
 
     [Header("General Settings")]
+    [SerializeField] private int maxHealth;
+    [SerializeField] private TextMeshPro healthText;
+    private int health;
     private bool hasSpawned = false;
 
     [Header("Spawn Settings")]
@@ -32,6 +36,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        health = maxHealth;
+        healthText.text = health.ToString();
+
         player = FindFirstObjectByType<Player>();
         
         enemyMovement = GetComponent<EnemyMovement>();
@@ -100,6 +107,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Dealing " + damage + " to the player!");
         SetAttackTimer();
+        player.TakeDamage(damage);
     }
 
     private void SetAttackTimer()
@@ -114,20 +122,29 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
-    void Die()
+    public void TakeDamage(int damage)
+    {
+        health = Mathf.Max(health - damage, 0);
+        healthText.text = health.ToString();
+        
+        if (health <= 0)
+            Die();
+    }
+
+    private void Die()
     {
         deathEffect.transform.SetParent(null);
         deathEffect.Play();
         Destroy(gameObject);
     }
 
-    void ToggleSpritesVisibility(bool visibility)
+    private void ToggleSpritesVisibility(bool visibility)
     {
         sr.enabled = visibility;
         spawnIndicator.enabled = !visibility;
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         if (!showGizmos)
             return;
