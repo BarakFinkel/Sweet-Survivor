@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TestingSequencer : MonoBehaviour {
-	public GameObject cube1;
+	public UnityEngine.GameObject cube1;
 
 	public void Start(){
 

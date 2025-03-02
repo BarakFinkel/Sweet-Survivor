@@ -10,22 +10,22 @@ namespace DentedPixel
 {
     public class LeanPool : object
     {
-        private GameObject[] array;
+        private UnityEngine.GameObject[] array;
 
-        private Queue<GameObject> oldestItems;
+        private Queue<UnityEngine.GameObject> oldestItems;
 
         private int retrieveIndex = -1;
 
-        public GameObject[] init(GameObject prefab, int count, Transform parent = null, bool retrieveOldestItems = true)
+        public UnityEngine.GameObject[] init(UnityEngine.GameObject prefab, int count, Transform parent = null, bool retrieveOldestItems = true)
         {
-            array = new GameObject[count];
+            array = new UnityEngine.GameObject[count];
 
             if (retrieveOldestItems)
-                oldestItems = new Queue<GameObject>();
+                oldestItems = new Queue<UnityEngine.GameObject>();
 
             for (int i = 0; i < array.Length; i++)
             {
-                GameObject go = GameObject.Instantiate(prefab, parent);
+                UnityEngine.GameObject go = UnityEngine.GameObject.Instantiate(prefab, parent);
                 go.SetActive(false);
 
                 array[i] = go;
@@ -34,20 +34,20 @@ namespace DentedPixel
             return array;
         }
 
-        public void init(GameObject[] array, bool retrieveOldestItems = true){
+        public void init(UnityEngine.GameObject[] array, bool retrieveOldestItems = true){
             this.array = array;
 
             if (retrieveOldestItems)
-                oldestItems = new Queue<GameObject>();
+                oldestItems = new Queue<UnityEngine.GameObject>();
         }
 
-        public void giveup(GameObject go)
+        public void giveup(UnityEngine.GameObject go)
         {
             go.SetActive(false);
             oldestItems.Enqueue(go);
         }
 
-        public GameObject retrieve()
+        public UnityEngine.GameObject retrieve()
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -57,7 +57,7 @@ namespace DentedPixel
 
                 if (array[retrieveIndex].activeSelf == false)
                 {
-                    GameObject returnObj = array[retrieveIndex];
+                    UnityEngine.GameObject returnObj = array[retrieveIndex];
                     returnObj.SetActive(true);
 
                     if (oldestItems != null)
@@ -71,7 +71,7 @@ namespace DentedPixel
 
             if (oldestItems != null)
             {
-                GameObject go = oldestItems.Dequeue();
+                UnityEngine.GameObject go = oldestItems.Dequeue();
                 oldestItems.Enqueue(go);// put at the end of the queue again
 
                 return go;

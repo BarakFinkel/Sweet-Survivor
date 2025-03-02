@@ -149,13 +149,13 @@ public class LTSeq {
 		return addOn();
 	}
 
-	public LTSeq append( GameObject gameObject, System.Action callback ){
+	public LTSeq append(UnityEngine.GameObject gameObject, System.Action callback ){
 		append(LeanTween.delayedCall(gameObject, 0f, callback));
 
 		return addOn();
 	}
 
-	public LTSeq append( GameObject gameObject, System.Action<object> callback, object obj ){
+	public LTSeq append(UnityEngine.GameObject gameObject, System.Action<object> callback, object obj ){
 		append(LeanTween.delayedCall(gameObject, 0f, callback).setOnCompleteParam(obj));
 
 		return addOn();

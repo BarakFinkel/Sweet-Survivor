@@ -1,6 +1,6 @@
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour
@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [Header("Components")]
     private Player player;
     private EnemyMovement enemyMovement;
+    private Collider2D cd;
 
     [Header("General Settings")]
     [SerializeField] private int maxHealth;
@@ -31,6 +32,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private SpriteRenderer sr;
     private ParticleSystem deathEffect;
 
+    [Header("Actions")]
+    public static Action<Transform, int> onDamageTaken;
+
     [Header("Debug")]
     [SerializeField] private bool showGizmos = true;
 
@@ -43,6 +47,8 @@ public class Enemy : MonoBehaviour
         
         enemyMovement = GetComponent<EnemyMovement>();
         enemyMovement.SetPlayer(player);
+
+        cd = GetComponent<Collider2D>();
 
         deathEffect = gameObject.GetComponentInChildren<ParticleSystem>();
 
@@ -80,6 +86,7 @@ public class Enemy : MonoBehaviour
     {
         ToggleSpritesVisibility(true);
         hasSpawned = true;
+        cd.enabled = true;
 
         enemyMovement.EnableMovement();
     }
@@ -127,6 +134,8 @@ public class Enemy : MonoBehaviour
         health = Mathf.Max(health - damage, 0);
         healthText.text = health.ToString();
         
+        onDamageTaken?.Invoke(transform, damage);
+
         if (health <= 0)
             Die();
     }
@@ -135,6 +144,16 @@ public class Enemy : MonoBehaviour
     {
         deathEffect.transform.SetParent(null);
         deathEffect.Play();
+
+        DamageTextEffect[] damageTexts = GetComponentsInChildren<DamageTextEffect>();
+        for (int i = 0; i < damageTexts.Length; i++)
+        {
+            if (damageTexts[i] != null)
+            {
+                damageTexts[i].gameObject.transform.parent = null;
+            }
+        } 
+
         Destroy(gameObject);
     }
 

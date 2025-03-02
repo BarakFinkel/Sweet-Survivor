@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestingOptionalCancel : MonoBehaviour {
 
-    public GameObject cube1;
+    public UnityEngine.GameObject cube1;
 
 	// Use this for initialization
 	void Start () {

@@ -7,7 +7,7 @@ public class PathSplines : MonoBehaviour {
 	public Transform[] trans;
 	
 	LTSpline cr;
-	private GameObject avatar1;
+	private UnityEngine.GameObject avatar1;
 
 	void OnEnable(){
 		// create the path
@@ -16,7 +16,7 @@ public class PathSplines : MonoBehaviour {
 	}
 
 	void Start () {
-		avatar1 = GameObject.Find("Avatar1");
+        avatar1 = UnityEngine.GameObject.Find("Avatar1");
 
 		// Tween automatically
 		LeanTween.move(avatar1, cr, 6.5f).setOrientToPath(true).setRepeat(1).setOnComplete( ()=>{

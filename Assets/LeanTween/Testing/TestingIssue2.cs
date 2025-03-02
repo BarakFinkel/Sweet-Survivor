@@ -4,8 +4,8 @@ using DentedPixel;
 
 public class TestingIssue2 : MonoBehaviour {
 	public RectTransform rect;
-	public GameObject go;
-	public GameObject go2;
+	public UnityEngine.GameObject go;
+	public UnityEngine.GameObject go2;
 
 	private LTDescr descr;
 

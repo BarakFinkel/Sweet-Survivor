@@ -5,16 +5,16 @@ using DentedPixel;
 public class TestingRotate : MonoBehaviour {
 
 	//method 1 leantween
-	public GameObject sun ;
-	public GameObject earth;
+	public UnityEngine.GameObject sun ;
+	public UnityEngine.GameObject earth;
 
 	//method 2 leantween
-	public GameObject sun2;
-	public GameObject earth2;
+	public UnityEngine.GameObject sun2;
+	public UnityEngine.GameObject earth2;
 
 	//method 3 unity3d
-	public GameObject sun3;
-	public GameObject earth3;
+	public UnityEngine.GameObject sun3;
+	public UnityEngine.GameObject earth3;
 
 	void Start () {
 

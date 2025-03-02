@@ -9,12 +9,12 @@ namespace DentedPixel.LTExamples
     public class TestingUnitTests : MonoBehaviour
     {
 
-        public GameObject cube1;
-        public GameObject cube2;
-        public GameObject cube3;
-        public GameObject cube4;
-        public GameObject cubeAlpha1;
-        public GameObject cubeAlpha2;
+        public UnityEngine.GameObject cube1;
+        public UnityEngine.GameObject cube2;
+        public UnityEngine.GameObject cube3;
+        public UnityEngine.GameObject cube4;
+        public UnityEngine.GameObject cubeAlpha1;
+        public UnityEngine.GameObject cubeAlpha2;
 
 
         private bool eventGameObjectWasCalled = false, eventGeneralWasCalled = false;
@@ -23,18 +23,18 @@ namespace DentedPixel.LTExamples
         private LTDescr lt3;
         private LTDescr lt4;
         private LTDescr[] groupTweens;
-        private GameObject[] groupGOs;
+        private UnityEngine.GameObject[] groupGOs;
         private int groupTweensCnt;
         private int rotateRepeat;
         private int rotateRepeatAngle;
-        private GameObject boxNoCollider;
+        private UnityEngine.GameObject boxNoCollider;
         private float timeElapsedNormalTimeScale;
         private float timeElapsedIgnoreTimeScale;
         private bool pauseTweenDidFinish = false;
 
         void Awake()
         {
-            boxNoCollider = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            boxNoCollider = UnityEngine.GameObject.CreatePrimitive(PrimitiveType.Cube);
             Destroy(boxNoCollider.GetComponent(typeof(BoxCollider)) as Component);
         }
 
@@ -83,11 +83,11 @@ namespace DentedPixel.LTExamples
             LeanTween.reset();
 
             // Queue up a bunch of tweens, cancel some of them but expect the remainder to finish
-            GameObject[] cubes = new GameObject[99];
+            UnityEngine.GameObject[] cubes = new UnityEngine.GameObject[99];
             int[] tweenIds = new int[cubes.Length];
             for (int i = 0; i < cubes.Length; i++)
             {
-                GameObject c = cubeNamed("cancel" + i);
+                UnityEngine.GameObject c = cubeNamed("cancel" + i);
                 tweenIds[i] = LeanTween.moveX(c, 100f, 1f).id;
                 cubes[i] = c;
             }
@@ -129,28 +129,28 @@ namespace DentedPixel.LTExamples
 
             // OnStart Speed Test for ignoreTimeScale vs normal timeScale
 
-            GameObject cubeDest = cubeNamed("cubeDest");
+            UnityEngine.GameObject cubeDest = cubeNamed("cubeDest");
             Vector3 cubeDestEnd = new Vector3(100f, 20f, 0f);
             LeanTween.move(cubeDest, cubeDestEnd, 0.7f);
 
-            GameObject cubeToTrans = cubeNamed("cubeToTrans");
+            UnityEngine.GameObject cubeToTrans = cubeNamed("cubeToTrans");
             LeanTween.move(cubeToTrans, cubeDest.transform, 1.2f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => {
                 LeanTest.expect(cubeToTrans.transform.position == cubeDestEnd, "MOVE TO TRANSFORM WORKS");
             });
 
-            GameObject cubeDestroy = cubeNamed("cubeDestroy");
+            UnityEngine.GameObject cubeDestroy = cubeNamed("cubeDestroy");
             LeanTween.moveX(cubeDestroy, 200f, 0.05f).setDelay(0.02f).setDestroyOnComplete(true);
             LeanTween.moveX(cubeDestroy, 200f, 0.1f).setDestroyOnComplete(true).setOnComplete(() => {
                 LeanTest.expect(true, "TWO DESTROY ON COMPLETE'S SUCCEED");
             });
 
-            GameObject cubeSpline = cubeNamed("cubeSpline");
+            UnityEngine.GameObject cubeSpline = cubeNamed("cubeSpline");
             LeanTween.moveSpline(cubeSpline, new Vector3[] { new Vector3(0.5f, 0f, 0.5f), new Vector3(0.75f, 0f, 0.75f), new Vector3(1f, 0f, 1f), new Vector3(1f, 0f, 1f) }, 0.1f).setOnComplete(() => {
                 LeanTest.expect(Vector3.Distance(new Vector3(1f, 0f, 1f), cubeSpline.transform.position) < 0.01f, "SPLINE WITH TWO POINTS SUCCEEDS");
             });
 
             // This test works when it is positioned last in the test queue (probably worth fixing when you have time)
-            GameObject jumpCube = cubeNamed("jumpTime");
+            UnityEngine.GameObject jumpCube = cubeNamed("jumpTime");
             jumpCube.transform.position = new Vector3(100f, 0f, 0f);
             jumpCube.transform.localScale *= 100f;
             int jumpTimeId = LeanTween.moveX(jumpCube, 200f, 1f).id;
@@ -167,13 +167,13 @@ namespace DentedPixel.LTExamples
             });
 
             // Tween with time of zero is needs to be set to it's final value
-            GameObject zeroCube = cubeNamed("zeroCube");
+            UnityEngine.GameObject zeroCube = cubeNamed("zeroCube");
             LeanTween.moveX(zeroCube, 10f, 0f).setOnComplete(() => {
                 LeanTest.expect(zeroCube.transform.position.x == 10f, "ZERO TIME FINSHES CORRECTLY", "final x:" + zeroCube.transform.position.x);
             });
 
             // Scale, and OnStart
-            GameObject cubeScale = cubeNamed("cubeScale");
+            UnityEngine.GameObject cubeScale = cubeNamed("cubeScale");
             LeanTween.scale(cubeScale, new Vector3(5f, 5f, 5f), 0.01f).setOnStart(() => {
                 LeanTest.expect(true, "ON START WAS CALLED");
             }).setOnComplete(() => {
@@ -181,19 +181,19 @@ namespace DentedPixel.LTExamples
             });
 
             // Rotate
-            GameObject cubeRotate = cubeNamed("cubeRotate");
+            UnityEngine.GameObject cubeRotate = cubeNamed("cubeRotate");
             LeanTween.rotate(cubeRotate, new Vector3(0f, 180f, 0f), 0.02f).setOnComplete(() => {
                 LeanTest.expect(cubeRotate.transform.eulerAngles.y == 180f, "ROTATE", "expected rotate y:" + 180f + " returned:" + cubeRotate.transform.eulerAngles.y);
             });
 
             // RotateAround
-            GameObject cubeRotateA = cubeNamed("cubeRotateA");
+            UnityEngine.GameObject cubeRotateA = cubeNamed("cubeRotateA");
             LeanTween.rotateAround(cubeRotateA, Vector3.forward, 90f, 0.3f).setOnComplete(() => {
                 LeanTest.expect(cubeRotateA.transform.eulerAngles.z == 90f, "ROTATE AROUND", "expected rotate z:" + 90f + " returned:" + cubeRotateA.transform.eulerAngles.z);
             });
 
             // RotateAround 360
-            GameObject cubeRotateB = cubeNamed("cubeRotateB");
+            UnityEngine.GameObject cubeRotateB = cubeNamed("cubeRotateB");
             cubeRotateB.transform.position = new Vector3(200f, 10f, 8f);
             LeanTween.rotateAround(cubeRotateB, Vector3.forward, 360f, 0.3f).setPoint(new Vector3(5f, 3f, 2f)).setOnComplete(() => {
                 LeanTest.expect(cubeRotateB.transform.position.ToString() == (new Vector3(200f, 10f, 8f)).ToString(), "ROTATE AROUND 360", "expected rotate pos:" + (new Vector3(200f, 10f, 8f)) + " returned:" + cubeRotateB.transform.position);
@@ -240,9 +240,9 @@ namespace DentedPixel.LTExamples
                 for (int i = (int)LeanTweenType.notUsed; i < totalTweenTypeLength; i++)
                 {
                     LeanTweenType easeType = (LeanTweenType)i;
-                    GameObject cube = cubeNamed("cube" + easeType);
+                    UnityEngine.GameObject cube = cubeNamed("cube" + easeType);
                     LTDescr descr = LeanTween.moveLocalX(cube, 5, 0.1f).setOnComplete((object obj) => {
-                        GameObject cubeIn = obj as GameObject;
+                        UnityEngine.GameObject cubeIn = obj as UnityEngine.GameObject;
                         totalEasingCheck++;
                         if (cubeIn.transform.position.x == 5f)
                         {
@@ -269,7 +269,7 @@ namespace DentedPixel.LTExamples
             });
 
             // Testing specific cancellation
-            GameObject cubeCancelA = cubeNamed("cubeCancelA");
+            UnityEngine.GameObject cubeCancelA = cubeNamed("cubeCancelA");
             cubeCancelA.LeanMoveX(10f, 1f);
             cubeCancelA.LeanMoveY(10f, 1f);
             LeanTween.cancel(cubeCancelA, false, TweenAction.MOVE_X);
@@ -284,9 +284,9 @@ namespace DentedPixel.LTExamples
             StartCoroutine(timeBasedTesting());
         }
 
-        private GameObject cubeNamed(string name)
+        private UnityEngine.GameObject cubeNamed(string name)
         {
-            GameObject cube = Instantiate(boxNoCollider) as GameObject;
+            UnityEngine.GameObject cube = Instantiate(boxNoCollider) as UnityEngine.GameObject;
             cube.name = name;
             return cube;
         }
@@ -295,7 +295,7 @@ namespace DentedPixel.LTExamples
         {
             yield return new WaitForEndOfFrame();
 
-            GameObject cubeNormal = cubeNamed("normalTimeScale");
+            UnityEngine.GameObject cubeNormal = cubeNamed("normalTimeScale");
             // float timeElapsedNormal = Time.time;
             LeanTween.moveX(cubeNormal, 12f, 1.5f).setIgnoreTimeScale(false).setOnComplete(() => {
                 timeElapsedNormalTimeScale = Time.time;
@@ -304,7 +304,7 @@ namespace DentedPixel.LTExamples
             LTDescr[] descr = LeanTween.descriptions(cubeNormal);
             LeanTest.expect(descr.Length >= 0 && descr[0].to.x == 12f, "WE CAN RETRIEVE A DESCRIPTION");
 
-            GameObject cubeIgnore = cubeNamed("ignoreTimeScale");
+            UnityEngine.GameObject cubeIgnore = cubeNamed("ignoreTimeScale");
             LeanTween.moveX(cubeIgnore, 5f, 1.5f).setIgnoreTimeScale(true).setOnComplete(() => {
                 timeElapsedIgnoreTimeScale = Time.time;
             });
@@ -322,7 +322,7 @@ namespace DentedPixel.LTExamples
 
             // Bezier should end at exact end position not just 99% close to it
             Vector3[] roundCirc = new Vector3[] { new Vector3(0f, 0f, 0f), new Vector3(-9.1f, 25.1f, 0f), new Vector3(-1.2f, 15.9f, 0f), new Vector3(-25f, 25f, 0f), new Vector3(-25f, 25f, 0f), new Vector3(-50.1f, 15.9f, 0f), new Vector3(-40.9f, 25.1f, 0f), new Vector3(-50f, 0f, 0f), new Vector3(-50f, 0f, 0f), new Vector3(-40.9f, -25.1f, 0f), new Vector3(-50.1f, -15.9f, 0f), new Vector3(-25f, -25f, 0f), new Vector3(-25f, -25f, 0f), new Vector3(0f, -15.9f, 0f), new Vector3(-9.1f, -25.1f, 0f), new Vector3(0f, 0f, 0f) };
-            GameObject cubeRound = cubeNamed("bRound");
+            UnityEngine.GameObject cubeRound = cubeNamed("bRound");
             Vector3 onStartPos = cubeRound.transform.position;
             LeanTween.moveLocal(cubeRound, roundCirc, 0.5f).setOnComplete(() => {
                 LeanTest.expect(cubeRound.transform.position == onStartPos, "BEZIER CLOSED LOOP SHOULD END AT START", "onStartPos:" + onStartPos + " onEnd:" + cubeRound.transform.position);
@@ -335,14 +335,14 @@ namespace DentedPixel.LTExamples
 
             // Spline should end at exact end position not just 99% close to it
             Vector3[] roundSpline = new Vector3[] { new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f), new Vector3(2f, 0f, 0f), new Vector3(0.9f, 2f, 0f), new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
-            GameObject cubeSpline = cubeNamed("bSpline");
+            UnityEngine.GameObject cubeSpline = cubeNamed("bSpline");
             Vector3 onStartPosSpline = cubeSpline.transform.position;
             LeanTween.moveSplineLocal(cubeSpline, roundSpline, 0.5f).setOnComplete(() => {
                 LeanTest.expect(Vector3.Distance(onStartPosSpline, cubeSpline.transform.position) <= 0.01f, "SPLINE CLOSED LOOP SHOULD END AT START", "onStartPos:" + onStartPosSpline + " onEnd:" + cubeSpline.transform.position + " dist:" + Vector3.Distance(onStartPosSpline, cubeSpline.transform.position));
             });
 
             // Sequence test, do three tweens and make sure they end at the right points
-            GameObject cubeSeq = cubeNamed("cSeq");
+            UnityEngine.GameObject cubeSeq = cubeNamed("cSeq");
             var seq = LeanTween.sequence().append(LeanTween.moveX(cubeSeq, 100f, 0.2f));
             seq.append(0.1f).append(LeanTween.scaleX(cubeSeq, 2f, 0.1f));
             seq.append(() => {
@@ -351,7 +351,7 @@ namespace DentedPixel.LTExamples
             }).setScale(0.2f);
 
             // Bounds check
-            GameObject cubeBounds = cubeNamed("cBounds");
+            UnityEngine.GameObject cubeBounds = cubeNamed("cBounds");
             bool didPassBounds = true;
             Vector3 failPoint = Vector3.zero;
             LeanTween.move(cubeBounds, new Vector3(10, 10, 10), 0.1f).setOnUpdate((float val) => {
@@ -375,12 +375,12 @@ namespace DentedPixel.LTExamples
 
             // Groups of tweens testing
             groupTweens = new LTDescr[1200];
-            groupGOs = new GameObject[groupTweens.Length];
+            groupGOs = new UnityEngine.GameObject[groupTweens.Length];
             groupTweensCnt = 0;
             int descriptionMatchCount = 0;
             for (int i = 0; i < groupTweens.Length; i++)
             {
-                GameObject cube = cubeNamed("c" + i);
+                UnityEngine.GameObject cube = cubeNamed("c" + i);
                 cube.transform.position = new Vector3(0, 0, i * 3);
 
                 groupGOs[i] = cube;
@@ -409,7 +409,7 @@ namespace DentedPixel.LTExamples
                 setOnComplete((object param) => {
                     Dictionary<string, object> finalDictRetr = param as Dictionary<string, object>;
                     Vector3 neededPos = (Vector3)finalDictRetr["final"];
-                    GameObject tweenedGo = finalDictRetr["go"] as GameObject;
+                    UnityEngine.GameObject tweenedGo = finalDictRetr["go"] as UnityEngine.GameObject;
                     if (neededPos.ToString() == tweenedGo.transform.position.ToString())
                         setPosNum++;
                     else
@@ -523,8 +523,8 @@ namespace DentedPixel.LTExamples
             Time.timeScale = 1f;
 
             int ltCount = 0;
-            GameObject[] allGos = FindObjectsByType(typeof(GameObject), FindObjectsSortMode.None) as GameObject[];
-            foreach (GameObject go in allGos)
+            UnityEngine.GameObject[] allGos = FindObjectsByType(typeof(UnityEngine.GameObject), FindObjectsSortMode.None) as UnityEngine.GameObject[];
+            foreach (UnityEngine.GameObject go in allGos)
             {
                 if (go.name == "~LeanTween")
                     ltCount++;
@@ -542,10 +542,10 @@ namespace DentedPixel.LTExamples
             int cubeCount = 10;
 
             int[] tweensA = new int[cubeCount];
-            GameObject[] aGOs = new GameObject[cubeCount];
+            UnityEngine.GameObject[] aGOs = new UnityEngine.GameObject[cubeCount];
             for (int i = 0; i < aGOs.Length; i++)
             {
-                GameObject cube = Instantiate(boxNoCollider) as GameObject;
+                UnityEngine.GameObject cube = Instantiate(boxNoCollider) as UnityEngine.GameObject;
                 cube.transform.position = new Vector3(0, 0, i * 2f);
                 cube.name = "a" + i;
                 aGOs[i] = cube;
@@ -556,10 +556,10 @@ namespace DentedPixel.LTExamples
             yield return new WaitForSeconds(1.0f);
 
             int[] tweensB = new int[cubeCount];
-            GameObject[] bGOs = new GameObject[cubeCount];
+            UnityEngine.GameObject[] bGOs = new UnityEngine.GameObject[cubeCount];
             for (int i = 0; i < bGOs.Length; i++)
             {
-                GameObject cube = Instantiate(boxNoCollider) as GameObject;
+                UnityEngine.GameObject cube = Instantiate(boxNoCollider) as UnityEngine.GameObject;
                 cube.transform.position = new Vector3(0, 0, i * 2f);
                 cube.name = "b" + i;
                 bGOs[i] = cube;
@@ -569,7 +569,7 @@ namespace DentedPixel.LTExamples
             for (int i = 0; i < aGOs.Length; i++)
             {
                 LeanTween.cancel(aGOs[i]);
-                GameObject cube = aGOs[i];
+                UnityEngine.GameObject cube = aGOs[i];
                 tweensA[i] = LeanTween.move(cube, new Vector3(0, 0, i * 2f), 2f).id;
             }
 
@@ -578,14 +578,14 @@ namespace DentedPixel.LTExamples
             for (int i = 0; i < aGOs.Length; i++)
             {
                 LeanTween.cancel(aGOs[i]);
-                GameObject cube = aGOs[i];
+                UnityEngine.GameObject cube = aGOs[i];
                 tweensA[i] = LeanTween.move(cube, new Vector3(0, 0, i * 2f) + new Vector3(10f, 0, 0), 2f).id;
             }
 
             for (int i = 0; i < bGOs.Length; i++)
             {
                 LeanTween.cancel(bGOs[i]);
-                GameObject cube = bGOs[i];
+                UnityEngine.GameObject cube = bGOs[i];
                 tweensB[i] = LeanTween.move(cube, new Vector3(0, 0, i * 2f), 2f).id;
             }
 
@@ -606,7 +606,7 @@ namespace DentedPixel.LTExamples
 
             LeanTest.expect(inFinalPlace, "AFTER LOTS OF CANCELS");
 
-            GameObject cubePaused = cubeNamed("cPaused");
+            UnityEngine.GameObject cubePaused = cubeNamed("cPaused");
             cubePaused.LeanMoveX(10f, 1f).setOnComplete(() => {
                 pauseTweenDidFinish = true;
             });

@@ -5,9 +5,9 @@ using DentedPixel;
 
 public class LogoCinematic : MonoBehaviour {
 
-	public GameObject lean;
+	public UnityEngine.GameObject lean;
 
-	public GameObject tween;
+	public UnityEngine.GameObject tween;
 
 	void Awake(){
 		

@@ -6,7 +6,7 @@ public class TestingDescr : MonoBehaviour {
 
 	private int tweenId;
 
-	public GameObject go;
+	public UnityEngine.GameObject go;
 
 	// start a tween
 	public void startTween(){

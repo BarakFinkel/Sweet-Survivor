@@ -10,16 +10,16 @@ public static class MenuItems
     [MenuItem("Tools/Organize Hierarchy")]
     static void OrganizeHierarchy()
     {
-        new GameObject("--- ENVIRONEMENT ---");
-        new GameObject(" ");
+        new UnityEngine.GameObject("--- ENVIRONEMENT ---");
+        new UnityEngine.GameObject(" ");
 
-        new GameObject("--- GAMEPLAY ---");
-        new GameObject(" ");
+        new UnityEngine.GameObject("--- GAMEPLAY ---");
+        new UnityEngine.GameObject(" ");
 
-        new GameObject("--- UI ---");
-        new GameObject(" ");
+        new UnityEngine.GameObject("--- UI ---");
+        new UnityEngine.GameObject(" ");
 
-        new GameObject("--- MANAGERS ---");
+        new UnityEngine.GameObject("--- MANAGERS ---");
     }
 
     [MenuItem("Tools/Reload Scene")]

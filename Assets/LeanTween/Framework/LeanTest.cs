@@ -61,7 +61,7 @@ public class LeanTest : object {
 
 		if(timeoutStarted==false){
 			timeoutStarted = true;
-			GameObject tester = new GameObject();
+            UnityEngine.GameObject tester = new UnityEngine.GameObject();
 			tester.name = "~LeanTest";
 			LeanTester test = tester.AddComponent(typeof(LeanTester)) as LeanTester;
 			test.timeout = timeout;

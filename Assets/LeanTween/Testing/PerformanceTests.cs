@@ -7,11 +7,11 @@ public class PerformanceTests : MonoBehaviour {
 
     public bool debug = false;
 
-    public GameObject bulletPrefab;
+    public UnityEngine.GameObject bulletPrefab;
 
     private LeanPool bulletPool = new LeanPool();
 
-    private Dictionary<GameObject, int> animIds = new Dictionary<GameObject, int>();
+    private Dictionary<UnityEngine.GameObject, int> animIds = new Dictionary<UnityEngine.GameObject, int>();
 
     public float shipSpeed = 1f;
     private float shipDirectionX = 1f;
@@ -19,7 +19,7 @@ public class PerformanceTests : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        GameObject[] pool = bulletPool.init(bulletPrefab, 400, null, true);
+        UnityEngine.GameObject[] pool = bulletPool.init(bulletPrefab, 400, null, true);
         for (int i = 0; i < pool.Length; i++){
             animIds[pool[i]] = -1;
         }
@@ -31,7 +31,7 @@ public class PerformanceTests : MonoBehaviour {
         // Spray bullets
         for (int i = 0; i < 10; i++)
         {
-            GameObject go = bulletPool.retrieve();
+            UnityEngine.GameObject go = bulletPool.retrieve();
             int animId = animIds[go];
             if (animId >= 0){
                 if (debug)

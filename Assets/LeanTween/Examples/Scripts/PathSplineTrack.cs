@@ -6,9 +6,9 @@ using DentedPixel;
 
 public class PathSplineTrack : MonoBehaviour {
 
-	public GameObject car;
-	public GameObject carInternal;
-	public GameObject trackTrailRenderers;
+	public UnityEngine.GameObject car;
+	public UnityEngine.GameObject carInternal;
+	public UnityEngine.GameObject trackTrailRenderers;
 
 	public Transform[] trackOnePoints;
 

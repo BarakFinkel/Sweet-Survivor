@@ -6,9 +6,9 @@ using DentedPixel;
 
 public class PathSplinePerformance : MonoBehaviour {
 
-	public GameObject trackTrailRenderers;
-	public GameObject car;
-	public GameObject carInternal;
+	public UnityEngine.GameObject trackTrailRenderers;
+	public UnityEngine.GameObject car;
+	public UnityEngine.GameObject carInternal;
 
 
 	public float circleLength = 10f;

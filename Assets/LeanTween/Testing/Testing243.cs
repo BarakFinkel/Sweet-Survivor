@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Testing243 : MonoBehaviour {
-	public GameObject cube1;
+	public UnityEngine.GameObject cube1;
 	public Light lightInScene;
 
 	public RectTransform imageRectTransform;

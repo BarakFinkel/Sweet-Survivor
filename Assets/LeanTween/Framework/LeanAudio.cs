@@ -288,12 +288,12 @@ public class LeanAudio : object {
 	}
 
 	public static AudioSource playClipAt( AudioClip clip, Vector3 pos ) {
-		GameObject tempGO = new GameObject(); // create the temp object
+        UnityEngine.GameObject tempGO = new UnityEngine.GameObject(); // create the temp object
 		tempGO.transform.position = pos; // set its position
 		AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
 		aSource.clip = clip; // define the clip
 		aSource.Play(); // start the sound
-		GameObject.Destroy(tempGO, clip.length); // destroy object after clip duration
+        UnityEngine.GameObject.Destroy(tempGO, clip.length); // destroy object after clip duration
 		return aSource; // return the AudioSource reference
 	}
 

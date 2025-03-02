@@ -39,7 +39,7 @@ public class TestingZLegacyExt : MonoBehaviour {
 
     void Start()
     {
-        ltLogo = GameObject.Find("LeanTweenLogo").transform;
+        ltLogo = UnityEngine.GameObject.Find("LeanTweenLogo").transform;
         LeanTween.delayedCall(1f, cycleThroughExamples);
         origin = ltLogo.position;
 
@@ -118,7 +118,7 @@ public class TestingZLegacyExt : MonoBehaviour {
     public void loopTestClamp()
     {
         Debug.Log("loopTestClamp Time:" + Time.time);
-		Transform cube1 = GameObject.Find("Cube1").transform;
+        Transform cube1 = UnityEngine.GameObject.Find("Cube1").transform;
         cube1.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		cube1.LeanScaleZ( 4.0f, 1.0f).setEase(LeanTweenType.easeOutElastic).setRepeat(7).setLoopClamp().setUseEstimatedTime(useEstimatedTime);//
     }
@@ -126,7 +126,7 @@ public class TestingZLegacyExt : MonoBehaviour {
     public void loopTestPingPong()
     {
         Debug.Log("loopTestPingPong Time:" + Time.time);
-		Transform cube2 = GameObject.Find("Cube2").transform;
+        Transform cube2 = UnityEngine.GameObject.Find("Cube2").transform;
         cube2.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		cube2.LeanScaleY( 4.0f, 1.0f).setEase(LeanTweenType.easeOutQuad).setLoopPingPong(4).setUseEstimatedTime(useEstimatedTime);
         //LeanTween.scaleY( cube2, 4.0f, 1.0f, LeanTween.options().setEaseOutQuad().setRepeat(8).setLoopPingPong().setUseEstimatedTime(useEstimatedTime) );
@@ -134,7 +134,7 @@ public class TestingZLegacyExt : MonoBehaviour {
 
     public void colorExample()
     {
-        GameObject lChar = GameObject.Find("LCharacter");
+        UnityEngine.GameObject lChar = UnityEngine.GameObject.Find("LCharacter");
 		lChar.LeanColor( new Color(1.0f, 0.0f, 0.0f, 0.5f), 0.5f).setEase(LeanTweenType.easeOutBounce).setRepeat(2).setLoopPingPong().setUseEstimatedTime(useEstimatedTime);
     }
 
@@ -227,7 +227,7 @@ public class TestingZLegacyExt : MonoBehaviour {
     {
         Debug.Log("alphaExample");
 
-        GameObject lChar = GameObject.Find("LCharacter");
+        UnityEngine.GameObject lChar = UnityEngine.GameObject.Find("LCharacter");
 		lChar.LeanAlpha( 0.0f, 0.5f).setUseEstimatedTime(useEstimatedTime);
 		lChar.LeanAlpha( 1.0f, 0.5f).setDelay(0.5f).setUseEstimatedTime(useEstimatedTime);
     }
@@ -236,7 +236,7 @@ public class TestingZLegacyExt : MonoBehaviour {
     {
         Debug.Log("moveLocalExample");
 
-        GameObject lChar = GameObject.Find("LCharacter");
+        UnityEngine.GameObject lChar = UnityEngine.GameObject.Find("LCharacter");
         Vector3 origPos = lChar.transform.localPosition;
 		lChar.LeanMoveLocal( new Vector3(0.0f, 2.0f, 0.0f), 0.5f).setUseEstimatedTime(useEstimatedTime);
 		lChar.LeanMoveLocal( origPos, 0.5f).setDelay(0.5f).setUseEstimatedTime(useEstimatedTime);
@@ -246,19 +246,19 @@ public class TestingZLegacyExt : MonoBehaviour {
     {
         Debug.Log("rotateAroundExample");
 
-        GameObject lChar = GameObject.Find("LCharacter");
+        UnityEngine.GameObject lChar = UnityEngine.GameObject.Find("LCharacter");
 		lChar.LeanRotateAround(Vector3.up, 360.0f, 1.0f).setUseEstimatedTime(useEstimatedTime);
     }
 
     public void loopPause()
     {
-        GameObject cube1 = GameObject.Find("Cube1");
+        UnityEngine.GameObject cube1 = UnityEngine.GameObject.Find("Cube1");
 		cube1.LeanPause();
     }
 
     public void loopResume()
     {
-        GameObject cube1 = GameObject.Find("Cube1");
+        UnityEngine.GameObject cube1 = UnityEngine.GameObject.Find("Cube1");
 		cube1.LeanResume();
     }
 

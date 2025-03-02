@@ -58,7 +58,7 @@ namespace Leguar.TotalJSON.Internal {
 			}
 
 			JSONRuntimeDebugContainer jsonRuntimeDebugContainer=null;
-			GameObject jsonDebugObject=GameObject.Find("TotalJSON_DebugObject");
+            UnityEngine.GameObject jsonDebugObject= UnityEngine.GameObject.Find("TotalJSON_DebugObject");
 			if (jsonDebugObject!=null) {
 				jsonRuntimeDebugContainer=jsonDebugObject.GetComponent<JSONRuntimeDebugContainer>();
 			}

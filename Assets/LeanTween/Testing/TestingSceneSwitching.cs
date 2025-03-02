@@ -5,7 +5,7 @@ using DentedPixel;
 
 public class TestingSceneSwitching : MonoBehaviour {
 
-	public GameObject cube;
+	public UnityEngine.GameObject cube;
 
 	private static int sceneIter = 0;
 

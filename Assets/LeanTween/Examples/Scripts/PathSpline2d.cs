@@ -6,8 +6,8 @@ public class PathSpline2d : MonoBehaviour {
 
 	public Transform[] cubes;
 
-	public GameObject dude1;
-	public GameObject dude2;
+	public UnityEngine.GameObject dude1;
+	public UnityEngine.GameObject dude2;
 
 	private LTSpline visualizePath;
 

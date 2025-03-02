@@ -106,7 +106,7 @@ public class LTDescr
 	}
 
 	[System.Obsolete("Use 'LeanTween.cancel( id )' instead")]
-	public LTDescr cancel( GameObject gameObject ){
+	public LTDescr cancel(UnityEngine.GameObject gameObject ){
 		// Debug.Log("canceling id:"+this._id+" this.uniqueId:"+this.uniqueId+" go:"+this.trans.gameObject);
 		if(gameObject==this.trans.gameObject)
 			LeanTween.removeTween((int)this._id, this.uniqueId);

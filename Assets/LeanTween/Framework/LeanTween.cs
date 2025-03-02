@@ -257,7 +257,7 @@ public class LeanTween : MonoBehaviour {
     private static int maxTweens = 400;
     private static int maxSequences = 400;
     private static int frameRendered= -1;
-    private static GameObject _tweenEmpty;
+    private static UnityEngine.GameObject _tweenEmpty;
     public static float dtEstimated = -1f;
     public static float dtManual;
     #if UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5
@@ -324,7 +324,7 @@ public class LeanTween : MonoBehaviour {
             tweens = new LTDescr[maxTweens];
             tweensFinished = new int[maxTweens];
             tweensFinishedIds = new int[maxTweens];
-            _tweenEmpty = new GameObject();
+            _tweenEmpty = new UnityEngine.GameObject();
             _tweenEmpty.name = "~LeanTween";
             _tweenEmpty.AddComponent(typeof(LeanTween));
             _tweenEmpty.isStatic = true;
@@ -558,10 +558,10 @@ public class LeanTween : MonoBehaviour {
     * @example LeanTween.move( gameObject, new Vector3(0f,1f,2f), 1f); <br />
     * LeanTween.cancel( gameObject );
     */
-    public static void cancel( GameObject gameObject ){
+    public static void cancel(UnityEngine.GameObject gameObject ){
         cancel( gameObject, false);
     }
-    public static void cancel( GameObject gameObject, bool callOnComplete, TweenAction matchType = TweenAction.NONE ){
+    public static void cancel(UnityEngine.GameObject gameObject, bool callOnComplete, TweenAction matchType = TweenAction.NONE ){
         init();
         Transform trans = gameObject.transform;
         for(int i = 0; i <= tweenMaxSearch; i++){
@@ -582,7 +582,7 @@ public class LeanTween : MonoBehaviour {
         cancel( rect.gameObject, false);
     }
 
-    public static void cancel( GameObject gameObject, int uniqueId, bool callOnComplete = false ){
+    public static void cancel(UnityEngine.GameObject gameObject, int uniqueId, bool callOnComplete = false ){
         if(uniqueId>=0){
             init();
             int backId = uniqueId & 0xFFFF;
@@ -695,7 +695,7 @@ public class LeanTween : MonoBehaviour {
     * if(descr.Length>0) <span style="color:gray">// make sure there is a valid description for this target</span><br />
     * &#160;&#160;descr[0].setOnComplete( newMethod );<span style="color:gray">// in this case we only ever expect there to be one tween on this object</span><br />
     */
-    public static LTDescr[] descriptions(GameObject gameObject = null) {
+    public static LTDescr[] descriptions(UnityEngine.GameObject gameObject = null) {
         if (gameObject == null) return null;
 
         List<LTDescr> descrs = new List<LTDescr>();
@@ -708,7 +708,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     [System.Obsolete("Use 'pause( id )' instead")]
-    public static void pause( GameObject gameObject, int uniqueId ){
+    public static void pause(UnityEngine.GameObject gameObject, int uniqueId ){
         pause( uniqueId );
     }
 
@@ -737,7 +737,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.pause
     * @param {GameObject} gameObject:GameObject GameObject whose tweens you want to pause
     */
-    public static void pause( GameObject gameObject ){
+    public static void pause(UnityEngine.GameObject gameObject ){
         Transform trans = gameObject.transform;
         for(int i = 0; i <= tweenMaxSearch; i++){
             if(tweens[i].trans==trans){
@@ -771,7 +771,7 @@ public class LeanTween : MonoBehaviour {
     }
 
     [System.Obsolete("Use 'resume( id )' instead")]
-    public static void resume( GameObject gameObject, int uniqueId ){
+    public static void resume(UnityEngine.GameObject gameObject, int uniqueId ){
         resume( uniqueId );
     }
 
@@ -800,7 +800,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.resume
     * @param {GameObject} gameObject:GameObject GameObject whose tweens you want to resume
     */
-    public static void resume( GameObject gameObject ){
+    public static void resume(UnityEngine.GameObject gameObject ){
         Transform trans = gameObject.transform;
         for(int i = 0; i <= tweenMaxSearch; i++){
             if(tweens[i].trans==trans)
@@ -814,7 +814,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.isPaused
     * @param {GameObject} gameObject:GameObject GameObject that you want to test if it is paused
     */
-    public static bool isPaused(GameObject gameObject = null)
+    public static bool isPaused(UnityEngine.GameObject gameObject = null)
     {
         if (gameObject == null)
         {
@@ -869,7 +869,7 @@ public class LeanTween : MonoBehaviour {
     * @method LeanTween.isTweening
     * @param {GameObject} gameObject:GameObject GameObject that you want to test if it is tweening
     */
-    public static bool isTweening( GameObject gameObject = null ){
+    public static bool isTweening(UnityEngine.GameObject gameObject = null ){
         if(gameObject==null){
             for(int i = 0; i <= tweenMaxSearch; i++){
                 if(tweens[i].toggle)
@@ -1014,7 +1014,7 @@ public class LeanTween : MonoBehaviour {
     }
 
 
-    public static GameObject tweenEmpty{
+    public static UnityEngine.GameObject tweenEmpty{
         get{
             init(maxTweens);
             return _tweenEmpty;
@@ -1024,7 +1024,7 @@ public class LeanTween : MonoBehaviour {
     public static int startSearch = 0;
     public static LTDescr d;
 
-    private static LTDescr pushNewTween( GameObject gameObject, Vector3 to, float time, LTDescr tween ){
+    private static LTDescr pushNewTween(UnityEngine.GameObject gameObject, Vector3 to, float time, LTDescr tween ){
         init(maxTweens);
         if(gameObject==null || tween==null)
             return null;
@@ -1120,7 +1120,7 @@ public class LeanTween : MonoBehaviour {
     * @example
     * LeanTween.alpha(gameObject, 1f, 1f) .setDelay(1f);
     */
-    public static LTDescr alpha(GameObject gameObject, float to, float time){
+    public static LTDescr alpha(UnityEngine.GameObject gameObject, float to, float time){
         LTDescr lt = pushNewTween( gameObject, new Vector3(to,0,0), time, options().setAlpha() );
 
         #if !UNITY_3_5 && !UNITY_4_0 && !UNITY_4_0_1 && !UNITY_4_1 && !UNITY_4_2
@@ -1197,7 +1197,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time with which to delay before calling the function
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr alphaVertex(GameObject gameObject, float to, float time){
+    public static LTDescr alphaVertex(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0f,0f), time, options().setAlphaVertex() );
     }
 
@@ -1212,7 +1212,7 @@ public class LeanTween : MonoBehaviour {
     * @example
     * LeanTween.color(gameObject, Color.yellow, 1f) .setDelay(1f);
     */
-    public static LTDescr color(GameObject gameObject, Color to, float time){
+    public static LTDescr color(UnityEngine.GameObject gameObject, Color to, float time){
         LTDescr lt = pushNewTween( gameObject, new Vector3(1.0f, to.a, 0.0f), time, options().setColor().setPoint( new Vector3(to.r, to.g, to.b) ) );
         #if !UNITY_3_5 && !UNITY_4_0 && !UNITY_4_0_1 && !UNITY_4_1 && !UNITY_4_2
         SpriteRenderer ren = gameObject.GetComponent<SpriteRenderer>();
@@ -1258,12 +1258,12 @@ public class LeanTween : MonoBehaviour {
         return pushNewTween( tweenEmpty, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback) );
     }
 
-    public static LTDescr delayedCall( GameObject gameObject, float delayTime, Action callback){
+    public static LTDescr delayedCall(UnityEngine.GameObject gameObject, float delayTime, Action callback){
         var opt = options().setCallback().setOnComplete(callback);
         return pushNewTween( gameObject, Vector3.zero, delayTime, opt );
     }
 
-    public static LTDescr delayedCall( GameObject gameObject, float delayTime, Action<object> callback){
+    public static LTDescr delayedCall(UnityEngine.GameObject gameObject, float delayTime, Action<object> callback){
         return pushNewTween( gameObject, Vector3.zero, delayTime, options().setCallback().setOnComplete(callback) );
     }
 
@@ -1286,11 +1286,11 @@ public class LeanTween : MonoBehaviour {
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.move(gameObject, new Vector3(0f,-3f,5f), 2.0f) .setEase( LeanTweenType.easeOutQuad );
     */
-    public static LTDescr move(GameObject gameObject, Vector3 to, float time){
+    public static LTDescr move(UnityEngine.GameObject gameObject, Vector3 to, float time){
         var opt = options().setMove();
         return pushNewTween( gameObject, to, time, opt);
     }
-    public static LTDescr move(GameObject gameObject, Vector2 to, float time){
+    public static LTDescr move(UnityEngine.GameObject gameObject, Vector2 to, float time){
         return pushNewTween( gameObject, new Vector3(to.x, to.y, gameObject.transform.position.z), time, options().setMove() );
     }
 
@@ -1309,7 +1309,7 @@ public class LeanTween : MonoBehaviour {
     * <i>C#:</i><br />
     * LeanTween.move(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);;<br />
     */  
-    public static LTDescr move(GameObject gameObject, Vector3[] to, float time){
+    public static LTDescr move(UnityEngine.GameObject gameObject, Vector3[] to, float time){
         d = options().setMoveCurved();
         if(d.optional.path==null)
             d.optional.path = new LTBezierPath( to );
@@ -1319,14 +1319,14 @@ public class LeanTween : MonoBehaviour {
         return pushNewTween( gameObject, new Vector3(1.0f,0.0f,0.0f), time, d );
     }
 
-    public static LTDescr move(GameObject gameObject, LTBezierPath to, float time) {
+    public static LTDescr move(UnityEngine.GameObject gameObject, LTBezierPath to, float time) {
         d = options().setMoveCurved();
         d.optional.path = to;
 
         return pushNewTween(gameObject, new Vector3(1.0f, 0.0f, 0.0f), time, d);
     }
 
-    public static LTDescr move(GameObject gameObject, LTSpline to, float time) {
+    public static LTDescr move(UnityEngine.GameObject gameObject, LTSpline to, float time) {
         d = options().setMoveSpline();
         d.optional.spline = to;
 
@@ -1347,7 +1347,7 @@ public class LeanTween : MonoBehaviour {
     * <i>C#:</i><br />
     * LeanTween.moveSpline(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
     */
-    public static LTDescr moveSpline(GameObject gameObject, Vector3[] to, float time){
+    public static LTDescr moveSpline(UnityEngine.GameObject gameObject, Vector3[] to, float time){
         d = options().setMoveSpline();
         d.optional.spline = new LTSpline( to );
 
@@ -1368,7 +1368,7 @@ public class LeanTween : MonoBehaviour {
     * <i>C#:</i><br />
     * LeanTween.moveSpline(gameObject, ltSpline, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
     */
-    public static LTDescr moveSpline(GameObject gameObject, LTSpline to, float time){
+    public static LTDescr moveSpline(UnityEngine.GameObject gameObject, LTSpline to, float time){
         d = options().setMoveSpline();
         d.optional.spline = to;
 
@@ -1389,7 +1389,7 @@ public class LeanTween : MonoBehaviour {
     * <i>C#:</i><br />
     * LeanTween.moveSpline(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
     */
-    public static LTDescr moveSplineLocal(GameObject gameObject, Vector3[] to, float time){
+    public static LTDescr moveSplineLocal(UnityEngine.GameObject gameObject, Vector3[] to, float time){
         d = options().setMoveSplineLocal();
         d.optional.spline = new LTSpline( to );
 
@@ -1422,7 +1422,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float time The time to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr moveX(GameObject gameObject, float to, float time){
+    public static LTDescr moveX(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveX() );
     }
 
@@ -1435,7 +1435,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} float time The time to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr moveY(GameObject gameObject, float to, float time){
+    public static LTDescr moveY(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveY() );
     }
 
@@ -1448,7 +1448,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} float time The time to complete the move in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr moveZ(GameObject gameObject, float to, float time){
+    public static LTDescr moveZ(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveZ() );
     }
 
@@ -1461,7 +1461,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} float time The time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr moveLocal(GameObject gameObject, Vector3 to, float time){
+    public static LTDescr moveLocal(UnityEngine.GameObject gameObject, Vector3 to, float time){
         var opt = options().setMoveLocal();
         return pushNewTween( gameObject, to, time, opt);
     }
@@ -1480,7 +1480,7 @@ public class LeanTween : MonoBehaviour {
     * <i>C#:</i><br />
     * LeanTween.moveLocal(gameObject, new Vector3[]{Vector3(0f,0f,0f),Vector3(1f,0f,0f),Vector3(1f,0f,0f),Vector3(1f,0f,1f)}).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
     */
-    public static LTDescr moveLocal(GameObject gameObject, Vector3[] to, float time){
+    public static LTDescr moveLocal(UnityEngine.GameObject gameObject, Vector3[] to, float time){
         d = options().setMoveCurvedLocal();
         if(d.optional.path==null)
             d.optional.path = new LTBezierPath( to );
@@ -1490,25 +1490,25 @@ public class LeanTween : MonoBehaviour {
         return pushNewTween( gameObject, new Vector3(1.0f,0.0f,0.0f), time, d );
     }
 
-    public static LTDescr moveLocalX(GameObject gameObject, float to, float time){
+    public static LTDescr moveLocalX(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveLocalX() );
     }
 
-    public static LTDescr moveLocalY(GameObject gameObject, float to, float time){
+    public static LTDescr moveLocalY(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveLocalY() );
     }
 
-    public static LTDescr moveLocalZ(GameObject gameObject, float to, float time){
+    public static LTDescr moveLocalZ(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setMoveLocalZ() );
     }
 
-    public static LTDescr moveLocal(GameObject gameObject, LTBezierPath to, float time) {
+    public static LTDescr moveLocal(UnityEngine.GameObject gameObject, LTBezierPath to, float time) {
         d = options().setMoveCurvedLocal();
         d.optional.path = to;
 
         return pushNewTween(gameObject, new Vector3(1.0f, 0.0f, 0.0f), time, d);
     }
-    public static LTDescr moveLocal(GameObject gameObject, LTSpline to, float time) {
+    public static LTDescr moveLocal(UnityEngine.GameObject gameObject, LTSpline to, float time) {
         d = options().setMoveSplineLocal();
         d.optional.spline = to;
 
@@ -1525,7 +1525,7 @@ public class LeanTween : MonoBehaviour {
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     * @example LeanTween.move(gameObject, anotherTransform, 2.0f) .setEase( LeanTweenType.easeOutQuad );
     */
-    public static LTDescr move(GameObject gameObject, Transform to, float time){
+    public static LTDescr move(UnityEngine.GameObject gameObject, Transform to, float time){
         return pushNewTween(gameObject, Vector3.zero, time, options().setTo(to).setMoveToTransform() );
     }
 
@@ -1540,7 +1540,7 @@ public class LeanTween : MonoBehaviour {
     * @example LeanTween.rotate(cube, new Vector3(180f,30f,0f), 1.5f);
     */
 
-    public static LTDescr rotate(GameObject gameObject, Vector3 to, float time){
+    public static LTDescr rotate(UnityEngine.GameObject gameObject, Vector3 to, float time){
         return pushNewTween( gameObject, to, time, options().setRotate() );
     }
 
@@ -1571,7 +1571,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr rotateLocal(GameObject gameObject, Vector3 to, float time){
+    public static LTDescr rotateLocal(UnityEngine.GameObject gameObject, Vector3 to, float time){
         return pushNewTween( gameObject, to, time, options().setRotateLocal() );
     }
 
@@ -1584,7 +1584,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr rotateX(GameObject gameObject, float to, float time){
+    public static LTDescr rotateX(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setRotateX() );
     }
 
@@ -1597,7 +1597,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr rotateY(GameObject gameObject, float to, float time){
+    public static LTDescr rotateY(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setRotateY() );
     }
 
@@ -1610,7 +1610,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the rotation in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr rotateZ(GameObject gameObject, float to, float time){
+    public static LTDescr rotateZ(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setRotateZ() );
     }
 
@@ -1627,7 +1627,7 @@ public class LeanTween : MonoBehaviour {
     * <i>Example:</i><br />
     * LeanTween.rotateAround ( gameObject, Vector3.left, 90f,  1f );
     */
-    public static LTDescr rotateAround(GameObject gameObject, Vector3 axis, float add, float time){
+    public static LTDescr rotateAround(UnityEngine.GameObject gameObject, Vector3 axis, float add, float time){
         return pushNewTween( gameObject, new Vector3(add,0f,0f), time, options().setAxis(axis).setRotateAround() );
     }
 
@@ -1644,7 +1644,7 @@ public class LeanTween : MonoBehaviour {
     * <i>Example:</i><br />
     * LeanTween.rotateAround ( gameObject, Vector3.left, 90f,  1f );
     */
-    public static LTDescr rotateAroundLocal(GameObject gameObject, Vector3 axis, float add, float time){
+    public static LTDescr rotateAroundLocal(UnityEngine.GameObject gameObject, Vector3 axis, float add, float time){
         return pushNewTween( gameObject, new Vector3(add,0f,0f), time, options().setRotateAroundLocal().setAxis(axis) );
     }
 
@@ -1657,7 +1657,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float time The time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr scale(GameObject gameObject, Vector3 to, float time){
+    public static LTDescr scale(UnityEngine.GameObject gameObject, Vector3 to, float time){
         return pushNewTween( gameObject, to, time, options().setScale() );
     }
 
@@ -1697,7 +1697,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float the time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr scaleX(GameObject gameObject, float to, float time){
+    public static LTDescr scaleX(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setScaleX() );
     }
 
@@ -1710,7 +1710,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float the time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr scaleY(GameObject gameObject, float to, float time){
+    public static LTDescr scaleY(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setScaleY() );
     }
 
@@ -1723,7 +1723,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float the time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr scaleZ(GameObject gameObject, float to, float time){
+    public static LTDescr scaleZ(UnityEngine.GameObject gameObject, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setScaleZ());
     }
 
@@ -1747,7 +1747,7 @@ public class LeanTween : MonoBehaviour {
     * &#160;Debug.Log("tweened val:"+val);<br />
     * } );<br />
     */
-    public static LTDescr value(GameObject gameObject, float from, float to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, float from, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setCallback().setFrom( new Vector3(from,0,0) ) );
     }
     public static LTDescr value(float from, float to, float time){
@@ -1774,7 +1774,7 @@ public class LeanTween : MonoBehaviour {
     * &#160;Debug.Log("tweened val:"+val);<br />
     * } );<br />
     */
-    public static LTDescr value(GameObject gameObject, Vector2 from, Vector2 to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Vector2 from, Vector2 to, float time){
         return pushNewTween( gameObject, new Vector3(to.x,to.y,0), time, options().setValue3().setTo( new Vector3(to.x,to.y,0f) ).setFrom( new Vector3(from.x,from.y,0) ) );
     }
 
@@ -1798,7 +1798,7 @@ public class LeanTween : MonoBehaviour {
     * &#160;Debug.Log("tweened val:"+val);<br />
     * } );<br />
     */
-    public static LTDescr value(GameObject gameObject, Vector3 from, Vector3 to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Vector3 from, Vector3 to, float time){
         return pushNewTween( gameObject, to, time, options().setValue3().setFrom( from ) );
     }
 
@@ -1822,7 +1822,7 @@ public class LeanTween : MonoBehaviour {
     * &#160;Debug.Log("tweened val:"+val);<br />
     * } );<br />
     */
-    public static LTDescr value(GameObject gameObject, Color from, Color to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Color from, Color to, float time){
         LTDescr lt = pushNewTween( gameObject, new Vector3(1f, to.a, 0f), time, options().setCallbackColor().setPoint( new Vector3(to.r, to.g, to.b) )
             .setFromColor(from).setHasInitialized(false) );
 
@@ -1857,7 +1857,7 @@ public class LeanTween : MonoBehaviour {
     * }<br />
     */
 
-    public static LTDescr value(GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<float> callOnUpdate, float from, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setCallback().setTo( new Vector3(to,0,0) ).setFrom( new Vector3(from,0,0) ).setOnUpdate(callOnUpdate) );
     }
 
@@ -1885,7 +1885,7 @@ public class LeanTween : MonoBehaviour {
     * }<br />
     */
 
-    public static LTDescr value(GameObject gameObject, Action<float, float> callOnUpdateRatio, float from, float to, float time) {
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<float, float> callOnUpdateRatio, float from, float to, float time) {
         return pushNewTween(gameObject, new Vector3(to, 0, 0), time, options().setCallback().setTo(new Vector3(to, 0, 0)).setFrom(new Vector3(from, 0, 0)).setOnUpdateRatio(callOnUpdateRatio));
     }
 
@@ -1913,11 +1913,11 @@ public class LeanTween : MonoBehaviour {
     * }<br />
     */
 
-    public static LTDescr value(GameObject gameObject, Action<Color> callOnUpdate, Color from, Color to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<Color> callOnUpdate, Color from, Color to, float time){
         return pushNewTween( gameObject, new Vector3(1.0f,to.a,0.0f), time, options().setCallbackColor().setPoint( new Vector3(to.r, to.g, to.b) )
             .setAxis( new Vector3(from.r, from.g, from.b) ).setFrom( new Vector3(0.0f, from.a, 0.0f) ).setHasInitialized(false).setOnUpdateColor(callOnUpdate) );
     }
-    public static LTDescr value(GameObject gameObject, Action<Color,object> callOnUpdate, Color from, Color to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<Color,object> callOnUpdate, Color from, Color to, float time){
         return pushNewTween( gameObject, new Vector3(1.0f,to.a,0.0f), time, options().setCallbackColor().setPoint( new Vector3(to.r, to.g, to.b) )
             .setAxis( new Vector3(from.r, from.g, from.b) ).setFrom( new Vector3(0.0f, from.a, 0.0f) ).setHasInitialized(false).setOnUpdateColor(callOnUpdate) );
     }
@@ -1933,7 +1933,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr value(GameObject gameObject, Action<Vector2> callOnUpdate, Vector2 from, Vector2 to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<Vector2> callOnUpdate, Vector2 from, Vector2 to, float time){
         return pushNewTween( gameObject, new Vector3(to.x,to.y,0f), time, options().setValue3().setTo( new Vector3(to.x,to.y,0f) ).setFrom( new Vector3(from.x,from.y,0f) ).setOnUpdateVector2(callOnUpdate) );
     }
 
@@ -1948,7 +1948,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr value(GameObject gameObject, Action<Vector3> callOnUpdate, Vector3 from, Vector3 to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<Vector3> callOnUpdate, Vector3 from, Vector3 to, float time){
         return pushNewTween( gameObject, to, time, options().setValue3().setTo( to ).setFrom( from ).setOnUpdateVector3(callOnUpdate) );
     }
 
@@ -1963,7 +1963,7 @@ public class LeanTween : MonoBehaviour {
     * @param {float} time:float The time to complete the tween in
     * @return {LTDescr} LTDescr an object that distinguishes the tween
     */
-    public static LTDescr value(GameObject gameObject, Action<float,object> callOnUpdate, float from, float to, float time){
+    public static LTDescr value(UnityEngine.GameObject gameObject, Action<float,object> callOnUpdate, float from, float to, float time){
         return pushNewTween( gameObject, new Vector3(to,0,0), time, options().setCallback().setTo( new Vector3(to,0,0) ).setFrom( new Vector3(from,0,0) ).setOnUpdate(callOnUpdate, gameObject) );
     }
 
@@ -1972,7 +1972,7 @@ public class LeanTween : MonoBehaviour {
         return pushNewTween( tweenEmpty, pos, 0f, options().setDelayedSound().setTo( pos ).setFrom( new Vector3(volume,0,0) ).setAudio( audio ) );
     }
 
-    public static LTDescr delayedSound( GameObject gameObject, AudioClip audio, Vector3 pos, float volume ){
+    public static LTDescr delayedSound(UnityEngine.GameObject gameObject, AudioClip audio, Vector3 pos, float volume ){
         //Debug.LogError("Delay sound??");
         return pushNewTween( gameObject, pos, 0f, options().setDelayedSound().setTo( pos ).setFrom( new Vector3(volume,0,0) ).setAudio( audio ) );
     }
@@ -2755,7 +2755,7 @@ public class LeanTween : MonoBehaviour {
     // LeanTween Listening/Dispatch
 
     private static System.Action<LTEvent>[] eventListeners;
-    private static GameObject[] goListeners;
+    private static UnityEngine.GameObject[] goListeners;
     private static int eventsMaxSearch = 0;
     public static int EVENTS_MAX = 10;
     public static int LISTENERS_MAX = 10;
@@ -2777,11 +2777,11 @@ public class LeanTween : MonoBehaviour {
     * <br />
     * void jumpUp( LTEvent e ){ Debug.Log("jump!"); }<br />
     */
-    public static void addListener( GameObject caller, int eventId, System.Action<LTEvent> callback ){
+    public static void addListener(UnityEngine.GameObject caller, int eventId, System.Action<LTEvent> callback ){
         if(eventListeners==null){
             INIT_LISTENERS_MAX = LISTENERS_MAX;
             eventListeners = new System.Action<LTEvent>[ EVENTS_MAX * LISTENERS_MAX ];
-            goListeners = new GameObject[ EVENTS_MAX * LISTENERS_MAX ];
+            goListeners = new UnityEngine.GameObject[EVENTS_MAX * LISTENERS_MAX];
         }
         // Debug.Log("searching for an empty space for:"+caller + " eventid:"+event);
         for(i = 0; i < INIT_LISTENERS_MAX; i++){
@@ -2833,7 +2833,7 @@ public class LeanTween : MonoBehaviour {
     * <br />
     * void jumpUp( LTEvent e ){ }<br />
     */
-    public static bool removeListener( GameObject caller, int eventId, System.Action<LTEvent> callback ){
+    public static bool removeListener(UnityEngine.GameObject caller, int eventId, System.Action<LTEvent> callback ){
         for(i = 0; i < eventsMaxSearch; i++){
             int point = eventId*INIT_LISTENERS_MAX + i;
             #if UNITY_FLASH

@@ -8,7 +8,7 @@ public class Testing246 : MonoBehaviour {
 
     //private float nextElapsed = 0f;
 
-    public GameObject tweenAlpha;
+    public UnityEngine.GameObject tweenAlpha;
 
  //   public void Start(){
  //       LeanTween.alpha(tweenAlpha, 0f, 1f).setRecursive(false);   
