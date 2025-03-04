@@ -6,37 +6,37 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Components")]
-    private Player player;
-    private EnemyMovement enemyMovement;
-    private Collider2D cd;
+    protected Player player;
+    protected EnemyMovement enemyMovement;
+    protected Collider2D cd;
 
     [Header("General Settings")]
-    [SerializeField] private int maxHealth;
-    [SerializeField] private TextMeshPro healthText;
-    private int health;
-    private bool hasSpawned = false;
+    [SerializeField] protected int maxHealth;
+    [SerializeField] protected TextMeshPro healthText;
+    protected int health;
+    protected bool hasSpawned = false;
 
     [Header("Spawn Settings")]
-    [SerializeField] private SpriteRenderer spawnIndicator;
-    [SerializeField] private float targetScaleFactor;
-    [SerializeField] private float scaleLoopDuration;
-    [SerializeField] private int numOfLoops;
+    [SerializeField] protected SpriteRenderer spawnIndicator;
+    [SerializeField] protected float targetScaleFactor;
+    [SerializeField] protected float scaleLoopDuration;
+    [SerializeField] protected int numOfLoops;
 
     [Header("Attack Settings")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackRange;
-    [SerializeField] private float attackCooldown;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float attackCooldown;
     private float attackTimer = 0;
 
     [Header("Visuals and Effects")]
-    [SerializeField] private SpriteRenderer sr;
-    private ParticleSystem deathEffect;
+    [SerializeField] protected SpriteRenderer sr;
+    protected ParticleSystem deathEffect;
 
     [Header("Actions")]
     public static Action<Transform, int> onDamageTaken;
 
     [Header("Debug")]
-    [SerializeField] private bool showGizmos = true;
+    [SerializeField] protected bool showGizmos = true;
 
     private void Start()
     {
@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
 
     #region Attack
 
-    private void TryAttack()
+    protected virtual void TryAttack()
     {
         float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
@@ -105,12 +105,12 @@ public class Enemy : MonoBehaviour
         }    
     }
 
-    private bool CanAttack()
+    protected bool CanAttack()
     {
         return attackTimer == 0;
     }
 
-    void Attack()
+    protected virtual void Attack()
     {
         Debug.Log("Dealing " + damage + " to the player!");
         SetAttackTimer();

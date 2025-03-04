@@ -31,4 +31,9 @@ public class EnemyMovement : MonoBehaviour
     {
         canMove = true;
     }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+    }
 }
