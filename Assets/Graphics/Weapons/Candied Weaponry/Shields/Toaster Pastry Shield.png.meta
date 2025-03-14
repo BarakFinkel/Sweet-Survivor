@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Toaster Pastry Shield_0: 991556076929739315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

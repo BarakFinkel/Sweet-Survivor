@@ -29,11 +29,13 @@ public class EnemyMovement : MonoBehaviour
 
     public void EnableMovement()
     {
-        canMove = true;
+        if (canMove == false)
+            canMove = true;
     }
 
     public void DisableMovement()
     {
-        canMove = false;
+        if (canMove == true)
+            canMove = false;
     }
 }

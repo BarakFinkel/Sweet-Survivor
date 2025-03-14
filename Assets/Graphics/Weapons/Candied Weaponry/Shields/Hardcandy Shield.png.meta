@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hardcandy Shield_0: 801614951648803781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

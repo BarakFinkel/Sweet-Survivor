@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Actions")]
     public static Action<Transform, int> onDamageTaken;
+    public static Action<Transform, int> onAttack;
 
     [Header("Debug")]
     [SerializeField] protected bool showGizmos = true;
@@ -107,19 +108,18 @@ public class Enemy : MonoBehaviour
 
     protected bool CanAttack()
     {
-        return attackTimer == 0;
+        if (attackTimer == 0)
+        {
+            attackTimer = attackCooldown;
+            return true;
+        }
+        else return false;
     }
 
     protected virtual void Attack()
     {
         Debug.Log("Dealing " + damage + " to the player!");
-        SetAttackTimer();
         player.TakeDamage(damage);
-    }
-
-    private void SetAttackTimer()
-    {
-        attackTimer = attackCooldown;
     }
 
     private void UpdateAttackTimer()
