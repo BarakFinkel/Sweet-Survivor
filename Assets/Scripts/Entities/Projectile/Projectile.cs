@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         if (collider.TryGetComponent(out Player player))
         {
             player.TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour
@@ -34,7 +34,6 @@ public class Enemy : MonoBehaviour
 
     [Header("Actions")]
     public static Action<Transform, int> onDamageTaken;
-    public static Action<Transform, int> onAttack;
 
     [Header("Debug")]
     [SerializeField] protected bool showGizmos = true;
