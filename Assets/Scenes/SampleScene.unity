@@ -11772,8 +11772,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.008293859, y: 0.075282514}
-  m_Size: {x: 1.2223027, y: 0.53328305}
+  m_Offset: {x: 0, y: 0.2}
+  m_Size: {x: 1.6613533, y: 0.88787705}
   m_Direction: 1
 --- !u!114 &311134513
 MonoBehaviour:
@@ -18016,10 +18016,6 @@ PrefabInstance:
     - target: {fileID: 1771951573198658193, guid: 465292287b4d03f4da45db4f0120bfc5, type: 3}
       propertyPath: m_Name
       value: EnemySpitFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 1782495239044546903, guid: 465292287b4d03f4da45db4f0120bfc5, type: 3}
-      propertyPath: attackRange
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6720649652857596449, guid: 465292287b4d03f4da45db4f0120bfc5, type: 3}
       propertyPath: m_LocalPosition.x
