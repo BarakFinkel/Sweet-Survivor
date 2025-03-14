@@ -123,7 +123,10 @@ public class Enemy : MonoBehaviour
 
     private void UpdateAttackTimer()
     {
-        attackTimer = Mathf.Max(attackTimer - Time.deltaTime, 0);
+        if (attackTimer > 0)
+        {
+            attackTimer = Mathf.Max(attackTimer - Time.deltaTime, 0);
+        }
     }
 
     #endregion

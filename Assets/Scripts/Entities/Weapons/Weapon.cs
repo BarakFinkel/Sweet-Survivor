@@ -16,8 +16,10 @@ public class Weapon : MonoBehaviour
 
     [Header("Attack Settings")]
     [SerializeField] private Transform hitCheckTransform;
-    [SerializeField] private int damage = 5;
+    [SerializeField] protected int damage = 5;
     [SerializeField] private float hitRadius;
+    [SerializeField] private float attackCooldown = 1.0f;
+    private float attackTimer = 0.0f;
     private bool canDamage = false;
     private List<Collider2D> enemiesHit = new List<Collider2D>();
 
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour
 
     #region Aim
 
-    private Transform ClosestEnemy()
+    protected Transform ClosestEnemy()
     {
         Collider2D[] enemyColliders = Physics2D.OverlapCircleAll(originPosition, attackCheckRadius, enemyMask);
         
@@ -99,23 +101,18 @@ public class Weapon : MonoBehaviour
 
     #region Attack
 
-    private void HandleAttack()
+    protected virtual void HandleAttack()
     {
-        // If an enemy is within range, set "isAttacking" to true; otherwise, false.
-        if (ClosestEnemy() != null)
-        {
-            animator.SetBool("Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-            DisableDamage();
-        }
+        UpdateAttackTimer();
+        
+        // If an enemy is within range and the attack is off-cooldown, trigger the attack animation.
+        if (ClosestEnemy() != null && CanAttack())
+            animator.SetTrigger("Attack");
 
         TryDamage();
     }
 
-    private void TryDamage()
+    protected void TryDamage()
     {
         if (canDamage)
         {
@@ -141,6 +138,24 @@ public class Weapon : MonoBehaviour
     {
         canDamage = false;
         enemiesHit.Clear();
+    }
+
+    protected bool CanAttack()
+    {
+        if (attackTimer == 0)
+        {
+            attackTimer = attackCooldown;
+            return true;
+        }
+        else return false;
+    }
+
+    protected void UpdateAttackTimer()
+    {
+        if (attackTimer > 0)
+        {
+            attackTimer = Mathf.Max(attackTimer - Time.deltaTime, 0);
+        }
     }
 
     #endregion

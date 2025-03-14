@@ -1,8 +1,8 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private bool isTargetPlayer = true; // Otherwise, needs to damage the enemy. 
     private Rigidbody2D rb;
     private int damage;
 
@@ -21,9 +21,14 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent(out Player player))
+        if (isTargetPlayer && collider.TryGetComponent(out Player player))
         {
             player.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
+        else if (!isTargetPlayer && collider.TryGetComponent(out Enemy enemy))
+        {
+            enemy.TakeDamage(damage);
             gameObject.SetActive(false);
         }
     }

@@ -6,6 +6,7 @@ public class Projectiles : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private bool isTargetPlayer = true;
     [SerializeField] private float duration = 5.0f;
 
     [Header("Pooling")]
@@ -13,7 +14,14 @@ public class Projectiles : MonoBehaviour
 
     private void Awake()
     {
-        RangedEnemy.onRangedAttack += AttackCallback;
+        if (isTargetPlayer)
+        {
+            RangedEnemy.onRangedAttack += AttackCallback;
+        }
+        else
+        {
+
+        }
     }
 
     private void Start()
@@ -47,7 +55,14 @@ public class Projectiles : MonoBehaviour
 
     private void OnDisable()
     {
-        RangedEnemy.onRangedAttack -= AttackCallback;
+        if (isTargetPlayer)
+        {
+            RangedEnemy.onRangedAttack += AttackCallback;
+        }
+        else
+        {
+            
+        }
     }
 
     private void AttackCallback(Vector2 source, Vector2 direction, float velocity, int damage)
