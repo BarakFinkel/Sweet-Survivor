@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class WeaponAnimationTriggers : MonoBehaviour
+public class MeleeWeaponAnimationTriggers : MonoBehaviour
 {
-    private Weapon weapon => GetComponentInParent<Weapon>();
+    private MeleeWeapon weapon => GetComponentInParent<MeleeWeapon>();
 
     private void StartDamageWindowTrigger()
     {

@@ -2,27 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Projectiles : MonoBehaviour
+public class ProjectilesManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private bool isTargetPlayer = true;
     [SerializeField] private float duration = 5.0f;
 
     [Header("Pooling")]
     private ObjectPool<Projectile> projectilePool;
-
-    private void Awake()
-    {
-        if (isTargetPlayer)
-        {
-            RangedEnemy.onRangedAttack += AttackCallback;
-        }
-        else
-        {
-
-        }
-    }
 
     private void Start()
     {
@@ -45,6 +32,7 @@ public class Projectiles : MonoBehaviour
     private void ActionOnRelease(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
+        projectile.released = true;
     }
 
     // Method for destruction of projectiles.
@@ -53,29 +41,24 @@ public class Projectiles : MonoBehaviour
         Destroy(projectile.gameObject);
     }
 
-    private void OnDisable()
-    {
-        if (isTargetPlayer)
-        {
-            RangedEnemy.onRangedAttack += AttackCallback;
-        }
-        else
-        {
-            
-        }
-    }
-
-    private void AttackCallback(Vector2 source, Vector2 direction, float velocity, int damage)
+    // Gets a projectile instance and sets it according to the given parameters.
+    public void CreateProjectile(Vector2 source, Vector2 direction, float velocity, int damage)
     {
         Projectile projectileInstance = projectilePool.Get();
-        projectileInstance.SetupProjectile(source, direction, velocity, damage);
+        projectileInstance.SetupProjectile(this, source, direction, velocity, damage);
 
         StartCoroutine(ReleaseProjectileWithDelay(projectileInstance, duration));
     }
 
-    private IEnumerator ReleaseProjectileWithDelay(Projectile damageText, float t)
+    private IEnumerator ReleaseProjectileWithDelay(Projectile projectile, float t)
     {
         yield return new WaitForSeconds(t);
-        projectilePool?.Release(damageText);
+        ReleaseProjectile(projectile);
+    }
+
+    public void ReleaseProjectile(Projectile projectile)
+    {
+        if (!projectile.released)
+            projectilePool.Release(projectile);
     }
 }

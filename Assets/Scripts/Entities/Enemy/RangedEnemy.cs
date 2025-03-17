@@ -5,10 +5,8 @@ public class RangedEnemy : Enemy
 {
     [Header("Ranged Enemy Settings")]
     [SerializeField] private Transform projectileSource;
+    [SerializeField] private ProjectilesManager projectilesManager;
     [SerializeField] private float projectileVelocity = 5.0f;
-
-    [Header("Actions")]
-    public static Action<Vector2, Vector2, float, int> onRangedAttack;
 
     protected override void TryAttack()
     {
@@ -30,6 +28,6 @@ public class RangedEnemy : Enemy
     protected override void Attack()
     {
         Vector2 direction = (player.GetCenterPoint() - (Vector2)projectileSource.position).normalized;
-        onRangedAttack?.Invoke(transform.position, direction, projectileVelocity, damage);
+        projectilesManager.CreateProjectile(transform.position, direction, projectileVelocity, damage);
     }
 }
