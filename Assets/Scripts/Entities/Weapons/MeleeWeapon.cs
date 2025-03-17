@@ -88,7 +88,8 @@ public class MeleeWeapon : Weapon
             {
                 if (!enemiesHit.Contains(enemyColliders[i]))
                 {
-                    enemyColliders[i].GetComponent<Enemy>().TakeDamage(damage);
+                    int dmg = CalculateDamage(out bool isCritHit);
+                    enemyColliders[i].GetComponent<Enemy>().TakeDamage(dmg);
                     enemiesHit.Add(enemyColliders[i]);
                 }
             }

@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
 
     [Header("Attack Settings")]
     [SerializeField] protected int damage = 5;
+    [SerializeField] protected float criticalHitMultiplier = 2.0f;
+    [SerializeField] protected float criticalHitChance = 20.0f;
     [SerializeField] protected float attackCooldown = 1.0f;
     private float attackTimer = 0.0f;
 
@@ -79,6 +81,20 @@ public class Weapon : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    protected int CalculateDamage(out bool isCritHit)
+    {
+        if (Random.Range(0, 101) <= criticalHitChance)
+        {
+            isCritHit = true;
+            return Mathf.RoundToInt(damage * criticalHitMultiplier);
+        }
+        else
+        {
+            isCritHit = false;
+            return damage;
+        }
     }
 
     protected void UpdateAttackTimer()

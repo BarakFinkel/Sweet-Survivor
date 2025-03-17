@@ -32,7 +32,6 @@ public class ProjectilesManager : MonoBehaviour
     private void ActionOnRelease(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
-        projectile.released = true;
     }
 
     // Method for destruction of projectiles.
@@ -58,7 +57,7 @@ public class ProjectilesManager : MonoBehaviour
 
     public void ReleaseProjectile(Projectile projectile)
     {
-        if (!projectile.released)
+        if (projectile.gameObject.activeSelf)
             projectilePool.Release(projectile);
     }
 }
