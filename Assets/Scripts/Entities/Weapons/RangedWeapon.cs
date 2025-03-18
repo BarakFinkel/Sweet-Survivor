@@ -27,7 +27,7 @@ public class RangedWeapon : Weapon
     private void Shoot(Transform enemy)
     {
         Vector2 direction = (enemy.position - sr.transform.position).normalized;
-        projectilesManager.CreateProjectile(sr.transform.position, direction, projectileVelocity, CalculateDamage(out bool isCritHit));
+        projectilesManager.UseProjectile(sr.transform.position, direction, projectileVelocity, CalculateDamage(out bool isCritHit), isCritHit);
 
         if (applyingThrowEffect)
             StartCoroutine(ToggleRendererWithDelay(rendererReactivationDelay));

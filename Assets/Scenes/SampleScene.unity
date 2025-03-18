@@ -14610,6 +14610,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 5
+  criticalHitMultiplier: 2
+  criticalHitChance: 20
   attackCooldown: 1
   lerpFactor: 8
   hitCheckTransform: {fileID: 820906892}
@@ -17285,6 +17287,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 5
+  criticalHitMultiplier: 2
+  criticalHitChance: 20
   attackCooldown: 1.5
   lerpFactor: 8
   projectileVelocity: 10

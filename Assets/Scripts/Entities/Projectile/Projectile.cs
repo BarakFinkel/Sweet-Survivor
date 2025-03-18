@@ -8,13 +8,14 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D rb;
     private int damage;
     private Enemy target;
+    private bool isCritHit;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, int _damage)
+    public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, int _damage, bool _isCritHit)
     {
         // Set new parameter values for the current cycle.
         damage = _damage;
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour
         transform.position = _source;
         transform.right = _direction;
         rb.linearVelocity = _direction * _velocity;
+        isCritHit = _isCritHit;
         
         // Reset previous indicatiors before new cycle.
         target = null;
@@ -38,7 +40,7 @@ public class Projectile : MonoBehaviour
         else if (!isTargetPlayer && target == null && collider.TryGetComponent(out Enemy enemy))
         {
             target = enemy;
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, isCritHit);
             myManager.ReleaseProjectile(this);
         }
     }

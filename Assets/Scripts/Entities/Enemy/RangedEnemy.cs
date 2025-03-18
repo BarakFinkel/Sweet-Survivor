@@ -28,6 +28,6 @@ public class RangedEnemy : Enemy
     protected override void Attack()
     {
         Vector2 direction = (player.GetCenterPoint() - (Vector2)projectileSource.position).normalized;
-        projectilesManager.CreateProjectile(transform.position, direction, projectileVelocity, damage);
+        projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, damage, false);
     }
 }

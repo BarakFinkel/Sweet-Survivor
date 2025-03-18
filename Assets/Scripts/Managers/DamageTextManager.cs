@@ -50,10 +50,10 @@ public class DamageTextManager : MonoBehaviour
         Enemy.onDamageTaken -= EnemyHitCallback;
     }
 
-    private void EnemyHitCallback(Transform enemy, int damage)
+    private void EnemyHitCallback(Transform enemy, int damage, bool isCritHit)
     {
         DamageTextEffect damageTextInstance = damageTextPool.Get();
-        damageTextInstance.SetupDamageText(enemy, spawnOffset, damage);
+        damageTextInstance.SetupDamageText(enemy, spawnOffset, damage, isCritHit);
 
         StartCoroutine(ReleaseTextWithDelay(damageTextInstance, duration));
     }

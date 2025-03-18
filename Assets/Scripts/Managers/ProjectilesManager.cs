@@ -13,11 +13,11 @@ public class ProjectilesManager : MonoBehaviour
 
     private void Start()
     {
-        projectilePool = new ObjectPool<Projectile>(CreateDamageText, ActionOnGet, ActionOnRelease, ActionOnDestroy);
+        projectilePool = new ObjectPool<Projectile>(CreateProjectile, ActionOnGet, ActionOnRelease, ActionOnDestroy);
     }
 
     // Method to instantiate a projectile object
-    private Projectile CreateDamageText()
+    private Projectile CreateProjectile()
     {
         return Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
     }
@@ -41,10 +41,10 @@ public class ProjectilesManager : MonoBehaviour
     }
 
     // Gets a projectile instance and sets it according to the given parameters.
-    public void CreateProjectile(Vector2 source, Vector2 direction, float velocity, int damage)
+    public void UseProjectile(Vector2 source, Vector2 direction, float velocity, int damage, bool isCritHit)
     {
         Projectile projectileInstance = projectilePool.Get();
-        projectileInstance.SetupProjectile(this, source, direction, velocity, damage);
+        projectileInstance.SetupProjectile(this, source, direction, velocity, damage, isCritHit);
 
         StartCoroutine(ReleaseProjectileWithDelay(projectileInstance, duration));
     }

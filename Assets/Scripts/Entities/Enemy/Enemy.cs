@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     protected ParticleSystem deathEffect;
 
     [Header("Actions")]
-    public static Action<Transform, int> onDamageTaken;
+    public static Action<Transform, int, bool> onDamageTaken;
 
     [Header("Debug")]
     [SerializeField] protected bool showGizmos = true;
@@ -131,12 +131,12 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool isCritHit)
     {
         health = Mathf.Max(health - damage, 0);
         healthText.text = health.ToString();
         
-        onDamageTaken?.Invoke(transform, damage);
+        onDamageTaken?.Invoke(transform, damage, isCritHit);
 
         if (health <= 0)
             Die();
