@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,21 +23,21 @@ public class RangedWeapon : Weapon
             StartCoroutine(ShootWithDelay(closestEnemy, attackDelay));
     }
 
-    private void Shoot(Transform enemy)
-    {
-        Vector2 direction = (enemy.position - sr.transform.position).normalized;
-        projectilesManager.UseProjectile(sr.transform.position, direction, projectileVelocity, CalculateDamage(out bool isCritHit), isCritHit);
-
-        if (applyingThrowEffect)
-            StartCoroutine(ToggleRendererWithDelay(rendererReactivationDelay));
-    }
-
     private IEnumerator ShootWithDelay(Transform enemy, float delay)
     {
         yield return new WaitForSeconds(delay);
         
         if(enemy != null)
             Shoot(enemy);
+    }
+
+    private void Shoot(Transform enemy)
+    {
+        Vector2 direction = (enemy.position - transform.position).normalized;
+        projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, CalculateDamage(out bool isCritHit), isCritHit);
+
+        if (applyingThrowEffect)
+            StartCoroutine(ToggleRendererWithDelay(rendererReactivationDelay));
     }
 
     private IEnumerator ToggleRendererWithDelay(float delay)

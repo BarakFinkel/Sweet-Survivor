@@ -5,7 +5,8 @@ using UnityEngine.Pool;
 public class ProjectilesManager : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] public GameObject projectilePrefab;
+    [SerializeField] private Transform parent;
     [SerializeField] private float duration = 5.0f;
 
     [Header("Pooling")]
@@ -26,12 +27,14 @@ public class ProjectilesManager : MonoBehaviour
     private void ActionOnGet(Projectile projectile)
     {
         projectile.gameObject.SetActive(true);
+        projectile.transform.parent = parent;
     }
 
     // Method for releasing projectiles.
     private void ActionOnRelease(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
+        projectile.transform.parent = transform;
     }
 
     // Method for destruction of projectiles.

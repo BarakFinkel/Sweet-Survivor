@@ -34,11 +34,12 @@ public class Enemy : MonoBehaviour
 
     [Header("Actions")]
     public static Action<Transform, int, bool> onDamageTaken;
+    public static Action<Vector2> onDeath;
 
     [Header("Debug")]
     [SerializeField] protected bool showGizmos = true;
 
-    private void Start()
+    protected virtual void Start()
     {
         health = maxHealth;
         healthText.text = health.ToString();
@@ -154,7 +155,9 @@ public class Enemy : MonoBehaviour
             {
                 damageTexts[i].gameObject.transform.parent = null;
             }
-        } 
+        }
+
+        onDeath?.Invoke(transform.position);
 
         Destroy(gameObject);
     }

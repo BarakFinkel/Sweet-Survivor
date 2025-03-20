@@ -41,6 +41,7 @@ public class Projectile : MonoBehaviour
         {
             target = enemy;
             enemy.TakeDamage(damage, isCritHit);
+            rb.linearVelocity = Vector2.zero;
             myManager.ReleaseProjectile(this);
         }
     }
