@@ -1,16 +1,24 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerHealth))]
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerHealth), typeof(PlayerLevel), typeof(PlayerController))]
 public class Player : MonoBehaviour
 {
+    public static Player instance = null;
+
     [Header("Components")]
     private PlayerHealth playerHealth;
+    private PlayerLevel playerLevel;
     private CapsuleCollider2D cd;
 
     void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        
         playerHealth = GetComponent<PlayerHealth>();
+        playerLevel = GetComponent<PlayerLevel>();
         cd = GetComponent<CapsuleCollider2D>();
     }
 

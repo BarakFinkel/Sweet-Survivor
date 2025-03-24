@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 public class PlayerLevel : MonoBehaviour
 {
@@ -65,5 +64,6 @@ public class PlayerLevel : MonoBehaviour
         level++;
         currentXP = 0;
         UpdateRequiredXP();
+        GameManager.instance.SetGameState(GameState.LEVELUP);
     }
 }

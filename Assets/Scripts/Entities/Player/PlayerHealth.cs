@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using TMPro;
 
@@ -48,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        SceneManager.LoadScene(0);
+        GameManager.instance.SetGameState(GameState.GAMEOVER);
     }
 
     public void UpdateHealthUI()
