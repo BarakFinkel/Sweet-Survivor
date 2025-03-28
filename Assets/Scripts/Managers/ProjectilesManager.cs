@@ -7,7 +7,6 @@ public class ProjectilesManager : MonoBehaviour
     [Header("Elements")]
     [SerializeField] public GameObject projectilePrefab;
     [SerializeField] private Transform parent;
-    [SerializeField] private float duration = 5.0f;
 
     [Header("Pooling")]
     private ObjectPool<Projectile> projectilePool;
@@ -44,12 +43,13 @@ public class ProjectilesManager : MonoBehaviour
     }
 
     // Gets a projectile instance and sets it according to the given parameters.
-    public void UseProjectile(Vector2 source, Vector2 direction, float velocity, int damage, bool isCritHit)
+    public void UseProjectile(Vector2 source, Vector2 direction, float velocity, float range, int damage, bool isCritHit)
     {
         Projectile projectileInstance = projectilePool.Get();
         projectileInstance.SetupProjectile(this, source, direction, velocity, damage, isCritHit);
 
-        StartCoroutine(ReleaseProjectileWithDelay(projectileInstance, duration));
+        // We release the projectile when we reach desired range.
+        StartCoroutine(ReleaseProjectileWithDelay(projectileInstance, range / velocity));
     }
 
     private IEnumerator ReleaseProjectileWithDelay(Projectile projectile, float t)

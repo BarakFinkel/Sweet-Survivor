@@ -56,7 +56,7 @@ MonoBehaviour:
   targetScaleFactor: 1.2
   scaleLoopDuration: 0.3
   numOfLoops: 3
-  damage: 1
+  damage: 5
   attackRange: 0.5
   attackCooldown: 0.5
   sr: {fileID: 1851676099132330340}

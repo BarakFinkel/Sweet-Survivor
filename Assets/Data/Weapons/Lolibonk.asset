@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a6249a8f3ccef4295a9da256181454, type: 3}
+  m_Name: Lolibonk
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Lolibonk
+  <Sprite>k__BackingField: {fileID: 21300000, guid: e4c95ffa2657d1742954c8210c288238, type: 3}
+  <PurchasePrice>k__BackingField: 100
+  <Prefab>k__BackingField: {fileID: 0}
+  attack: 5
+  attackSpeed: 0
+  criticalChance: 0
+  criticalDamage: 0
+  range: 8
+  lifeSteal: 0

@@ -6,6 +6,7 @@ public class RangedEnemy : Enemy
     [SerializeField] public GameObject projectilePrefab;
     [SerializeField] private Transform projectileSource;
     [SerializeField] private float projectileVelocity = 5.0f;
+    [SerializeField] private float projectileRange = 10.0f;
     private ProjectilesManager projectilesManager;
 
     protected override void Start()
@@ -34,7 +35,7 @@ public class RangedEnemy : Enemy
     protected override void Attack()
     {
         Vector2 direction = (player.GetCenterPoint() - (Vector2)projectileSource.position).normalized;
-        projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, damage, false);
+        projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, projectileRange, damage, false);
     }
 
     protected void FindProjectileManager()

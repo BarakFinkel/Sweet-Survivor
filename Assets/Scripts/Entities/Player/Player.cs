@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
     public static Player instance = null;
 
     [Header("Components")]
-    private PlayerHealth playerHealth;
+    private PlayerHealth health;
+    private PlayerDamageHandler damageHandler;
     private PlayerLevel playerLevel;
     private CapsuleCollider2D cd;
 
@@ -16,15 +17,19 @@ public class Player : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
-        
-        playerHealth = GetComponent<PlayerHealth>();
+
+        health = GetComponent<PlayerHealth>();
+        damageHandler = GetComponent<PlayerDamageHandler>();
         playerLevel = GetComponent<PlayerLevel>();
         cd = GetComponent<CapsuleCollider2D>();
     }
 
     public void TakeDamage(int damage)
     {
-        playerHealth.TakeDamage(damage);
+        int realDamage = damageHandler.CalculateDamage(damage);
+
+        if (realDamage != 0)
+            health.ApplyDamage(realDamage);
     }
     
     public Vector2 GetCenterPoint()

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class ChocolateChest : Drop
 {
@@ -11,8 +10,6 @@ public class ChocolateChest : Drop
         if (collected)
             return;
         
-        collected = true;
-
         HandleCollection();
     }
 

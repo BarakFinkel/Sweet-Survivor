@@ -14,14 +14,13 @@ public class MeleeWeapon : Weapon
     [SerializeField] private Vector2 deafultOffsetFromPlayer = new Vector2(1.25f, 0.25f);
     private Vector3 originPosition;
 
-    [Header("Animation Settings")]
-    private Animator animator => GetComponentInChildren<Animator>();
-
     [Header("Hit Enemies Tracking Settings")]
-    protected bool canDamage = false;
     protected List<Collider2D> enemiesHit = new List<Collider2D>();
 
-    // Update is called once per frame
+    [Header("Gateway Booleans")]
+    protected bool canDamage = false;
+    protected bool canAim = true;
+
     protected override void Update()
     {
         UpdateOriginPosition();
@@ -31,31 +30,34 @@ public class MeleeWeapon : Weapon
 
     protected override void AimWeapon()
     {
-        Transform closestEnemy = ClosestEnemy();
-        Vector2 targetPosition;
-
-        if (closestEnemy != null)
+        if(canAim)
         {
-            // Calculate direction from the adjusted origin position to the enemy
-            Vector2 directionToEnemy = (closestEnemy.position - originPosition).normalized;
-            
-            // Change the target position to be the desired radius towards the closest enemy.
-            targetPosition = (Vector2)originPosition + directionToEnemy * distanceFromPlayer;
+            Transform closestEnemy = ClosestEnemy();
+            Vector2 targetPosition;
 
-            // Change the object's desired up direction to be towards the enemy.
-            transform.up = Vector3.Lerp(transform.up, directionToEnemy, Time.deltaTime * lerpFactor);
-        }
-        else
-        {
-            // Default position relative to the adjusted origin
-            targetPosition = (Vector2)originPosition + deafultOffsetFromPlayer;
+            if (closestEnemy != null)
+            {
+                // Calculate direction from the adjusted origin position to the enemy
+                Vector2 directionToEnemy = (closestEnemy.position - originPosition).normalized;
+                
+                // Change the target position to be the desired radius towards the closest enemy.
+                targetPosition = (Vector2)originPosition + directionToEnemy * distanceFromPlayer;
 
-            // Reset rotation upwards
-            transform.up = Vector3.Lerp(transform.up, Vector3.up, Time.deltaTime * lerpFactor);
-        }
+                // Change the object's desired up direction to be towards the enemy.
+                transform.up = Vector3.Lerp(transform.up, directionToEnemy, Time.deltaTime * lerpFactor);
+            }
+            else
+            {
+                // Default position relative to the adjusted origin
+                targetPosition = (Vector2)originPosition + deafultOffsetFromPlayer;
 
-        // Smoothly move the weapon to the target position
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * lerpFactor);
+                // Reset rotation upwards
+                transform.up = Vector3.Lerp(transform.up, Vector3.up, Time.deltaTime * lerpFactor);
+            }
+
+            // Smoothly move the weapon to the target position
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * lerpFactor);
+        }    
     }
 
     private void UpdateOriginPosition()
@@ -73,7 +75,9 @@ public class MeleeWeapon : Weapon
         
         // If an enemy is within range and the attack is off-cooldown, trigger the attack animation.
         if (ClosestEnemy() != null && CanAttack())
+        {
             animator.SetTrigger("Attack");
+        }
 
         TryDamage();
     }
@@ -96,6 +100,15 @@ public class MeleeWeapon : Weapon
         }
     }
 
+    public override void UpdateStats(PlayerStatsManager playerStatsManager)
+    {
+        base.UpdateStats(playerStatsManager);
+
+        animator.speed = Mathf.Clamp(1.0f + GetStatFromData(playerStatsManager, Stat.AttackSpeed) / 100, 1f, 2.5f);
+    }
+
+    #region Animation Trigger Methods
+
     public void EnableDamage()
     {
         canDamage = true;
@@ -106,6 +119,18 @@ public class MeleeWeapon : Weapon
         canDamage = false;
         enemiesHit.Clear();
     }
+
+    public void EnableAim()
+    {
+        canAim = true;
+    }
+
+    public void DisableAim()
+    {
+        canAim = false;
+    }
+
+    #endregion
 
     protected override void OnDrawGizmosSelected()
     {

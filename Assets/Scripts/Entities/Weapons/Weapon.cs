@@ -1,21 +1,37 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour, IPlayerStatsDependency
 {
+    [Header("Data")]
+    [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
+
+    [Header("Level")]
+    [field: SerializeField] public int Level { get; private set; } = 1;
+    [SerializeField] public float levelStatFactor = 1.0f/3.0f;
+
+    [Header("Attack Settings")]
+    protected int damage = 5;
+    [SerializeField] protected float baseAttackCooldown = 1.5f;
+    protected float attackCooldown = 1.0f;
+    protected float criticalHitMultiplier;
+    protected int criticalHitChance;
+    private float attackTimer = 0.0f;
+
     [Header("Enemy Detection Settings")]
     [SerializeField] protected float attackCheckRadius = 10.0f;
     [SerializeField] protected LayerMask enemyMask;
 
-    [Header("Attack Settings")]
-    [SerializeField] protected int damage = 5;
-    [SerializeField] protected float criticalHitMultiplier = 2.0f;
-    [SerializeField] protected float criticalHitChance = 20.0f;
-    [SerializeField] protected float attackCooldown = 1.0f;
-    private float attackTimer = 0.0f;
-
     [Header("Animation Settings")]
+    [SerializeField] protected Animator animator => GetComponentInChildren<Animator>();
     [SerializeField] protected float lerpFactor = 8.0f;
+
+    protected void Start()
+    {
+        if (Level < 1)
+        {
+           throw new System.ArgumentOutOfRangeException("Error, level cannot be less than 1.");
+        }
+    }
 
     protected virtual void Update()
     {
@@ -112,5 +128,21 @@ public class Weapon : MonoBehaviour
         // Gizmo that displays the weapon's aggro range.
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, attackCheckRadius);
+    }
+
+    public virtual void UpdateStats(PlayerStatsManager playerStatsManager)
+    {
+        float levelStatMultiplier = 1 + levelStatFactor * (Level - 1);
+
+        damage         = Mathf.RoundToInt( levelStatMultiplier * GetStatFromData(playerStatsManager, Stat.Attack) );
+        attackCooldown = baseAttackCooldown / ( levelStatMultiplier * GetStatFromData(playerStatsManager, Stat.AttackSpeed) );
+
+        criticalHitChance     = Mathf.RoundToInt( levelStatMultiplier * GetStatFromData(playerStatsManager, Stat.CriticalChance) );
+        criticalHitMultiplier = levelStatMultiplier * GetStatFromData(playerStatsManager, Stat.CriticalDamage) / 100;
+    }
+
+    public float GetStatFromData(PlayerStatsManager playerStatsManager, Stat stat)
+    {
+        return WeaponData.GetStatValue(stat) + playerStatsManager.GetStatValue(stat);
     }
 }

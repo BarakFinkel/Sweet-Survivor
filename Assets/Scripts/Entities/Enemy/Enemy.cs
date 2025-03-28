@@ -148,7 +148,7 @@ public class Enemy : MonoBehaviour
         deathEffect.transform.SetParent(null);
         deathEffect.Play();
 
-        DamageTextEffect[] damageTexts = GetComponentsInChildren<DamageTextEffect>();
+        PopUpText[] damageTexts = GetComponentsInChildren<PopUpText>();
         for (int i = 0; i < damageTexts.Length; i++)
         {
             if (damageTexts[i] != null)

@@ -8,10 +8,10 @@ using UnityEngine;
 [RequireComponent(typeof(WaveManagerUI))]
 public class WaveManager : MonoBehaviour, IGameStateListener
 {
-    [Header("Elements")]
     /// <summary>
     /// Reference to the player object.
     /// </summary>
+    [Header("Elements")]
     [SerializeField] private Player player;
 
     /// <summary>
@@ -19,10 +19,10 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     /// </summary>
     private WaveManagerUI ui;
     
-    [Header("General Settings")]
     /// <summary>
     /// Duration of each wave in seconds.
     /// </summary>
+    [Header("General Settings")]
     [SerializeField] private float waveDuration;
 
     /// <summary>
@@ -45,10 +45,10 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     /// </summary>
     private bool isTimerOn;
 
-    [Header("Spawn Settings")]
     /// <summary>
     /// Minimum spawn offset from the player.
     /// </summary>
+    [Header("Spawn Settings")]
     [SerializeField] private float minOffset = 8.0f;
 
     /// <summary>
@@ -66,10 +66,10 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     /// </summary>
     [SerializeField] private float yBound = 23.0f;
 
-    [Header("Waves")]
     /// <summary>
     /// Array of waves containing enemy spawn configurations.
     /// </summary>
+    [Header("Waves")]
     [SerializeField] private Wave[] waves;
 
     /// <summary>
