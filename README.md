@@ -1,4 +1,4 @@
-# Sweet Survivor
+w# Sweet Survivor
  
 This is a survivor-style mobile game currently in development.
 In this game, you take on the role of a cute marshmallow fighting to survive against big waves of enemy flames trying to melt you.
@@ -25,7 +25,7 @@ To tackle these challenges, the game utilizes several key development tools:
 - **Object Pooling** – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.  
   Also includes custom pooling scripts like the DropManager.cs and DropPool.cs for dynamic pooling of all drop types and easier drop list management via the inspector.
 
-A playable build is available on Itch.io: [Link Here]()
+A playable build is available on Itch.io: [Link Here](https://lightninggamedev.itch.io/sweet-survivor)
 
 Course credit:
 - [Unity 2D Game - Kawaii Survivor - The Coolest Roguelike Ever](https://www.udemy.com/course/unity-2d-game-kawaii-survivor-the-coolest-roguelike-ever)
