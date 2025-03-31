@@ -1,7 +1,7 @@
 # Sweet Survivor
  
-This is a survivor-style mobile game currently in development, designed to deliver fast-paced action and strategic gameplay.  
-In this game, you take on the role of a brave Marshmallow fighting to survive against relentless waves of enemy flames trying to melt you!
+This is a survivor-style mobile game currently in development.
+In this game, you take on the role of a cute marshmallow fighting to survive against big waves of enemy flames trying to melt you.
 
 Each stage challenges you to:  
 
