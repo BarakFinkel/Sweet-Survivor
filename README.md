@@ -1,12 +1,12 @@
 # Sweet-Survivor
  
-This is a survivor-style mobile game currently in development, designed to deliver fast-paced action and strategic gameplay.
+This is a survivor-style mobile game currently in development, designed to deliver fast-paced action and strategic gameplay.  
 In this game, you take on the role of a brave Marshmallow fighting to survive against relentless waves of enemy flames trying to melt you!
 
-Each stage challenges you to:
-🔥 Level Up – Upgrade your stats as you gain experience.
-🛒 Gear Up – Purchase new weapons from the shop between waves.
-💀 Survive – Endure the fiery assault and make it to the end!
+Each stage challenges you to:  
+🔥 Level Up – Upgrade your stats as you gain experience.  
+🛒 Gear Up – Purchase new weapons from the shop between waves.  
+💀 Survive – Endure the fiery assault and make it to the end!  
 
 The development process heavily incorporates OOP principles and design patterns such as:
 
