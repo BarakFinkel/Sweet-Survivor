@@ -14,6 +14,8 @@ The development process heavily incorporates OOP principles and design patterns 
 - **State Machine** – Conceptually implemented via the GameManager to manage game states efficiently.
 - **Singleton Pattern** – Used for global access to core systems.
 - **Inheritance** – Ensuring clean, maintainable, and scalable code.
+- **Interfaces** – Enabling objects to communicate and execute actions when relevant.
+- **Continuous Refactoring** – Keeping the codebase clean and scalable.
 
 Like all survivor games, this project involves handling large numbers of enemies, projectiles, and various game objects, creating significant challenges in performance optimization and resource management.
 To tackle these challenges, the game utilizes several key development tools:
