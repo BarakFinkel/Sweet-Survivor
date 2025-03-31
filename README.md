@@ -21,6 +21,7 @@ Like all survivor games, this project involves handling large numbers of enemies
 To tackle these challenges, the game utilizes several key development tools:
 
 - **Managers** – Responsible for various gameplay systems, such as player stats, leveling, enemy waves, and more.
+- **Queueing** - Multiple sources might alter the player's health points, and for that the player's HP script holds a queue that receives damage requests.
 - **Object Pooling** – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.  
   Also includes custom pooling scripts like the DropManager.cs and DropPool.cs for dynamic pooling of all drop types and easier drop list management via the inspector.
 
