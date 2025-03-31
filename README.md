@@ -5,9 +5,9 @@ In this game, you take on the role of a brave Marshmallow fighting to survive ag
 
 Each stage challenges you to:  
 
-🔥 Level Up – Upgrade your stats as you gain experience.  
-🛒 Gear Up – Purchase new weapons from the shop between waves.  
-💀 Survive – Endure the fiery assault and make it to the end!  
+ 🔥 Level Up – Upgrade your stats as you gain experience.  
+ 🛒 Gear Up – Purchase new weapons from the shop between waves.  
+ 💀 Survive – Endure the fiery assault and make it to the end!  
 
 The development process heavily incorporates OOP principles and design patterns such as:
 
