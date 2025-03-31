@@ -5,9 +5,9 @@ In this game, you take on the role of a brave Marshmallow fighting to survive ag
 
 Each stage challenges you to:  
 
- 🔥 Level Up – Upgrade your stats as you gain experience.  
- 🛒 Gear Up – Purchase new weapons from the shop between waves.  
- 💀 Survive – Endure the fiery assault and make it to the end!  
+ 🔥 **Level Up** – Upgrade your stats as you gain experience.  
+ 🛒 **Gear Up** – Purchase new weapons from the shop between waves.  
+ 💀 **Survive** – Endure the fiery assault and make it to the end!  
 
 The development process heavily incorporates OOP principles and design patterns such as:
 
@@ -19,10 +19,10 @@ Like all survivor games, this project involves handling large numbers of enemies
 To tackle these challenges, the game utilizes several key development tools:
 
 - Managers – Responsible for various gameplay systems, such as player stats, leveling, enemy waves, and more.
-- Object Pooling – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.
+- Object Pooling – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.  
   Also includes custom pooling scripts like the DropManager.cs and DropPool.cs for dynamic pooling of all drop types and easier design via the inspector.
 
-A playable build is available on Itch.io: Link Here
+A playable build is available on Itch.io: [Link Here]()
 
 Course credit:
 - [Unity 2D Game - Kawaii Survivor - The Coolest Roguelike Ever](https://www.udemy.com/course/unity-2d-game-kawaii-survivor-the-coolest-roguelike-ever)
