@@ -20,9 +20,9 @@ The development process heavily incorporates OOP principles and design patterns 
 Like all survivor games, this project involves handling large numbers of enemies, projectiles, and various game objects, creating significant challenges in performance optimization and resource management.
 To tackle these challenges, the game utilizes several key development tools:
 
-- Managers – Responsible for various gameplay systems, such as player stats, leveling, enemy waves, and more.
-- Object Pooling – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.  
-  Also includes custom pooling scripts like the DropManager.cs and DropPool.cs for dynamic pooling of all drop types and easier design via the inspector.
+- **Managers** – Responsible for various gameplay systems, such as player stats, leveling, enemy waves, and more.
+- **Object Pooling** – Efficiently manages enemies, projectiles, enemy drops, and other frequently instantiated objects to enhance performance.  
+  Also includes custom pooling scripts like the DropManager.cs and DropPool.cs for dynamic pooling of all drop types and easier drop list management via the inspector.
 
 A playable build is available on Itch.io: [Link Here]()
 
