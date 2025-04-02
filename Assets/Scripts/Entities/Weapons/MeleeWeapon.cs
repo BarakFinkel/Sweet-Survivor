@@ -8,10 +8,9 @@ public class MeleeWeapon : Weapon
     [SerializeField] private float hitRadius = 0.7f;
     
     [Header("Origin Point Settings")]
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private float constYOffsetFromPlayer = 1.0f;
     [SerializeField] private float distanceFromPlayer = 1.25f;
-    [SerializeField] private Vector2 deafultOffsetFromPlayer = new Vector2(1.25f, 0.25f);
+    private Transform playerTransform;
     private Vector3 originPosition;
 
     [Header("Hit Enemies Tracking Settings")]
@@ -20,6 +19,11 @@ public class MeleeWeapon : Weapon
     [Header("Gateway Booleans")]
     protected bool canDamage = false;
     protected bool canAim = true;
+
+    protected void Start()
+    {
+        playerTransform = Player.instance.transform;
+    }
 
     protected override void Update()
     {
@@ -48,8 +52,8 @@ public class MeleeWeapon : Weapon
             }
             else
             {
-                // Default position relative to the adjusted origin
-                targetPosition = (Vector2)originPosition + deafultOffsetFromPlayer;
+                // Default position
+                targetPosition = transform.parent.position;
 
                 // Reset rotation upwards
                 transform.up = Vector3.Lerp(transform.up, Vector3.up, Time.deltaTime * lerpFactor);
@@ -104,7 +108,7 @@ public class MeleeWeapon : Weapon
     {
         base.UpdateStats(playerStatsManager);
 
-        animator.speed = Mathf.Clamp(1.0f + GetStatFromData(playerStatsManager, Stat.AttackSpeed) / 100, 1f, 2.5f);
+        animator.speed = Mathf.Clamp(1.0f + CalculateStatValue(playerStatsManager, Stat.AttackSpeed) / 100, 1f, 2.5f);
     }
 
     #region Animation Trigger Methods

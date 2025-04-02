@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -62,5 +63,21 @@ public class ProjectilesManager : MonoBehaviour
     {
         if (projectile.gameObject.activeSelf)
             projectilePool.Release(projectile);
+    }
+
+    public static ProjectilesManager FindProjectileManager(GameObject projectilePrefab)
+    {
+        ProjectilesManager[] managers = FindObjectsByType<ProjectilesManager>(FindObjectsSortMode.None);
+
+        foreach (ProjectilesManager manager in managers)
+        {
+            if (projectilePrefab == manager.projectilePrefab)
+            {
+                return manager;
+            }
+        }
+
+        Debug.LogError("Error: No corresponding projectile manager found.");
+        return null;
     }
 }

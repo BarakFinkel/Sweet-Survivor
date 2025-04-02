@@ -15,11 +15,6 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, int _damage, bool _isCritHit)
     {
         // Set new parameter values for the current cycle.

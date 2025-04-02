@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Lolibonk
   <Sprite>k__BackingField: {fileID: 21300000, guid: e4c95ffa2657d1742954c8210c288238, type: 3}
   <PurchasePrice>k__BackingField: 100
-  <Prefab>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 8335525820941941196, guid: 9267b53e09b12cd4d8e0d641dfa748d6, type: 3}
   attack: 5
   attackSpeed: 0
   criticalChance: 0

@@ -1,11 +1,11 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class RangedWeapon : Weapon
 {
-    [Header("Projectile Manager")]
-    private ProjectilesManager projectilesManager => GetComponent<ProjectilesManager>();
+    [Header("Projectile Elements")]
+    [SerializeField] GameObject projectilePrefab;
+    private ProjectilesManager projectilesManager;
 
     [Header("Projectile Settings")]
     [SerializeField] private float projectileVelocity;
@@ -16,6 +16,11 @@ public class RangedWeapon : Weapon
     [SerializeField] private bool applyingThrowEffect = true;
     [SerializeField] private float rendererReactivationDelay = 0.5f;
     private SpriteRenderer sr => GetComponentInChildren<SpriteRenderer>();
+
+    private void Awake()
+    {
+        projectilesManager = ProjectilesManager.FindProjectileManager(projectilePrefab);
+    }
 
     protected override void HandleAttack()
     {
@@ -55,7 +60,7 @@ public class RangedWeapon : Weapon
     {
         base.UpdateStats(playerStatsManager);
 
-        range = GetStatFromData(playerStatsManager, Stat.Range);
+        range = CalculateStatValue(playerStatsManager, Stat.Range);
         attackCheckRadius = range;
     }
 }

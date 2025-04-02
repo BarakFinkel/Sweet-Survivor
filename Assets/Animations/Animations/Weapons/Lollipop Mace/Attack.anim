@@ -695,6 +695,13 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.33333334
+    functionName: DisableAim
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.43333334
     functionName: StartDamageWindowTrigger
     data: 
@@ -704,6 +711,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.5833333
     functionName: StopDamageWindowTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: EnableAim
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -11,7 +11,7 @@ public class RangedEnemy : Enemy
 
     protected override void Start()
     {
-        FindProjectileManager();
+        projectilesManager = ProjectilesManager.FindProjectileManager(projectilePrefab);
         base.Start();
     }
 
@@ -36,22 +36,5 @@ public class RangedEnemy : Enemy
     {
         Vector2 direction = (player.GetCenterPoint() - (Vector2)projectileSource.position).normalized;
         projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, projectileRange, damage, false);
-    }
-
-    protected void FindProjectileManager()
-    {
-        ProjectilesManager[] managers = FindObjectsByType<ProjectilesManager>(FindObjectsSortMode.None);
-
-        foreach (ProjectilesManager manager in managers)
-        {
-            if (projectilePrefab == manager.projectilePrefab)
-            {
-                projectilesManager = manager;
-                break;
-            }
-        }
-
-        if (projectilesManager == null)
-            Debug.LogError("Error: No corresponding projectile manager found.");
     }
 }
