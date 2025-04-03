@@ -1,4 +1,4 @@
-w# Sweet Survivor
+# Sweet Survivor
  
 This is a survivor-style mobile game currently in development.
 In this game, you take on the role of a cute marshmallow fighting to survive against big waves of enemy flames trying to melt you.
