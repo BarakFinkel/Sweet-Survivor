@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
     [SerializeField] protected Animator animator => GetComponentInChildren<Animator>();
     [SerializeField] protected float lerpFactor = 8.0f;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Enemy.onDamageTaken += EnemyTookDamageCallback;
     }

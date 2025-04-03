@@ -18,16 +18,9 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
         playerWeapons = Player.instance.GetComponent<PlayerWeaponsManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Callback for when the game state changes to Weapon Selection.
     public void GameStateChangedCallback(GameState gameState)
     {
-        
         switch (gameState)
         {
             case GameState.WEAPONSELECT:

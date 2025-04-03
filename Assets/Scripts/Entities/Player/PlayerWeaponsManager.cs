@@ -28,7 +28,5 @@ public class PlayerWeaponsManager : MonoBehaviour
     {
         Weapon newWeapon = Instantiate(weapon, weaponPosition);
         newWeapon.ConfigureWeapon(weaponLevel);
-
-        Debug.Log("Setting weapon level to " + weaponLevel);
     }
 }

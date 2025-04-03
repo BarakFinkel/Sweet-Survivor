@@ -11,6 +11,7 @@ public class WeaponSelectionButton : MonoBehaviour
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponName;
     [SerializeField] private Transform statContainersParent;
+    [SerializeField] private Outline outline;
 
     [Header("Settings")]
     private int weaponLevel;
@@ -46,7 +47,6 @@ public class WeaponSelectionButton : MonoBehaviour
         if (selected && lerpProgression < colorLerpTime)
         {
             lerpProgression = Mathf.Min(lerpProgression + Time.unscaledDeltaTime, colorLerpTime);
-            Debug.Log("Entered!");
         }
         else if (!selected && lerpProgression > 0.0f)
         {
@@ -64,10 +64,12 @@ public class WeaponSelectionButton : MonoBehaviour
     public void Select()
     {
         selected = true;
+        outline.enabled = true;
     }
 
     public void Deselect()
     {
         selected = false;
+        outline.enabled = false;
     }
 }

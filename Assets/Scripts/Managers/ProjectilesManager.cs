@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -47,20 +46,11 @@ public class ProjectilesManager : MonoBehaviour
     public void UseProjectile(Vector2 source, Vector2 direction, float velocity, float range, int damage, bool isCritHit)
     {
         Projectile projectileInstance = projectilePool.Get();
-        projectileInstance.SetupProjectile(this, source, direction, velocity, damage, isCritHit);
-
-        // We release the projectile when we reach desired range.
-        StartCoroutine(ReleaseProjectileWithDelay(projectileInstance, range / velocity));
-    }
-
-    private IEnumerator ReleaseProjectileWithDelay(Projectile projectile, float t)
-    {
-        yield return new WaitForSeconds(t);
-        ReleaseProjectile(projectile);
+        projectileInstance.SetupProjectile(this, source, direction, velocity, range / velocity, damage, isCritHit);
     }
 
     public void ReleaseProjectile(Projectile projectile)
-    {
+    {        
         if (projectile.gameObject.activeSelf)
             projectilePool.Release(projectile);
     }

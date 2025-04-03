@@ -84,27 +84,15 @@ public class PlayerStatsManager : MonoBehaviour
 
     public void AddToStat(Stat stat, float value)
     {
-        // Player -> Base Stats
-
-        // Addends -> Upgrades in the Leveling Panel
-        // Stat - value
-
         if (addends.ContainsKey(stat))
             addends[stat] += value;
         else
             Debug.Log($"The key '{stat}' not found. Check your code.");
 
         UpdatePlayerStats();
-
-        // Objects -> List of Object stats
     }
 
-    public float GetStatValue(Stat stat)
-    {
-        float value = playerStats[stat] + addends[stat];
-        
-        return value;
-    }
+    public float GetStatValue(Stat stat) => playerStats[stat] + addends[stat];
 
     private void InitializePlayerStats()
     {
@@ -137,7 +125,6 @@ public class PlayerStatsManager : MonoBehaviour
             statFormatedName += statRawName[i];
         }
 
-        Debug.Log(statFormatedName);
         return statFormatedName;
     }
 }

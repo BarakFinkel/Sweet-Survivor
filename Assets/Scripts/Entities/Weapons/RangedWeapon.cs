@@ -17,8 +17,9 @@ public class RangedWeapon : Weapon
     [SerializeField] private float rendererReactivationDelay = 0.5f;
     private SpriteRenderer sr => GetComponentInChildren<SpriteRenderer>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         projectilesManager = ProjectilesManager.FindProjectileManager(projectilePrefab);
     }
 
