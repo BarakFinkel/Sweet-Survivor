@@ -5,7 +5,7 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
     [Header("Elements")]
     [SerializeField] private Transform buttonsContainer;
     [SerializeField] private WeaponSelectionButton buttonPrefab;
-    private PlayerWeapons playerWeapons;
+    private PlayerWeaponsManager playerWeapons;
     
     [Header("Data")]
     [SerializeField] private WeaponDataSO[] starterWeapons;
@@ -15,7 +15,7 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerWeapons = Player.instance.GetComponent<PlayerWeapons>();
+        playerWeapons = Player.instance.GetComponent<PlayerWeaponsManager>();
     }
 
     // Update is called once per frame
@@ -65,7 +65,7 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
 
         int level = Random.Range(1, 5);
 
-        buttonInstance.Configure(weaponData.Sprite, weaponData.Name, level);
+        buttonInstance.Configure(weaponData.Sprite, weaponData.Name, level, weaponData);
 
         // Remove all previous listeners from the button and add the invokation of the method above 
         // + a callback to set the button's onClick callback.

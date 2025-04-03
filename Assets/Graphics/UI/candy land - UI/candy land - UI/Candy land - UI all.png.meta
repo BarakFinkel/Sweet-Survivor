@@ -1,0 +1,1378 @@
+fileFormatVersion: 2
+guid: 61e8e1fb2c4c5cc49867e6637e65f0f0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8011089348895674791
+    second: Candy land - UI all_0
+  - first:
+      213: 7387076017821498979
+    second: Candy land - UI all_1
+  - first:
+      213: 1127545724943126900
+    second: Candy land - UI all_2
+  - first:
+      213: 3813031485573787058
+    second: Candy land - UI all_3
+  - first:
+      213: 3738604033488354148
+    second: Candy land - UI all_4
+  - first:
+      213: -1047041297562633576
+    second: Candy land - UI all_5
+  - first:
+      213: -3034049534885465114
+    second: Candy land - UI all_6
+  - first:
+      213: -1814061922153752086
+    second: Candy land - UI all_7
+  - first:
+      213: -1113059145837810613
+    second: Candy land - UI all_8
+  - first:
+      213: 5516412839767842842
+    second: Candy land - UI all_9
+  - first:
+      213: 2625418469472212744
+    second: Candy land - UI all_10
+  - first:
+      213: 7192131401580125178
+    second: Candy land - UI all_11
+  - first:
+      213: -5756953892725077584
+    second: Candy land - UI all_12
+  - first:
+      213: -4409678415936290393
+    second: Candy land - UI all_13
+  - first:
+      213: -3225678319012021474
+    second: Candy land - UI all_14
+  - first:
+      213: -7938857800116743712
+    second: Candy land - UI all_15
+  - first:
+      213: -7631449674374962048
+    second: Candy land - UI all_16
+  - first:
+      213: 2275485636750707948
+    second: Candy land - UI all_17
+  - first:
+      213: -149635812168661265
+    second: Candy land - UI all_18
+  - first:
+      213: 879744722497491776
+    second: Candy land - UI all_19
+  - first:
+      213: 3984789697446496048
+    second: Candy land - UI all_20
+  - first:
+      213: 6412455014280102705
+    second: Candy land - UI all_21
+  - first:
+      213: 1439805412088629778
+    second: Candy land - UI all_22
+  - first:
+      213: 8751653242068566431
+    second: Candy land - UI all_23
+  - first:
+      213: 2022890921966212127
+    second: Candy land - UI all_24
+  - first:
+      213: -6609948781797603433
+    second: Candy land - UI all_25
+  - first:
+      213: -7780137798560379507
+    second: Candy land - UI all_26
+  - first:
+      213: -3405223882991569005
+    second: Candy land - UI all_27
+  - first:
+      213: 2309083372204751164
+    second: Candy land - UI all_28
+  - first:
+      213: 4922149120981431034
+    second: Candy land - UI all_29
+  - first:
+      213: 497984104288461755
+    second: Candy land - UI all_30
+  - first:
+      213: -7116858383204598030
+    second: Candy land - UI all_31
+  - first:
+      213: -4962082637632219545
+    second: Candy land - UI all_32
+  - first:
+      213: -5416854508032864621
+    second: Candy land - UI all_33
+  - first:
+      213: -7700074757538594905
+    second: Candy land - UI all_34
+  - first:
+      213: -1128056499206526867
+    second: Candy land - UI all_35
+  - first:
+      213: -8754228447312860505
+    second: Candy land - UI all_36
+  - first:
+      213: -661656389927315617
+    second: Candy land - UI all_37
+  - first:
+      213: -4707478485351150203
+    second: Candy land - UI all_38
+  - first:
+      213: -8795043705345095742
+    second: Candy land - UI all_39
+  - first:
+      213: 8385681514789655340
+    second: Candy land - UI all_40
+  - first:
+      213: -2708337280220659293
+    second: Candy land - UI all_41
+  - first:
+      213: 1343876886847529744
+    second: Candy land - UI all_42
+  - first:
+      213: -1892784510093907225
+    second: Candy land - UI all_43
+  - first:
+      213: -5445890069942799892
+    second: Candy land - UI all_44
+  - first:
+      213: 1725994734591640601
+    second: Candy land - UI all_45
+  - first:
+      213: -594231236356267655
+    second: Candy land - UI all_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Candy land - UI all_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 153
+        width: 126
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e68278ea4e2d090800000000000000
+      internalID: -8011089348895674791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 211
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ebe03ff7a248660800000000000000
+      internalID: 7387076017821498979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 211
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 471de33ecd8d5af00800000000000000
+      internalID: 1127545724943126900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_3
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 211
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd610f0feb9ae430800000000000000
+      internalID: 3813031485573787058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_4
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 211
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b7aeb7f8032e330800000000000000
+      internalID: 3738604033488354148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_5
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 205
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a7d91cc792871f0800000000000000
+      internalID: -1047041297562633576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_6
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 205
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3763ae504e4e5d0800000000000000
+      internalID: -3034049534885465114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_7
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 196
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae996790b4823d6e0800000000000000
+      internalID: -1814061922153752086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_8
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 196
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c6656aa9e9d80f0800000000000000
+      internalID: -1113059145837810613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_9
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 196
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1024c4204c3e8c40800000000000000
+      internalID: 5516412839767842842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_10
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 196
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80714ab103c5f6420800000000000000
+      internalID: 2625418469472212744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_11
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 181
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb9d1977659fc360800000000000000
+      internalID: 7192131401580125178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_12
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 181
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b9c1dbafe03b10b0800000000000000
+      internalID: -5756953892725077584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_13
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 181
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a1096c18dcadc2c0800000000000000
+      internalID: -4409678415936290393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_14
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 181
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1bfb93c8a61c33d0800000000000000
+      internalID: -3225678319012021474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_15
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 181
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1d3b584e283d190800000000000000
+      internalID: -7938857800116743712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_16
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 161
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0842c9d44f4a71690800000000000000
+      internalID: -7631449674374962048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_17
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 166
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec870e6126249f10800000000000000
+      internalID: 2275485636750707948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_18
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 152
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6820a85036cedf0800000000000000
+      internalID: -149635812168661265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_19
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 166
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 043dc7df92b753c00800000000000000
+      internalID: 879744722497491776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_20
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 152
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0374fe41e11dc4730800000000000000
+      internalID: 3984789697446496048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_21
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 166
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13386506cdd9df850800000000000000
+      internalID: 6412455014280102705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_22
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 152
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21a4a35d4673bf310800000000000000
+      internalID: 1439805412088629778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_23
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 166
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9184e2614e147970800000000000000
+      internalID: 8751653242068566431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_24
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 152
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1498276390c21c10800000000000000
+      internalID: 2022890921966212127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 121
+        width: 43
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7978d6d9a9eb444a0800000000000000
+      internalID: -6609948781797603433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_26
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 129
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d0835a4e5670490800000000000000
+      internalID: -7780137798560379507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_27
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 129
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3977c998be63eb0d0800000000000000
+      internalID: -3405223882991569005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_28
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 131
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39760dc7138b0020800000000000000
+      internalID: 2309083372204751164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_29
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 131
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2799ffb8cfe4440800000000000000
+      internalID: 4922149120981431034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_30
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 141
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3a7e787e139e600800000000000000
+      internalID: 497984104288461755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_31
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 122
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe3458d107db3d90800000000000000
+      internalID: -7116858383204598030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 12
+        width: 70
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7665ccd9124232bb0800000000000000
+      internalID: -4962082637632219545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_33
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 88
+        width: 43
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e4ab0568773d4b0800000000000000
+      internalID: -5416854508032864621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_34
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 112
+        width: 79
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7afb5f40ec6d32590800000000000000
+      internalID: -7700074757538594905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_35
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 90
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d68693637965850f0800000000000000
+      internalID: -1128056499206526867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_36
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 17
+        width: 7
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aa2c4beb9bb28680800000000000000
+      internalID: -8754228447312860505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_37
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 86
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57d30bd40351d6f0800000000000000
+      internalID: -661656389927315617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_38
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 86
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58dc9d4424dabaeb0800000000000000
+      internalID: -4707478485351150203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_39
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 59
+        width: 76
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7cede195ab1f580800000000000000
+      internalID: -8795043705345095742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_40
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 62
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c23d89098ecef5470800000000000000
+      internalID: 8385681514789655340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_41
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 62
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a10080d79d0a6ad0800000000000000
+      internalID: -2708337280220659293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_42
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 12
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 013a76e88e866a210800000000000000
+      internalID: 1343876886847529744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_43
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 39
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eaad77348a7bb5e0800000000000000
+      internalID: -1892784510093907225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_44
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 39
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce17b3fb5df4c64b0800000000000000
+      internalID: -5445890069942799892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_45
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 16
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914878ff017f3f710800000000000000
+      internalID: 1725994734591640601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Candy land - UI all_46
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 16
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9712b82c6ddd0c7f0800000000000000
+      internalID: -594231236356267655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Candy land - UI all_0: -8011089348895674791
+      Candy land - UI all_1: 7387076017821498979
+      Candy land - UI all_10: 2625418469472212744
+      Candy land - UI all_11: 7192131401580125178
+      Candy land - UI all_12: -5756953892725077584
+      Candy land - UI all_13: -4409678415936290393
+      Candy land - UI all_14: -3225678319012021474
+      Candy land - UI all_15: -7938857800116743712
+      Candy land - UI all_16: -7631449674374962048
+      Candy land - UI all_17: 2275485636750707948
+      Candy land - UI all_18: -149635812168661265
+      Candy land - UI all_19: 879744722497491776
+      Candy land - UI all_2: 1127545724943126900
+      Candy land - UI all_20: 3984789697446496048
+      Candy land - UI all_21: 6412455014280102705
+      Candy land - UI all_22: 1439805412088629778
+      Candy land - UI all_23: 8751653242068566431
+      Candy land - UI all_24: 2022890921966212127
+      Candy land - UI all_25: -6609948781797603433
+      Candy land - UI all_26: -7780137798560379507
+      Candy land - UI all_27: -3405223882991569005
+      Candy land - UI all_28: 2309083372204751164
+      Candy land - UI all_29: 4922149120981431034
+      Candy land - UI all_3: 3813031485573787058
+      Candy land - UI all_30: 497984104288461755
+      Candy land - UI all_31: -7116858383204598030
+      Candy land - UI all_32: -4962082637632219545
+      Candy land - UI all_33: -5416854508032864621
+      Candy land - UI all_34: -7700074757538594905
+      Candy land - UI all_35: -1128056499206526867
+      Candy land - UI all_36: -8754228447312860505
+      Candy land - UI all_37: -661656389927315617
+      Candy land - UI all_38: -4707478485351150203
+      Candy land - UI all_39: -8795043705345095742
+      Candy land - UI all_4: 3738604033488354148
+      Candy land - UI all_40: 8385681514789655340
+      Candy land - UI all_41: -2708337280220659293
+      Candy land - UI all_42: 1343876886847529744
+      Candy land - UI all_43: -1892784510093907225
+      Candy land - UI all_44: -5445890069942799892
+      Candy land - UI all_45: 1725994734591640601
+      Candy land - UI all_46: -594231236356267655
+      Candy land - UI all_5: -1047041297562633576
+      Candy land - UI all_6: -3034049534885465114
+      Candy land - UI all_7: -1814061922153752086
+      Candy land - UI all_8: -1113059145837810613
+      Candy land - UI all_9: 5516412839767842842
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

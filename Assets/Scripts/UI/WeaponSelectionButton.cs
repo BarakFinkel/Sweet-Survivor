@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using System.Collections.Generic;
+using Unity.Collections;
 
 public class WeaponSelectionButton : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private Image weaponIcon;
     [SerializeField] private TextMeshProUGUI weaponName;
+    [SerializeField] private Transform statContainersParent;
 
     [Header("Settings")]
     private int weaponLevel;
@@ -21,11 +25,20 @@ public class WeaponSelectionButton : MonoBehaviour
     private float lerpProgression = 0.0f;
     private bool selected = false;
 
-    public void Configure(Sprite _sprite, string _name, int _level)
+    public void Configure(Sprite _sprite, string _name, int _level, WeaponDataSO _weaponData)
     {
         weaponIcon.sprite = _sprite;
         weaponName.text = _name;
         weaponName.color = ColorHolder.GetLevelColor(_level);
+
+        Dictionary<Stat, float> weaponStats = WeaponStatsCalculator.GetStats(_weaponData, _level);
+
+        ConfigureStatsContainers(weaponStats);
+    }
+
+    private void ConfigureStatsContainers(Dictionary<Stat, float> weaponStats)
+    {
+        StatContainerManager.GenerateStatContainers(weaponStats, statContainersParent);
     }
 
     public void Update()

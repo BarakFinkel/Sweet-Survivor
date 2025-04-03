@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerWeapons : MonoBehaviour
+public class PlayerWeaponsManager : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private Transform weaponsParent;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour, IPlayerStatsDependency
@@ -6,16 +7,17 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
     [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
 
     [Header("Level")]
-    [SerializeField] private float levelStatFactor = 1.0f/3.0f;
+    [SerializeField] public static float levelStatFactor = 1.0f/3.0f;
     private int level;
-    private float levelStatMultiplier;
 
     [Header("Attack Settings")]
+    protected Dictionary<Stat, float> weaponStats;
     protected int damage;
     [SerializeField] protected float baseAttackCooldown = 1.5f;
     protected float attackCooldown;
     protected float criticalHitMultiplier;
     protected int criticalHitChance;
+    private float lifeStealFactor;
     private float attackTimer = 0.0f;
 
     [Header("Enemy Detection Settings")]
@@ -26,12 +28,17 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
     [SerializeField] protected Animator animator => GetComponentInChildren<Animator>();
     [SerializeField] protected float lerpFactor = 8.0f;
 
+    private void Awake()
+    {
+        Enemy.onDamageTaken += EnemyTookDamageCallback;
+    }
+    
     public void ConfigureWeapon(int _level)
     {
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         level = _level;
-        levelStatMultiplier = 1 + levelStatFactor * (level - 1);
+        weaponStats = WeaponStatsCalculator.GetStats(WeaponData, level);
 
         UpdateStats(PlayerStatsManager.instance);
     }
@@ -40,6 +47,11 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
     {
         AimWeapon();
         HandleAttack();
+    }
+
+    private void OnDisable()
+    {
+        Enemy.onDamageTaken -= EnemyTookDamageCallback;
     }
 
     #region Aim
@@ -126,17 +138,33 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
 
     #endregion
 
+    #region Stats
+
     public virtual void UpdateStats(PlayerStatsManager playerStatsManager)
     {
         damage                = Mathf.RoundToInt( CalculateStatValue(playerStatsManager, Stat.Attack) );
         attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(playerStatsManager, Stat.AttackSpeed) / 100);
         criticalHitChance     = Mathf.RoundToInt( CalculateStatValue(playerStatsManager, Stat.CriticalChance) );
         criticalHitMultiplier = CalculateStatValue(playerStatsManager, Stat.CriticalDamage) / 100;
+        lifeStealFactor       = CalculateStatValue(playerStatsManager, Stat.Lifesteal) / 100;
     }
 
-    public float CalculateStatValue(PlayerStatsManager playerStatsManager, Stat stat)
+    protected float CalculateStatValue(PlayerStatsManager playerStatsManager, Stat stat)
     {
-        return levelStatMultiplier * ( WeaponData.GetStatValue(stat) + playerStatsManager.GetStatValue(stat) );
+        return weaponStats[stat] + playerStatsManager.GetStatValue(stat);
+    }
+
+    #endregion
+
+    public void EnemyTookDamageCallback(Transform enemy, int damage, bool delay)
+    {
+        if (lifeStealFactor == 0)
+            return;
+
+        int lifeStealValue = Mathf.RoundToInt(damage * lifeStealFactor);
+        lifeStealValue = Mathf.Max(lifeStealValue, 1);
+
+        PlayerHealth.instance.ApplyHeal(lifeStealValue);
     }
 
     protected virtual void OnDrawGizmosSelected()

@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 {
+    public static PlayerHealth instance;
+    
     [Header("Elements")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
@@ -23,6 +23,14 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
     private float regenTimer;
 
     private Queue<(int amount, bool isDamage)> healthEventQueue = new Queue<(int amount, bool isDamage)>();
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);        
+    }
 
     void Update()
     {
