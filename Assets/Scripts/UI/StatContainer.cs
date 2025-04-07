@@ -8,12 +8,46 @@ public class StatContainer : MonoBehaviour
     [SerializeField] private Image statIcon;
     [SerializeField] private TextMeshProUGUI statNameText;
     [SerializeField] private TextMeshProUGUI statValueText;
+    
+    [Header("Text Colors")]
+    [SerializeField] Color neutralColor;
+    [SerializeField] Color positiveColor;
+    [SerializeField] Color negativeColor;
 
-    public void Configure(Sprite _icon, string _statName, string _statValue)
+    public void Configure(Sprite _icon, string _statName, float _statValue, bool useColor = false)
     {
         statIcon.sprite = _icon;
         statNameText.text = _statName;
-        statValueText.text = _statValue;
+
+        if (useColor)
+        {
+            ColorStatValues(_statValue);
+        }
+        else
+        {
+            statValueText.color = neutralColor;
+            statValueText.text = _statValue.ToString("F1");
+        }
+    }
+
+    private void ColorStatValues(float statValue)
+    {
+        // Determine the value's sign
+        float sign = Mathf.Sign(statValue);
+        if (statValue == 0)
+            sign = 0;
+
+        // Set the color of the text based on the sign.
+        Color statValueColor = Color.white;
+
+        if (sign > 0)
+            statValueColor = positiveColor;
+        else if (sign < 0)
+            statValueColor = negativeColor;
+
+        // Set the text's fields accordingly.
+        statValueText.color = statValueColor;
+        statValueText.text = statValue.ToString("F1");
     }
 
     public float GetFontSize()

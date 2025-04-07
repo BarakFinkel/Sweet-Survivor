@@ -13,6 +13,7 @@ public enum GameState
     WEAPONSELECT,
     GAME,
     LEVELUP,
+    CHESTOPEN,
     SHOP,
     STAGECOMPLETE,
     GAMEOVER

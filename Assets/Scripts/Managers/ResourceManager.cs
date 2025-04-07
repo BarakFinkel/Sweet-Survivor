@@ -6,6 +6,10 @@ public static class ResourceManager
     const string statIconsDataPath = "Data/Stat Icons";
     private static StatIcon[] statIcons;
 
+    // Objects
+    const string objectDatasPath = "Data/Objects/";    
+    private static ObjectDataSO[] objectDatas;
+
     public static Sprite GetStatIcon(Stat stat)
     {
         if (statIcons == null)
@@ -24,5 +28,21 @@ public static class ResourceManager
 
         Debug.LogError("No icon found for stat: " + stat);
         return null;
+    }
+
+    public static ObjectDataSO[] Objects
+    {
+        get 
+        { 
+            if (objectDatas == null)
+                objectDatas = Resources.LoadAll<ObjectDataSO>(objectDatasPath); 
+
+            Debug.Log(objectDatas.Length);
+
+            return objectDatas; 
+        }
+        
+        private set
+        {}
     }
 }

@@ -23,6 +23,7 @@ public enum Stat
 /// A struct that hold multiple data fields over a specific instance of a stat type.
 /// Currently neglected for simplification of the code.
 /// </summary>
+[System.Serializable]
 public struct StatData
 {
     public Stat stat;
@@ -65,7 +66,8 @@ public class PlayerStatsManager : MonoBehaviour
 
     [Header("Settings")]
     private Dictionary<Stat, float> playerStats = new Dictionary<Stat, float>();
-    private Dictionary<Stat, float> addends = new Dictionary<Stat, float>();
+    private Dictionary<Stat, float> levelingAddends = new Dictionary<Stat, float>();
+    private Dictionary<Stat, float> objectAddends = new Dictionary<Stat, float>();
 
     private void Awake()
     {
@@ -84,28 +86,39 @@ public class PlayerStatsManager : MonoBehaviour
 
     public void AddToStat(Stat stat, float value)
     {
-        if (addends.ContainsKey(stat))
-            addends[stat] += value;
+        if (levelingAddends.ContainsKey(stat))
+            levelingAddends[stat] += value;
         else
             Debug.Log($"The key '{stat}' not found. Check your code.");
 
         UpdatePlayerStats();
     }
 
-    public float GetStatValue(Stat stat) => playerStats[stat] + addends[stat];
+    public float GetStatValue(Stat stat) => playerStats[stat] + levelingAddends[stat] + objectAddends[stat];
 
     private void InitializePlayerStats()
     {
         playerStats = playerData.BaseStats;
 
         foreach(KeyValuePair<Stat, float> pair in playerStats)
-            addends.Add(pair.Key, 0);
+        {
+            levelingAddends.Add(pair.Key, 0);
+            objectAddends.Add(pair.Key, 0);
+        }
+    }
+
+    public void AddObjectStats(Dictionary<Stat, float> objectStats)
+    {
+        foreach(KeyValuePair<Stat, float> pair in objectStats)
+            objectAddends[pair.Key] += pair.Value;
+
+        UpdatePlayerStats();
     }
 
     private void UpdatePlayerStats()
     {
         IEnumerable<IPlayerStatsDependency> playerStatsDependencies = 
-            FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
+            FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
             .OfType<IPlayerStatsDependency>();
 
         foreach (IPlayerStatsDependency dependency in playerStatsDependencies)

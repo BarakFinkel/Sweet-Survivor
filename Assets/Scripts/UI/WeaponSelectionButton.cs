@@ -1,9 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Collections.Generic;
-using Unity.Collections;
 
 public class WeaponSelectionButton : MonoBehaviour
 {
@@ -12,9 +10,6 @@ public class WeaponSelectionButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI weaponName;
     [SerializeField] private Transform statContainersParent;
     [SerializeField] private Outline outline;
-
-    [Header("Settings")]
-    private int weaponLevel;
 
     [Header("Color Settings")]
     [SerializeField] private Color selectButtonColor;
@@ -26,10 +21,10 @@ public class WeaponSelectionButton : MonoBehaviour
     private float lerpProgression = 0.0f;
     private bool selected = false;
 
-    public void Configure(Sprite _sprite, string _name, int _level, WeaponDataSO _weaponData)
+    public void Configure(WeaponDataSO _weaponData, int _level)
     {
-        weaponIcon.sprite = _sprite;
-        weaponName.text = _name;
+        weaponIcon.sprite = _weaponData.Sprite;
+        weaponName.text = _weaponData.Name;
         weaponName.color = ColorHolder.GetLevelColor(_level);
 
         Dictionary<Stat, float> weaponStats = WeaponStatsCalculator.GetStats(_weaponData, _level);
@@ -54,11 +49,6 @@ public class WeaponSelectionButton : MonoBehaviour
         }
 
         ButtonImage.color = Color.Lerp(Color.white, selectButtonColor, lerpProgression / colorLerpTime);
-    }
-
-    public int GetWeaponLevel()
-    {
-        return weaponLevel;
     }
 
     public void Select()

@@ -34,6 +34,6 @@ MonoBehaviour:
   - stat: 9
     icon: {fileID: -6850067910205024016, guid: ca805b379c7cbd04a9f80e154a923f2f, type: 3}
   - stat: 10
-    icon: {fileID: -6850067910205024016, guid: ca805b379c7cbd04a9f80e154a923f2f, type: 3}
+    icon: {fileID: -4693932192084691647, guid: 5fcaa73b845b43e45965f29558bd1ff3, type: 3}
   - stat: 11
     icon: {fileID: 5013466888984275014, guid: c4d682f9cc22d5241a612eb7b5db0110, type: 3}

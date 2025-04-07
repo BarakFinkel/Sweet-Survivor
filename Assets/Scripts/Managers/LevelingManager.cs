@@ -6,9 +6,11 @@ using Random = UnityEngine.Random;
 
 public class LevelingManager : MonoBehaviour, IGameStateListener
 {
+    public static LevelingManager instance;
+    
     [Header("Elements")]
     [SerializeField] private UpgradeButton[] upgradeButtons;
-    
+
     [Header("Stat Upgrade Ranges")]
     [SerializeField] private Vector2 attackRange = new Vector2(1, 10);
     [SerializeField] private Vector2 attackSpeedRange = new Vector2(1, 10);
@@ -22,6 +24,14 @@ public class LevelingManager : MonoBehaviour, IGameStateListener
     [SerializeField] private Vector2 luckRange = new Vector2(1, 10);
     [SerializeField] private Vector2 dodgeChanceRange = new Vector2(1, 10);
     [SerializeField] private Vector2 lifestealRange = new Vector2(1, 10);
+
+    public void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);   
+    }
 
     /// <summary>
     /// A callback that's called whenever the GameManager changes the game state.
@@ -54,8 +64,9 @@ public class LevelingManager : MonoBehaviour, IGameStateListener
             } 
             while (chosenStats.Contains(randomStat));
 
-            // Add it and get it's formatted name for displaying.
+            // Add it and get it's icon and formatted name for display.
             chosenStats.Add(randomStat);
+            Sprite statSprite = ResourceManager.GetStatIcon(randomStat);
             string randomStatName = PlayerStatsManager.FormatStatName(randomStat);
 
             // Generate the correct stat increasing method for execution upon the player's choice of upgrade.
@@ -63,7 +74,7 @@ public class LevelingManager : MonoBehaviour, IGameStateListener
             Action action = GetAction(randomStat, out buttonString);
 
             // Configure the button's visuals accordingly.
-            upgradeButtons[i].Configure(null, randomStatName, buttonString);
+            upgradeButtons[i].Configure(statSprite, randomStatName, buttonString);
             
             // Remove all previous listeners from the button and add the invokation of the method above 
             // + a callback to set the game back to the Game state.

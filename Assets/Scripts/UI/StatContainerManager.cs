@@ -30,7 +30,7 @@ public class StatContainerManager : MonoBehaviour
             (
                 ResourceManager.GetStatIcon(pair.Key),        // Getting the propper icon from the ResourcesManager 
                 PlayerStatsManager.FormatStatName(pair.Key),  // Getting the formatted stat name from the PlayerStatsManager
-                pair.Value.ToString("F1")                     // Getting the value from the stats' dictionary.
+                pair.Value                                    // Getting the value from the stats' dictionary.
             );
         }
 

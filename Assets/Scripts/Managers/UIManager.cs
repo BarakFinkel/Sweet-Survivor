@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour, IGameStateListener
     [SerializeField] private GameObject weaponSelectPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject levelUpPanel;
+    [SerializeField] private GameObject chestOpenPanel;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject stageCompletePanel;
     [SerializeField] private GameObject gameOverPanel;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour, IGameStateListener
             weaponSelectPanel,
             gamePanel,
             levelUpPanel,
+            chestOpenPanel,
             shopPanel,
             stageCompletePanel,
             gameOverPanel
@@ -39,13 +41,17 @@ public class UIManager : MonoBehaviour, IGameStateListener
             case GameState.WEAPONSELECT:
                 ShowPanel(weaponSelectPanel);
                 break;
-            
+
             case GameState.GAME:
                 ShowPanel(gamePanel);
                 break;
 
             case GameState.LEVELUP:
                 ShowPanel(levelUpPanel);
+                break;
+
+            case GameState.CHESTOPEN:
+                ShowPanel(chestOpenPanel);
                 break;
 
             case GameState.SHOP:

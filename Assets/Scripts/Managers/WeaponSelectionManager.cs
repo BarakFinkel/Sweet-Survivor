@@ -58,7 +58,7 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
 
         int level = Random.Range(1, 5);
 
-        buttonInstance.Configure(weaponData.Sprite, weaponData.Name, level, weaponData);
+        buttonInstance.Configure(weaponData, level);
 
         // Remove all previous listeners from the button and add the invokation of the method above 
         // + a callback to set the button's onClick callback.
