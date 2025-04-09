@@ -104,11 +104,11 @@ public class MeleeWeapon : Weapon
         }
     }
 
-    public override void UpdateStats(PlayerStatsManager playerStatsManager)
+    public override void UpdateStats()
     {
-        base.UpdateStats(playerStatsManager);
+        base.UpdateStats();
 
-        animator.speed = Mathf.Clamp(1.0f + CalculateStatValue(playerStatsManager, Stat.AttackSpeed) / 100, 1f, 2.5f);
+        animator.speed = Mathf.Clamp(1.0f + CalculateStatValue(Stat.AttackSpeed) / 100, 1f, 2.5f);
     }
 
     #region Animation Trigger Methods

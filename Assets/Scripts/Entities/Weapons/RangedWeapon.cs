@@ -57,11 +57,11 @@ public class RangedWeapon : Weapon
         sr.enabled = true;
     }
 
-    public override void UpdateStats(PlayerStatsManager playerStatsManager)
+    public override void UpdateStats()
     {
-        base.UpdateStats(playerStatsManager);
+        base.UpdateStats();
 
-        range = CalculateStatValue(playerStatsManager, Stat.Range);
+        range = CalculateStatValue(Stat.Range);
         attackCheckRadius = range;
     }
 }

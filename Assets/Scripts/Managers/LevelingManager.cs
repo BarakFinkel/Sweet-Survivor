@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-public class LevelingManager : MonoBehaviour, IGameStateListener
+public class LevelingManager : MonoBehaviour
 {
     public static LevelingManager instance;
     
@@ -12,25 +12,32 @@ public class LevelingManager : MonoBehaviour, IGameStateListener
     [SerializeField] private UpgradeButton[] upgradeButtons;
 
     [Header("Stat Upgrade Ranges")]
-    [SerializeField] private Vector2 attackRange = new Vector2(1, 10);
+    [SerializeField] private Vector2 attackRange      = new Vector2(1, 10);
     [SerializeField] private Vector2 attackSpeedRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 critChanceRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 critDamageRange = new Vector2(1f, 2f);
-    [SerializeField] private Vector2 moveSpeedRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 maxHealthRange = new Vector2(1, 5);
-    [SerializeField] private Vector2 rangeRange = new Vector2(1f, 5f);
+    [SerializeField] private Vector2 critChanceRange  = new Vector2(1, 10);
+    [SerializeField] private Vector2 critDamageRange  = new Vector2(1f, 2f);
+    [SerializeField] private Vector2 moveSpeedRange   = new Vector2(1, 10);
+    [SerializeField] private Vector2 maxHealthRange   = new Vector2(1, 5);
+    [SerializeField] private Vector2 rangeRange       = new Vector2(1f, 5f);
     [SerializeField] private Vector2 healthRegenRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 armorRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 luckRange = new Vector2(1, 10);
+    [SerializeField] private Vector2 armorRange       = new Vector2(1, 10);
+    [SerializeField] private Vector2 luckRange        = new Vector2(1, 10);
     [SerializeField] private Vector2 dodgeChanceRange = new Vector2(1, 10);
-    [SerializeField] private Vector2 lifestealRange = new Vector2(1, 10);
+    [SerializeField] private Vector2 lifestealRange   = new Vector2(1, 10);
 
     public void Awake()
     {
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);   
+            Destroy(gameObject);
+
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+    }
+
+    void OnDisable()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
     /// <summary>

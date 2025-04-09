@@ -3,11 +3,12 @@ using UnityEngine;
 
 /// <summary>
 /// Manages enemy wave spawning and transitions between waves.
-/// Implements <see cref="IGameStateListener"/> to react to game state changes.
 /// </summary>
 [RequireComponent(typeof(WaveManagerUI))]
-public class WaveManager : MonoBehaviour, IGameStateListener
+public class WaveManager : MonoBehaviour
 {
+    public static WaveManager instance;
+
     /// <summary>
     /// Reference to the player object.
     /// </summary>
@@ -87,7 +88,14 @@ public class WaveManager : MonoBehaviour, IGameStateListener
     /// </summary>
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        
         ui = GetComponent<WaveManagerUI>();
+
+        GameManager.onGameStateChanged += GameStateChangedCallback;
     }
 
     /// <summary>
@@ -131,6 +139,11 @@ public class WaveManager : MonoBehaviour, IGameStateListener
         }
 
         timer += Time.deltaTime;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
     /// <summary>

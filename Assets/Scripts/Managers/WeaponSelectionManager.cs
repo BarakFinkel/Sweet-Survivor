@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
+public class WeaponSelectionManager : MonoBehaviour
 {
+    public static WeaponSelectionManager instance;
+    
     [Header("Elements")]
     [SerializeField] private Transform buttonsContainer;
     [SerializeField] private WeaponSelectionButton buttonPrefab;
@@ -12,10 +14,25 @@ public class WeaponSelectionManager : MonoBehaviour, IGameStateListener
     private WeaponDataSO selectedWeapon;
     private int initialWeaponLevel;
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerWeapons = Player.instance.GetComponent<PlayerWeaponsManager>();
+    }
+
+    void OnDisable()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;   
     }
 
     // Callback for when the game state changes to Weapon Selection.

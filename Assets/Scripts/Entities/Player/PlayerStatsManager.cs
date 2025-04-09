@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,15 +50,11 @@ public struct StatData
     }
 }
 
-public interface IPlayerStatsDependency
-{
-    void UpdateStats(PlayerStatsManager playerStatsManager);
-}
-
 public class PlayerStatsManager : MonoBehaviour
 {
     [Header("Instance")]
     public static PlayerStatsManager instance;
+    public static Action onStatsChanged;
 
     [Header("Data")]
     [SerializeField] private CharacterDataSO playerData;
@@ -117,12 +112,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void UpdatePlayerStats()
     {
-        IEnumerable<IPlayerStatsDependency> playerStatsDependencies = 
-            FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-            .OfType<IPlayerStatsDependency>();
-
-        foreach (IPlayerStatsDependency dependency in playerStatsDependencies)
-            dependency.UpdateStats(this);
+        onStatsChanged?.Invoke();
     }
 
     public static string FormatStatName(Stat stat)

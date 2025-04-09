@@ -3,7 +3,7 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-public class PlayerDamageHandler : MonoBehaviour, IPlayerStatsDependency
+public class PlayerDamageHandler : MonoBehaviour
 {
     [Header("Stats")]
     private float armorFactor;
@@ -12,10 +12,20 @@ public class PlayerDamageHandler : MonoBehaviour, IPlayerStatsDependency
     [Header("Actions")]
     public static Action<Transform> onDodge;
 
-    public void UpdateStats(PlayerStatsManager playerStatsManager)
+    private void Awake()
     {
-        armorFactor = playerStatsManager.GetStatValue(Stat.Armor) / 100;
-        dodgeChance = playerStatsManager.GetStatValue(Stat.DodgeChance);
+        PlayerStatsManager.onStatsChanged += UpdateStats;
+    }
+
+    private void OnDisable()
+    {
+        PlayerStatsManager.onStatsChanged -= UpdateStats;
+    }    
+
+    public void UpdateStats()
+    {
+        armorFactor = PlayerStatsManager.instance.GetStatValue(Stat.Armor) / 100;
+        dodgeChance = PlayerStatsManager.instance.GetStatValue(Stat.DodgeChance);
     }
 
     public int CalculateDamage(int damage)

@@ -15,17 +15,10 @@ public class PlayerLevel : MonoBehaviour
     private int currentXP = 0;
     private int level = 1;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         requiredXP = initRequiredXP;
         UpdateUI();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnEnable()

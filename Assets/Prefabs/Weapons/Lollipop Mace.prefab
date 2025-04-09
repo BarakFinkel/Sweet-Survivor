@@ -46,13 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField: {fileID: 11400000, guid: 2127b5ff6e3068f43967da4702065980, type: 2}
-  levelStatFactor: 0.33333334
   baseAttackCooldown: 1.5
   attackCheckRadius: 7
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  lerpFactor: 6
+  lerpFactor: 8
   hitCheckTransform: {fileID: 2644695320733522690}
   hitRadius: 0.7
   constYOffsetFromPlayer: 1

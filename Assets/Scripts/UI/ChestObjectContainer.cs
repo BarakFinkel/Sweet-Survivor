@@ -17,11 +17,11 @@ public class ChestObjectContainer : MonoBehaviour
     public void Configure(ObjectDataSO _objectData)
     {
         objectIcon.sprite = _objectData.Icon;
-        objectName.text = _objectData.Name;
+        objectName.text = _objectData.Name + $" (lvl {_objectData.Rarity + 1})";
         objectRecycleAmount.text = "Melt for : " + _objectData.RecyclePrice.ToString();
         objectName.color = ColorHolder.GetLevelColor(_objectData.Rarity);
 
-        ConfigureStatsContainers(_objectData.stats);
+        ConfigureStatsContainers(_objectData.Stats);
     }
 
     private void ConfigureStatsContainers(Dictionary<Stat, float> stats)

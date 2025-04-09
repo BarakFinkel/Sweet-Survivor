@@ -2,13 +2,10 @@ using UnityEngine;
 
 public static class ResourceManager
 {
-    // Stats Visuals
+    //////////////////////////////  S T A T S  /////////////////////////////////////
+
     const string statIconsDataPath = "Data/Stat Icons";
     private static StatIcon[] statIcons;
-
-    // Objects
-    const string objectDatasPath = "Data/Objects/";    
-    private static ObjectDataSO[] objectDatas;
 
     public static Sprite GetStatIcon(Stat stat)
     {
@@ -30,6 +27,11 @@ public static class ResourceManager
         return null;
     }
 
+    /////////////////////////////// O B J E C T S //////////////////////////////////
+
+    const string objectDatasPath = "Data/Objects/";    
+    private static ObjectDataSO[] objectDatas;
+
     public static ObjectDataSO[] Objects
     {
         get 
@@ -37,12 +39,39 @@ public static class ResourceManager
             if (objectDatas == null)
                 objectDatas = Resources.LoadAll<ObjectDataSO>(objectDatasPath); 
 
-            Debug.Log(objectDatas.Length);
-
             return objectDatas; 
         }
         
         private set
         {}
+    }
+
+    public static ObjectDataSO GetRandomObject()
+    {
+        return Objects[Random.Range(0, Objects.Length)];
+    }
+
+    /////////////////////////////// W E A P O N S //////////////////////////////////
+    
+    const string weaponDatasPath = "Data/Weapons/";    
+    private static WeaponDataSO[] weaponDatas;
+
+    public static WeaponDataSO[] Weapons
+    {
+        get 
+        { 
+            if (weaponDatas == null)
+                weaponDatas = Resources.LoadAll<WeaponDataSO>(weaponDatasPath); 
+
+            return weaponDatas; 
+        }
+        
+        private set
+        {}
+    }
+
+    public static WeaponDataSO GetRandomWeapon()
+    {
+        return Weapons[Random.Range(0, Weapons.Length)];
     }
 }

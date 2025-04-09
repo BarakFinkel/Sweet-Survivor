@@ -9,6 +9,9 @@ public class CurrencyManager : MonoBehaviour
     [field: SerializeField] public int Currency { get; private set; }
     private CurrencyText[] currencyTexts;
 
+    [Header("Actions")]
+    public static Action onUpdated;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,7 +37,13 @@ public class CurrencyManager : MonoBehaviour
     {
         Currency += amount;
         UpdateTexts();
+
+        onUpdated?.Invoke();
     }
+
+    public void UseCurrency(int price) => AddCurrency(-price);
+
+    public bool HasEnoughCurrency(int price) => Currency >= price;
 
     private void UpdateTexts()
     {

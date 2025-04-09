@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour, IPlayerStatsDependency
+public class Weapon : MonoBehaviour
 {
     [Header("Data")]
     [field: SerializeField] public WeaponDataSO WeaponData { get; private set; }
@@ -30,7 +30,8 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
 
     protected virtual void Awake()
     {
-        Enemy.onDamageTaken += EnemyTookDamageCallback;
+        Enemy.onDamageTaken               += EnemyTookDamageCallback;
+        PlayerStatsManager.onStatsChanged += UpdateStats;
     }
     
     public void ConfigureWeapon(int _level)
@@ -40,7 +41,7 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
         level = _level;
         weaponStats = WeaponStatsCalculator.GetStats(WeaponData, level);
 
-        UpdateStats(PlayerStatsManager.instance);
+        UpdateStats();
     }
 
     protected virtual void Update()
@@ -51,7 +52,8 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
 
     private void OnDisable()
     {
-        Enemy.onDamageTaken -= EnemyTookDamageCallback;
+        Enemy.onDamageTaken               -= EnemyTookDamageCallback;
+        PlayerStatsManager.onStatsChanged -= UpdateStats;
     }
 
     #region Aim
@@ -140,18 +142,18 @@ public class Weapon : MonoBehaviour, IPlayerStatsDependency
 
     #region Stats
 
-    public virtual void UpdateStats(PlayerStatsManager playerStatsManager)
+    public virtual void UpdateStats()
     {
-        damage                = Mathf.RoundToInt( CalculateStatValue(playerStatsManager, Stat.Attack) );
-        attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(playerStatsManager, Stat.AttackSpeed) / 100);
-        criticalHitChance     = Mathf.RoundToInt( CalculateStatValue(playerStatsManager, Stat.CriticalChance) );
-        criticalHitMultiplier = CalculateStatValue(playerStatsManager, Stat.CriticalDamage) / 100;
-        lifeStealFactor       = CalculateStatValue(playerStatsManager, Stat.Lifesteal) / 100;
+        damage                = Mathf.RoundToInt(CalculateStatValue(Stat.Attack));
+        attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(Stat.AttackSpeed) / 100);
+        criticalHitChance     = Mathf.RoundToInt(CalculateStatValue(Stat.CriticalChance));
+        criticalHitMultiplier = CalculateStatValue(Stat.CriticalDamage) / 100;
+        lifeStealFactor       = CalculateStatValue(Stat.Lifesteal) / 100;
     }
 
-    protected float CalculateStatValue(PlayerStatsManager playerStatsManager, Stat stat)
+    protected float CalculateStatValue(Stat stat)
     {
-        return weaponStats[stat] + playerStatsManager.GetStatValue(stat);
+        return weaponStats[stat] + PlayerStatsManager.instance.GetStatValue(stat);
     }
 
     #endregion

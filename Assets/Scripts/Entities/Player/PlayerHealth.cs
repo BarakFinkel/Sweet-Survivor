@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
-public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
+public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth instance;
     
@@ -29,13 +29,20 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);        
+            Destroy(gameObject);
+
+        PlayerStatsManager.onStatsChanged += UpdateStats;        
     }
 
     void Update()
     {
         HandleHealthRegen();
         HandleHealthEvents();
+    }
+
+    private void OnDisable()
+    {
+        PlayerStatsManager.onStatsChanged -= UpdateStats; 
     }
 
     /// <summary>
@@ -74,7 +81,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
     /// <summary>
     /// Queues a damage instance within the player's health event queue.
     /// </summary>
-    /// <param name="damage"></param>
+    /// <param name="damage">The ammount of damage the instance will apply</param>
     public void ApplyDamage(int damageAmount)
     {
         if (damageAmount <= 0)
@@ -129,12 +136,12 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
         healthText.text = currentHealth + " / " + maxHealth; 
     }
 
-    public void UpdateStats(PlayerStatsManager playerStatsManager)
+    public void UpdateStats()
     {
         // Health Update:
         // Also adds the delta added to the maxHP if any changes were made to the 
 
-        int newMaxHealth = (int)playerStatsManager.GetStatValue(Stat.MaxHealth);
+        int newMaxHealth = (int)PlayerStatsManager.instance.GetStatValue(Stat.MaxHealth);
         int healthDelta = newMaxHealth - maxHealth;
 
         maxHealth = newMaxHealth;
@@ -142,6 +149,6 @@ public class PlayerHealth : MonoBehaviour, IPlayerStatsDependency
 
         UpdateHealthUI();
 
-        healthRegen = playerStatsManager.GetStatValue(Stat.HealthRegen) / 100;
+        healthRegen = PlayerStatsManager.instance.GetStatValue(Stat.HealthRegen) / 100;
     }
 }

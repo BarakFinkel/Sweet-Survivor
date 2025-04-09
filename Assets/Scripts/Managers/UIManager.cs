@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour, IGameStateListener
+public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+    
     [Header("UI Panels")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject weaponSelectPanel;
@@ -17,6 +19,13 @@ public class UIManager : MonoBehaviour, IGameStateListener
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+        
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+
         panels.AddRange(new GameObject[]
         {
             menuPanel,
@@ -28,6 +37,11 @@ public class UIManager : MonoBehaviour, IGameStateListener
             stageCompletePanel,
             gameOverPanel
         });
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
     public void GameStateChangedCallback(GameState gameState)

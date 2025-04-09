@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 /// <summary>
 /// An enum representing types of different game states.
@@ -20,20 +21,13 @@ public enum GameState
 }
 
 /// <summary>
-/// Defines a listener for game state changes.
-/// </summary>
-public interface IGameStateListener
-{
-    void GameStateChangedCallback(GameState gameState);
-}
-
-/// <summary>
 /// Manages the overall game state and notifies listeners when it changes.
 /// Implements a singleton pattern to ensure only one instance exists.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static Action<GameState> onGameStateChanged;
 
     public void Awake()
     {
@@ -92,11 +86,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
         }
 
-        IEnumerable<IGameStateListener> gameStateListeners = 
-            FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
-            .OfType<IGameStateListener>();
-
-        foreach (IGameStateListener listener in gameStateListeners)
-            listener.GameStateChangedCallback(gameState);
+        onGameStateChanged?.Invoke(gameState);
     }
 }

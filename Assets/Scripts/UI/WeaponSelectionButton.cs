@@ -23,8 +23,8 @@ public class WeaponSelectionButton : MonoBehaviour
 
     public void Configure(WeaponDataSO _weaponData, int _level)
     {
-        weaponIcon.sprite = _weaponData.Sprite;
-        weaponName.text = _weaponData.Name;
+        weaponIcon.sprite = _weaponData.Icon;
+        weaponName.text = _weaponData.Name + "\n" + $"( lvl {_level} )";
         weaponName.color = ColorHolder.GetLevelColor(_level);
 
         Dictionary<Stat, float> weaponStats = WeaponStatsCalculator.GetStats(_weaponData, _level);

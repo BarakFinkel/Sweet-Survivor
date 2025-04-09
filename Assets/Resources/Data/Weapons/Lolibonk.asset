@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: Lolibonk
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Lolibonk
-  <Sprite>k__BackingField: {fileID: 21300000, guid: e4c95ffa2657d1742954c8210c288238, type: 3}
-  <PurchasePrice>k__BackingField: 100
+  <Icon>k__BackingField: {fileID: 21300000, guid: e4c95ffa2657d1742954c8210c288238, type: 3}
+  <Price>k__BackingField: 150
+  StatDatas:
+  - stat: 0
+    value: 5
+  - stat: 1
+    value: 20
+  - stat: 2
+    value: 0
+  - stat: 3
+    value: 0
+  - stat: 6
+    value: 0
+  - stat: 11
+    value: 0
   <Prefab>k__BackingField: {fileID: 8335525820941941196, guid: 9267b53e09b12cd4d8e0d641dfa748d6, type: 3}
-  attack: 5
-  attackSpeed: 25
-  criticalChance: 0
-  criticalDamage: 0
-  range: 8
-  lifeSteal: 5

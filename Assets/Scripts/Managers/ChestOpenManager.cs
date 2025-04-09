@@ -2,7 +2,7 @@ using UnityEngine;
 
 using Random = UnityEngine.Random;
 
-public class ChestOpenManager : MonoBehaviour, IGameStateListener
+public class ChestOpenManager : MonoBehaviour
 {
     public static ChestOpenManager instance;
 
@@ -20,23 +20,14 @@ public class ChestOpenManager : MonoBehaviour, IGameStateListener
         else
             Destroy(gameObject);
         
-        ChocolateChest.onCollect += ChestCollectedCallback;
+        GameManager.onGameStateChanged += GameStateChangedCallback;
+        ChocolateChest.onCollect       += ChestCollectedCallback;
     }
 
     public void OnDisable()
     {
-        ChocolateChest.onCollect -= ChestCollectedCallback;
-    }
-
-    /// <summary>
-    /// A callback that's called whenever the GameManager changes the game state.
-    /// Within this component, handles configuring the buttons only if the game state is LEVELUP.
-    /// </summary>
-    /// <param name="gameState"></param>
-    public void GameStateChangedCallback(GameState gameState)
-    {
-        if (gameState == GameState.CHESTOPEN)
-            OpenChest();
+        GameManager.onGameStateChanged -= GameStateChangedCallback;
+        ChocolateChest.onCollect       -= ChestCollectedCallback;
     }
 
     private void OpenChest()
@@ -63,6 +54,17 @@ public class ChestOpenManager : MonoBehaviour, IGameStateListener
     private void MeltButtonCallback(ObjectDataSO objectForMelting)
     {
         CurrencyManager.instance.AddCurrency(objectForMelting.RecyclePrice);
+    }
+
+    /// <summary>
+    /// A callback that's called whenever the GameManager changes the game state.
+    /// Within this component, handles configuring the buttons only if the game state is LEVELUP.
+    /// </summary>
+    /// <param name="gameState"></param>
+    public void GameStateChangedCallback(GameState gameState)
+    {
+        if (gameState == GameState.CHESTOPEN)
+            OpenChest();
     }
 
     private void ChestCollectedCallback(ChocolateChest chest) => GameManager.instance.SetGameState(GameState.CHESTOPEN);
