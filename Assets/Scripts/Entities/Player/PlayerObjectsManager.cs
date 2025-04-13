@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ public class PlayerObjectsManager : MonoBehaviour
     public static PlayerObjectsManager instance;
     
     [field: SerializeField] public List<ObjectDataSO> ObjectDatas { get; private set; }
-    [SerializeField] private PlayerStatsManager statsManager;
+
+    public static Action onObjectsChanged;
 
     private void Awake()
     {
@@ -19,12 +21,23 @@ public class PlayerObjectsManager : MonoBehaviour
     void Start()
     {
         foreach(ObjectDataSO objectData in ObjectDatas)
-            statsManager.AddObjectStats(objectData.Stats);
+            PlayerStatsManager.instance.AddObjectStats(objectData.Stats);
     }
 
     public void AddObject(ObjectDataSO objectData)
     {
         ObjectDatas.Add(objectData);
-        statsManager.AddObjectStats(objectData.Stats);
+        PlayerStatsManager.instance.AddObjectStats(objectData.Stats);
+
+        onObjectsChanged?.Invoke();
+    }
+
+    public void MeltObject(ObjectDataSO objectData)
+    {
+        ObjectDatas.Remove(objectData);
+        CurrencyManager.instance.AddCurrency(objectData.RecyclePrice);
+        PlayerStatsManager.instance.RemoveObjectStats(objectData.Stats);
+
+        onObjectsChanged?.Invoke();
     }
 }

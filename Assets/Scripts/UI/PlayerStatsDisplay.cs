@@ -16,7 +16,7 @@ public class PlayerStatsDisplay : MonoBehaviour
         UpdateStats();   
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         PlayerStatsManager.onStatsChanged -= UpdateStats;
     }

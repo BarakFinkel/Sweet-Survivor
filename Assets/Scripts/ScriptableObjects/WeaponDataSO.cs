@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon Data", menuName = "Scriptable Objects/New Weapon Data", order = 1)]
-public class WeaponDataSO : ItemSO
+public class WeaponDataSO : ItemDataSO
 {
     [Header("Settings")]
     [field: SerializeField] public Weapon Prefab { get; private set; }

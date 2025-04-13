@@ -17,7 +17,7 @@ public class ShopItemContainer : MonoBehaviour
     [SerializeField] private Color inactivePrice;
 
     [Header("Purchase")]
-    public ItemSO purchaseItem { get; private set; }
+    public ItemDataSO purchaseItem { get; private set; }
     private int weaponLevel;
 
     [Header("Actions")]
@@ -48,7 +48,7 @@ public class ShopItemContainer : MonoBehaviour
         itemPrice.text  = weaponPrice.ToString();
 
         // Setting Stat Containers
-        ConfigureStatsContainers(_weaponData.Stats);
+        StatContainerManager.GenerateStatContainers(WeaponStatsCalculator.GetStats(_weaponData, _level), statContainersParent);
 
         UpdatePurchaseButtonInteraction(weaponPrice);
 
@@ -64,17 +64,12 @@ public class ShopItemContainer : MonoBehaviour
         itemName.color = ColorHolder.GetLevelColor(_objectData.Rarity);
         itemPrice.text = _objectData.Price.ToString();
 
-        ConfigureStatsContainers(_objectData.Stats);
+        // Setting Stat Containers
+        StatContainerManager.GenerateStatContainers(_objectData.Stats, statContainersParent);
 
         UpdatePurchaseButtonInteraction(_objectData.Price);
 
         PurchaseButton.onClick.AddListener(TryPurchase);
-    }
-
-    private void ConfigureStatsContainers(Dictionary<Stat, float> stats)
-    {
-        statContainersParent.Clear();
-        StatContainerManager.GenerateStatContainers(stats, statContainersParent);
     }
 
     private void TryPurchase()

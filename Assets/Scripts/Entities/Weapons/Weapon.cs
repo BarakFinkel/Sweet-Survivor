@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Level")]
     [SerializeField] public static float levelStatFactor = 1.0f/3.0f;
-    private int level;
+    public int level { get; private set; }
 
     [Header("Attack Settings")]
     protected Dictionary<Stat, float> weaponStats;
@@ -39,7 +39,6 @@ public class Weapon : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         level = _level;
-        weaponStats = WeaponStatsCalculator.GetStats(WeaponData, level);
 
         UpdateStats();
     }
@@ -144,6 +143,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void UpdateStats()
     {
+        weaponStats = WeaponStatsCalculator.GetStats(WeaponData, level);
+        
         damage                = Mathf.RoundToInt(CalculateStatValue(Stat.Attack));
         attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(Stat.AttackSpeed) / 100);
         criticalHitChance     = Mathf.RoundToInt(CalculateStatValue(Stat.CriticalChance));
@@ -157,6 +158,12 @@ public class Weapon : MonoBehaviour
     }
 
     #endregion
+
+    public void Upgrade()
+    {
+        level++;
+        UpdateStats();
+    }
 
     public void EnemyTookDamageCallback(Transform enemy, int damage, bool delay)
     {

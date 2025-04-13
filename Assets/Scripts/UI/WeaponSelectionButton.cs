@@ -29,11 +29,6 @@ public class WeaponSelectionButton : MonoBehaviour
 
         Dictionary<Stat, float> weaponStats = WeaponStatsCalculator.GetStats(_weaponData, _level);
 
-        ConfigureStatsContainers(weaponStats);
-    }
-
-    private void ConfigureStatsContainers(Dictionary<Stat, float> weaponStats)
-    {
         StatContainerManager.GenerateStatContainers(weaponStats, statContainersParent);
     }
 

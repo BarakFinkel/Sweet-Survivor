@@ -15,6 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Lolibonk
   <Icon>k__BackingField: {fileID: 21300000, guid: e4c95ffa2657d1742954c8210c288238, type: 3}
   <Price>k__BackingField: 150
+  <RecyclePrice>k__BackingField: 37
   StatDatas:
   - stat: 0
     value: 5

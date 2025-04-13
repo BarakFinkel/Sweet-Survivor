@@ -17,6 +17,11 @@ public class StatContainerManager : MonoBehaviour
             Destroy(gameObject);   
     }
 
+    public static void GenerateStatContainers(Dictionary<Stat, float> statDictionary, Transform parent)
+    {
+        instance.GenerateContainers(statDictionary, parent);
+    }
+
     private void GenerateContainers(Dictionary<Stat, float> statDictionary, Transform parent)
     {
         List<StatContainer> statContainers = new List<StatContainer>();
@@ -35,12 +40,7 @@ public class StatContainerManager : MonoBehaviour
         }
 
         // Waiting 2 frames before updating the font size.
-        StartCoroutine(ResizeTextsWithDelay(statContainers, Time.deltaTime * 2));
-    }
-
-    public static void GenerateStatContainers(Dictionary<Stat, float> statDictionary, Transform parent)
-    {
-        instance.GenerateContainers(statDictionary, parent);
+        StartCoroutine(ResizeTextsWithDelay(statContainers, Time.deltaTime * 4));
     }
 
     private IEnumerator ResizeTextsWithDelay(List<StatContainer> statContainers, float delay)

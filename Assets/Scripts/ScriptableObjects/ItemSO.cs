@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSO : ScriptableObject
+public class ItemDataSO : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public int Price { get; private set; }
+    [field: SerializeField] public int RecyclePrice { get; private set; }
 
     [SerializeField] private StatData[] StatDatas;
     

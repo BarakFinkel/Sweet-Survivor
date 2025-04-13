@@ -7,7 +7,6 @@ public class WeaponSelectionManager : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private Transform buttonsContainer;
     [SerializeField] private WeaponSelectionButton buttonPrefab;
-    private PlayerWeaponsManager playerWeapons;
     
     [Header("Data")]
     [SerializeField] private WeaponDataSO[] starterWeapons;
@@ -22,12 +21,6 @@ public class WeaponSelectionManager : MonoBehaviour
             Destroy(gameObject);
         
         GameManager.onGameStateChanged += GameStateChangedCallback;
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        playerWeapons = Player.instance.GetComponent<PlayerWeaponsManager>();
     }
 
     void OnDisable()
@@ -49,7 +42,7 @@ public class WeaponSelectionManager : MonoBehaviour
                 if (selectedWeapon == null)
                     return;
                 
-                playerWeapons.TryAddWeapon(selectedWeapon, initialWeaponLevel);
+                PlayerWeaponsManager.instance.TryAddWeapon(selectedWeapon, initialWeaponLevel);
                 
                 selectedWeapon     = null;
                 initialWeaponLevel = 0;

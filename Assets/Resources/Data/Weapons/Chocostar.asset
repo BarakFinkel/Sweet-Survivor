@@ -15,6 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Chocostar
   <Icon>k__BackingField: {fileID: 21300000, guid: d8952ee087054ca43a0c052022d118f0, type: 3}
   <Price>k__BackingField: 100
+  <RecyclePrice>k__BackingField: 25
   StatDatas:
   - stat: 0
     value: 5

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class ShopManager : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class ShopManager : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private Transform containersParent;
     [SerializeField] private ShopItemContainer shopItemContainerPrefab;
+
+    [Header("Shop Item Selection Settings")]
+    [SerializeField] private int weaponContainerAmount  = 3;
+    [SerializeField] private int objectContainerAmount  = 3;
+    [SerializeField] private int maxPossibleWeaponLevel = 2;
 
     [Header("Reroll Settings")]
     [SerializeField] private Button RerollButton;
@@ -19,11 +25,6 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private float rerollGrowthRate = 1.75f;
     private int rerollPrice;
     private int rerollCount = 0;
-
-    [Header("Shop Item Selection Settings")]
-    [SerializeField] private int weaponContainerAmount  = 3;
-    [SerializeField] private int objectContainerAmount  = 3;
-    [SerializeField] private int maxPossibleWeaponLevel = 2;
 
     private void Awake()
     {
@@ -67,6 +68,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    # region Reroll
+
     public void Reroll()
     {     
         int oldRerollPrice = rerollPrice;
@@ -94,15 +97,24 @@ public class ShopManager : MonoBehaviour
             RerollButton.image.color  = inactiveColor; 
         }
     }
+    # endregion
+
+    # region Event Callbacks
 
     private void GameStateChangedCallback(GameState gameState)
     {
         if (gameState == GameState.SHOP)
         {
-            Configure();
+            StartCoroutine(ConfigureDelayed());
             rerollCount = 0;
-            UpdateRerollVisuals();
         }
+    }
+
+    private IEnumerator ConfigureDelayed()
+    {
+        yield return null;
+        Configure();
+        UpdateRerollVisuals();
     }
 
     private void ItemPurchasedCallback(ShopItemContainer container, int level)
@@ -112,7 +124,7 @@ public class ShopManager : MonoBehaviour
             if (PlayerWeaponsManager.instance.TryAddWeapon(weaponData, level))
             {
                 CurrencyManager.instance.UseCurrency(WeaponStatsCalculator.GetPurchasePrice(weaponData, level));
-                
+
                 Destroy(container.gameObject);
             }
         }
@@ -129,4 +141,6 @@ public class ShopManager : MonoBehaviour
     {
         UpdateRerollVisuals();
     }
+
+    # endregion
 }

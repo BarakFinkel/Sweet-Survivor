@@ -102,10 +102,14 @@ public class PlayerStatsManager : MonoBehaviour
         }
     }
 
-    public void AddObjectStats(Dictionary<Stat, float> objectStats)
+    public void AddObjectStats(Dictionary<Stat, float> objectStats) => AlterObjectStats(objectStats, true);
+
+    public void RemoveObjectStats(Dictionary<Stat, float> objectStats) => AlterObjectStats(objectStats, false);
+
+    public void AlterObjectStats(Dictionary<Stat, float> objectStats, bool isAdd)
     {
-        foreach(KeyValuePair<Stat, float> pair in objectStats)
-            objectAddends[pair.Key] += pair.Value;
+        foreach (KeyValuePair<Stat, float> pair in objectStats)
+            objectAddends[pair.Key] += isAdd ? pair.Value : -pair.Value;
 
         UpdatePlayerStats();
     }

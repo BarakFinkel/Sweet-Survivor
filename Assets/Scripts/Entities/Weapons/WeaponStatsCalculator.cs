@@ -25,4 +25,10 @@ public static class WeaponStatsCalculator
         float multiplier = 1 + Weapon.levelStatFactor * (level - 1);
         return Mathf.RoundToInt(weaponData.Price * multiplier);
     }
+
+    public static int GetRecycleWorth(WeaponDataSO weaponData, int level)
+    {
+        float multiplier = 1 + Weapon.levelStatFactor * (level - 1);
+        return Mathf.RoundToInt(weaponData.RecyclePrice * multiplier);
+    }
 }
