@@ -9,11 +9,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject weaponSelectPanel;
     [SerializeField] private GameObject gamePanel;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject levelUpPanel;
     [SerializeField] private GameObject chestOpenPanel;
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject stageCompletePanel;
     [SerializeField] private GameObject gameOverPanel;
+
+    [SerializeField] private GameObject returnConfirmationPanel;
 
     private List<GameObject> panels = new List<GameObject>();
 
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour
             menuPanel,
             weaponSelectPanel,
             gamePanel,
+            pausePanel,
             levelUpPanel,
             chestOpenPanel,
             shopPanel,
@@ -44,7 +48,10 @@ public class UIManager : MonoBehaviour
         GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
-    public void GameStateChangedCallback(GameState gameState)
+    public void ShowReturnConfirmationPanel() => returnConfirmationPanel.gameObject.SetActive(true);
+    public void HideReturnConfirmationPanel() => returnConfirmationPanel.gameObject.SetActive(false);
+
+    private void GameStateChangedCallback(GameState gameState)
     {
         switch(gameState)
         {
@@ -58,6 +65,10 @@ public class UIManager : MonoBehaviour
 
             case GameState.GAME:
                 ShowPanel(gamePanel);
+                break;
+
+            case GameState.PAUSE:
+                ShowPanel(pausePanel);
                 break;
 
             case GameState.LEVELUP:

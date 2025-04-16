@@ -8,7 +8,8 @@ public class InventoryManager : MonoBehaviour
     
     [Header("Elements")]
     [SerializeField] private InventoryItemContainer inventoryItemContainer;
-    [SerializeField] private Transform inventoryItemsParent;
+    [SerializeField] private Transform shopInventoryItemsParent;
+    [SerializeField] private Transform pauseInventoryItemsParent;
     [SerializeField] private InventoryItemInfo itemInfoPanel;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(gameObject);
 
         GameManager.onGameStateChanged        += GameStateChangedCallback;
+        GameManager.onGamePaused              += Configure;
         PlayerWeaponsManager.onWeaponsChanged += Configure;
         PlayerObjectsManager.onObjectsChanged += Configure;
         WeaponMerger.onMerge                  += MergedWeaponCallback;
@@ -27,6 +29,7 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         GameManager.onGameStateChanged        -= GameStateChangedCallback;
+        GameManager.onGamePaused              -= Configure;
         PlayerWeaponsManager.onWeaponsChanged -= Configure;
         PlayerObjectsManager.onObjectsChanged -= Configure;
         WeaponMerger.onMerge                  -= MergedWeaponCallback;
@@ -40,7 +43,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Configure()
     {
-        inventoryItemsParent.Clear();
+        shopInventoryItemsParent.Clear();
+        pauseInventoryItemsParent.Clear();
 
         Weapon[] weapons = PlayerWeaponsManager.instance.GetWeapons();
 
@@ -49,25 +53,33 @@ public class InventoryManager : MonoBehaviour
             if (weapons[i] == null)
                 continue;
 
-            InventoryItemContainer container = Instantiate(inventoryItemContainer, inventoryItemsParent);
-            container.Configure(weapons[i], i, () => ShowItemInfo(container));
+            InventoryItemContainer shopContainer = Instantiate(inventoryItemContainer, shopInventoryItemsParent);
+            shopContainer.Configure(weapons[i], i, () => ShowItemInfo(shopContainer));
+
+            InventoryItemContainer pauseContainer = Instantiate(inventoryItemContainer, pauseInventoryItemsParent);
+            pauseContainer.Configure(weapons[i], i, null);         
         }
 
         ObjectDataSO[] objectDatas = PlayerObjectsManager.instance.ObjectDatas.ToArray();
 
         foreach (ObjectDataSO objectData in objectDatas)
         {
-            InventoryItemContainer container = Instantiate(inventoryItemContainer, inventoryItemsParent);
-            container.Configure(objectData, () => ShowItemInfo(container));
+            InventoryItemContainer shopContainer = Instantiate(inventoryItemContainer, shopInventoryItemsParent);
+            shopContainer.Configure(objectData, () => ShowItemInfo(shopContainer));
+
+            InventoryItemContainer pauseContainer = Instantiate(inventoryItemContainer, pauseInventoryItemsParent);
+            pauseContainer.Configure(objectData, null);
         }
     }
 
+    # region Item Info Configuration
+
     private void ShowItemInfo(InventoryItemContainer container)
     {
-        if (container.weapon != null)
-            ShowWeaponInfo(container.weapon, container.Index);
-        else if (container.objectData != null)
-            ShowObjectInfo(container.objectData);
+        if (container.Weapon != null)
+            ShowWeaponInfo(container.Weapon, container.WeaponIndex);
+        else if (container.ObjectData != null)
+            ShowObjectInfo(container.ObjectData);
     }
 
     private void ShowWeaponInfo(Weapon weapon, int index)
@@ -87,19 +99,33 @@ public class InventoryManager : MonoBehaviour
         ShopUIManager.instance.ShowItemInfo();
     }
 
+    # endregion
+
+    # region Item Info Buttons Methods
+
     private void MeltWeapon(int index)
     {
         PlayerWeaponsManager.instance.MeltWeapon(index);
-        Configure();
+        StartCoroutine(ConfigureDelayed());
         ShopUIManager.instance.HideItemInfo();
     }
 
     private void MeltObject(ObjectDataSO objectData)
     {
         PlayerObjectsManager.instance.MeltObject(objectData);
-        Configure();
+        StartCoroutine(ConfigureDelayed());
         ShopUIManager.instance.HideItemInfo();
     }
+
+    private void MergedWeaponCallback(Weapon mergedWeapon)
+    {
+        Configure();
+        StartCoroutine(ItemInfoConfigureDelayed(mergedWeapon));
+    }
+
+    # endregion
+
+    # region Configuration Coroutines
 
     private IEnumerator ConfigureDelayed()
     {
@@ -107,9 +133,11 @@ public class InventoryManager : MonoBehaviour
         Configure();
     }
 
-    private void MergedWeaponCallback(Weapon mergedWeapon)
+    private IEnumerator ItemInfoConfigureDelayed(Weapon mergedWeapon)
     {
-        Configure();
+        yield return null;
         itemInfoPanel.Configure(mergedWeapon);
     }
+
+    # endregion
 }

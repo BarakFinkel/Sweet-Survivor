@@ -53,7 +53,7 @@ public class ChestOpenManager : MonoBehaviour
 
     private void MeltButtonCallback(ObjectDataSO objectForMelting)
     {
-        CurrencyManager.instance.AddCurrency(objectForMelting.RecyclePrice);
+        CurrencyManager.instance.AddCurrency(CurrencyType.Normal, objectForMelting.RecyclePrice);
     }
 
     /// <summary>

@@ -35,7 +35,7 @@ public class PlayerObjectsManager : MonoBehaviour
     public void MeltObject(ObjectDataSO objectData)
     {
         ObjectDatas.Remove(objectData);
-        CurrencyManager.instance.AddCurrency(objectData.RecyclePrice);
+        CurrencyManager.instance.AddCurrency(CurrencyType.Normal, objectData.RecyclePrice);
         PlayerStatsManager.instance.RemoveObjectStats(objectData.Stats);
 
         onObjectsChanged?.Invoke();

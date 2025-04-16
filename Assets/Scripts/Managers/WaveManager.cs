@@ -262,6 +262,9 @@ public class WaveManager : MonoBehaviour
                 break;
         }
     }
+
+    public int GetWavesSurvived() => currentWaveIndex;
+    public int GetWavesTotal() => waves.Length;
 }
 
 #region Wave & Segment Structs

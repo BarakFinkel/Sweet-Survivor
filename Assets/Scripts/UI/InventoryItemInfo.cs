@@ -56,10 +56,16 @@ public class InventoryItemInfo : MonoBehaviour
         itemIcon.sprite    = _icon;
         itemName.text      = _name;
         itemName.color     = containerColor;
-        itemMeltPrice.text = meltPrice.ToString();
+        itemMeltPrice.text = "+ " + meltPrice.ToString();
         container.color    = containerColor;
         
         statsParent.Clear();
         StatContainerManager.GenerateStatContainers(stats, statsParent);
+    }
+
+    public void DeselectHighlightedContainer()
+    {
+        if (InventoryItemContainer.lastSelectedContainer != null)
+            InventoryItemContainer.lastSelectedContainer.DeselectHighlightedContainer();
     }
 }

@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -13,6 +11,7 @@ public enum GameState
     MENU,
     WEAPONSELECT,
     GAME,
+    PAUSE,
     LEVELUP,
     CHESTOPEN,
     SHOP,
@@ -28,6 +27,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static Action<GameState> onGameStateChanged;
+    public static Action onGamePaused;
+    public static Action onGameOver;
 
     public void Awake()
     {
@@ -47,7 +48,15 @@ public class GameManager : MonoBehaviour
     /// Changes the game state to Game.
     /// </summary>
     public void StartGame() => SetGameState(GameState.GAME);
+    
     public void StartWeaponSelection() => SetGameState(GameState.WEAPONSELECT);
+    
+    public void PauseGame()
+    {
+        SetGameState(GameState.PAUSE);
+        onGamePaused?.Invoke();
+    }
+
     public void ManageGameOver() => SceneManager.LoadScene(0);
 
     /// <summary>
@@ -82,7 +91,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
         }
         else
-        {
+        {       
             Time.timeScale = 0.0f;
         }
 

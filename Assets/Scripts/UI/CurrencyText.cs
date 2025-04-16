@@ -4,8 +4,8 @@ using TMPro;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CurrencyText : MonoBehaviour
 {
-    [Header("Elements")]
-    private TextMeshProUGUI currencyText => GetComponent<TextMeshProUGUI>();
+    [field:SerializeField] public CurrencyType CurrencyType { get; private set; }
+    protected TextMeshProUGUI Text => GetComponent<TextMeshProUGUI>();
 
-    public void UpdateText(string _currencyText) => currencyText.text = _currencyText;
+    public virtual void UpdateText(string value) => Text.text = value;
 }

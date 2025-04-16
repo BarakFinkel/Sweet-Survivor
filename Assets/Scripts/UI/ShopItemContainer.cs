@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class ShopItemContainer : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class ShopItemContainer : MonoBehaviour
 
     private void UpdatePurchaseButtonInteraction(int price)
     {
-        if (CurrencyManager.instance.HasEnoughCurrency(price))
+        if (CurrencyManager.instance.HasEnoughCurrency(CurrencyType.Normal, price))
         {
             PurchaseButton.interactable = true;
             PurchaseButton.image.color = activePrice;
@@ -93,6 +94,15 @@ public class ShopItemContainer : MonoBehaviour
 
     private void CurrencyUpdatedCallback()
     {
+        Debug.Log("Shop container callback for update");
+        
+        StartCoroutine(CurrencyUpdatedCallbackDelayed());
+    }
+
+    private IEnumerator CurrencyUpdatedCallbackDelayed()
+    {
+        yield return null;
+
         int itemPrice = purchaseItem.Price;
         
         if (purchaseItem is WeaponDataSO weaponData)

@@ -65,12 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'NEXT
-
-    WAVE!'
+  m_text: NEXT WAVE!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 63983f8741eee744b8a5a5e00fd8abf4, type: 2}
-  m_sharedMaterial: {fileID: 6669524620496844199, guid: 63983f8741eee744b8a5a5e00fd8abf4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d991ada9504e03149bf6d269d62098a7, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 17fa15dbc71713e46baa7a2ac8840bcd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -198,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3254717, b: 0.37422204, a: 1}
+  m_Color: {r: 0.9528302, g: 0.4539427, b: 0.48874882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

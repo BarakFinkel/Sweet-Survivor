@@ -57,7 +57,12 @@ public class PlayerWeaponsManager : MonoBehaviour
         if (meltWeapon == null)
             return;
 
-        CurrencyManager.instance.AddCurrency( WeaponStatsCalculator.GetRecycleWorth(meltWeapon.WeaponData, meltWeapon.level) );
+        CurrencyManager.instance.AddCurrency
+        (
+            CurrencyType.Normal,
+            WeaponStatsCalculator.GetRecycleWorth(meltWeapon.WeaponData, meltWeapon.level)
+        );
+        
         Destroy(meltWeapon.gameObject);
 
         onWeaponsChanged?.Invoke();

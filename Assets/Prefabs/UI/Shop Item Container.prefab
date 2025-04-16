@@ -333,7 +333,7 @@ MonoBehaviour:
   m_text: 2500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d991ada9504e03149bf6d269d62098a7, type: 2}
-  m_sharedMaterial: {fileID: -266998681217300151, guid: d991ada9504e03149bf6d269d62098a7, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 1474ff38a8b14f4498ba0f4b4fd3cabe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

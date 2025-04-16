@@ -77,7 +77,7 @@ public class ShopManager : MonoBehaviour
         rerollCount++;
         rerollPrice = Mathf.RoundToInt( Mathf.Pow(rerollGrowthRate, rerollCount) * initialRerollPrice );
 
-        CurrencyManager.instance.UseCurrency(oldRerollPrice);
+        CurrencyManager.instance.UseCurrency(CurrencyType.Normal, oldRerollPrice);
 
         Configure();
     }
@@ -86,7 +86,7 @@ public class ShopManager : MonoBehaviour
     {
         rerollPriceText.text = rerollPrice.ToString();
         
-        if (CurrencyManager.instance.HasEnoughCurrency(rerollPrice))
+        if (CurrencyManager.instance.HasEnoughCurrency(CurrencyType.Normal, rerollPrice))
         {
             RerollButton.interactable = true;
             RerollButton.image.color  = activeColor;    
@@ -123,7 +123,7 @@ public class ShopManager : MonoBehaviour
         {
             if (PlayerWeaponsManager.instance.TryAddWeapon(weaponData, level))
             {
-                CurrencyManager.instance.UseCurrency(WeaponStatsCalculator.GetPurchasePrice(weaponData, level));
+                CurrencyManager.instance.UseCurrency(CurrencyType.Normal, WeaponStatsCalculator.GetPurchasePrice(weaponData, level));
 
                 Destroy(container.gameObject);
             }
@@ -131,7 +131,7 @@ public class ShopManager : MonoBehaviour
         else if (container.purchaseItem is ObjectDataSO objectData)
         {
             PlayerObjectsManager.instance.AddObject(objectData);
-            CurrencyManager.instance.UseCurrency(objectData.Price);
+            CurrencyManager.instance.UseCurrency(CurrencyType.Normal, objectData.Price);
 
             Destroy(container.gameObject);
         }
