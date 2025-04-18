@@ -45,6 +45,7 @@ public class RangedWeapon : Weapon
     {
         Vector2 direction = (enemy.position - transform.position).normalized;
         projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, range, CalculateDamage(out bool isCritHit), isCritHit);
+        PlayAttackSound();
 
         if (applyingThrowEffect)
             StartCoroutine(ToggleRendererWithDelay(rendererReactivationDelay));

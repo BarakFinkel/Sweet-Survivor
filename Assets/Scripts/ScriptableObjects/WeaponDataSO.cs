@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon Data", menuName = "Scriptable Objects/New Weapon Data", order = 1)]
@@ -6,6 +5,8 @@ public class WeaponDataSO : ItemDataSO
 {
     [Header("Settings")]
     [field: SerializeField] public Weapon Prefab { get; private set; }
+    [field: SerializeField] public AudioClip attackSound { get; private set; }
+    [field: SerializeField] public float attackSoundVolume { get; private set; }
 
     public float GetStatValue(Stat stat)
     {

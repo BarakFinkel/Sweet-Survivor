@@ -94,6 +94,7 @@ public class ShopUIManager : MonoBehaviour
         if (hideItemInfo)
             HideItemInfo();
 
+        InventoryItemContainer.DeselectHighlightedContainer();
         HidePanel(inventoryPanel, inventoryBackground, inventoryPanelClosedPos);    
     }
 

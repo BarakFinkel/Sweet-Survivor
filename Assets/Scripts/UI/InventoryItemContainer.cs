@@ -67,7 +67,7 @@ public class InventoryItemContainer : MonoBehaviour
         onContainerSelected?.Invoke();
     }
 
-    public void DeselectHighlightedContainer()
+    public static void DeselectHighlightedContainer()
     {
         if (lastSelectedContainer != null)
         {

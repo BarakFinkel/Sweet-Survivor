@@ -13,6 +13,8 @@ public class InventoryItemInfo : MonoBehaviour
     
     [Header("Colors")]
     [SerializeField] private Image container;
+    [SerializeField] private Color meltPossibleColor;
+    [SerializeField] private Color meltImpossibleColor;
 
     [Header("Stats")]
     [SerializeField] private Transform statsParent;
@@ -31,11 +33,20 @@ public class InventoryItemInfo : MonoBehaviour
             WeaponStatsCalculator.GetStats(_weapon.WeaponData, _weapon.level)
         );
 
+        // Merge Button Configuration - will only be active if the weapon merger allows it.
         mergeButton.gameObject.SetActive(true);
 
         mergeButton.interactable = WeaponMerger.instance.CanMerge(_weapon);
         mergeButton.onClick.RemoveAllListeners();
         mergeButton.onClick.AddListener(WeaponMerger.instance.Merge);
+
+        // Melt Button Configuration - will only be active if the player has more than 1 weapon.
+        meltButton.interactable = PlayerWeaponsManager.instance.GetNumberOfWeapons() > 1;
+
+        if (meltButton.interactable)
+            meltButton.image.color = meltPossibleColor;
+        else
+            meltButton.image.color = meltImpossibleColor;
     }
 
     public void Configure(ObjectDataSO _objectData)
@@ -65,7 +76,6 @@ public class InventoryItemInfo : MonoBehaviour
 
     public void DeselectHighlightedContainer()
     {
-        if (InventoryItemContainer.lastSelectedContainer != null)
-            InventoryItemContainer.lastSelectedContainer.DeselectHighlightedContainer();
+        InventoryItemContainer.DeselectHighlightedContainer();
     }
 }

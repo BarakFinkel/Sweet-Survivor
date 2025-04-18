@@ -71,7 +71,14 @@ public class PlayerStatsManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        CharacterSelectionManager.onCharacterSelected += CharacterSelectedCallback;
+
         InitializePlayerStats();
+    }
+
+    private void OnDisable()
+    {
+        CharacterSelectionManager.onCharacterSelected -= CharacterSelectedCallback;
     }
 
     public void Start()
@@ -133,5 +140,13 @@ public class PlayerStatsManager : MonoBehaviour
         }
 
         return statFormatedName;
+    }
+
+    private void CharacterSelectedCallback(CharacterDataSO characterData)
+    {
+        playerData = characterData;
+        playerStats = playerData.BaseStats;
+
+        UpdatePlayerStats();
     }
 }

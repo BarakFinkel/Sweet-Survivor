@@ -9,6 +9,8 @@ using System;
 public enum GameState
 {
     MENU,
+    SETTINGS,
+    CHARACTERSELECT,
     WEAPONSELECT,
     GAME,
     PAUSE,
@@ -47,9 +49,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Changes the game state to Game.
     /// </summary>
-    public void StartGame() => SetGameState(GameState.GAME);
-    
-    public void StartWeaponSelection() => SetGameState(GameState.WEAPONSELECT);
+    public void StartGame()               => SetGameState(GameState.GAME);
+    public void StartSettings()           => SetGameState(GameState.SETTINGS);
+    public void StartMainMenu()           => SetGameState(GameState.MENU);
+    public void StartCharacterSelection() => SetGameState(GameState.CHARACTERSELECT);
+    public void StartWeaponSelection()    => SetGameState(GameState.WEAPONSELECT);
     
     public void PauseGame()
     {
@@ -87,13 +91,9 @@ public class GameManager : MonoBehaviour
     public void SetGameState(GameState gameState)
     {
         if (gameState == GameState.GAME)
-        {
             Time.timeScale = 1.0f;
-        }
         else
-        {       
             Time.timeScale = 0.0f;
-        }
 
         onGameStateChanged?.Invoke(gameState);
     }

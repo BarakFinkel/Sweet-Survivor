@@ -84,4 +84,19 @@ public class PlayerWeaponsManager : MonoBehaviour
 
         return weapons.ToArray();
     }
+
+    public int GetNumberOfWeapons()
+    {
+        int counter = 0;
+        
+        for (int i = 0; i < weaponPositions.Length; i++)
+        {
+            Weapon weapon = weaponPositions[i].GetComponentInChildren<Weapon>();
+
+            if (weapon != null)
+                counter++;
+        }
+
+        return counter;
+    }
 }

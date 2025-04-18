@@ -27,6 +27,25 @@ public static class ResourceManager
         return null;
     }
 
+    //////////////////////////// C H A R A C T E R S ///////////////////////////////
+
+    const string characterDatasPath = "Data/Characters/";    
+    private static CharacterDataSO[] characterDatas;
+
+    public static CharacterDataSO[] Characters
+    {
+        get 
+        { 
+            if (characterDatas == null)
+                characterDatas = Resources.LoadAll<CharacterDataSO>(characterDatasPath); 
+
+            return characterDatas; 
+        }
+        
+        private set
+        {}
+    }
+
     /////////////////////////////// O B J E C T S //////////////////////////////////
 
     const string objectDatasPath = "Data/Objects/";    

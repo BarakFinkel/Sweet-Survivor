@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     
     [Header("UI Panels")]
     [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject characterSelectPanel;
     [SerializeField] private GameObject weaponSelectPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject pausePanel;
@@ -16,7 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject stageCompletePanel;
     [SerializeField] private GameObject gameOverPanel;
 
+    [Space]
+
     [SerializeField] private GameObject returnConfirmationPanel;
+    [SerializeField] private GameObject creditsPanel;
 
     private List<GameObject> panels = new List<GameObject>();
 
@@ -32,6 +37,8 @@ public class UIManager : MonoBehaviour
         panels.AddRange(new GameObject[]
         {
             menuPanel,
+            settingsPanel,
+            characterSelectPanel,
             weaponSelectPanel,
             gamePanel,
             pausePanel,
@@ -51,6 +58,9 @@ public class UIManager : MonoBehaviour
     public void ShowReturnConfirmationPanel() => returnConfirmationPanel.gameObject.SetActive(true);
     public void HideReturnConfirmationPanel() => returnConfirmationPanel.gameObject.SetActive(false);
 
+    public void ShowCreditsPanel() => creditsPanel.gameObject.SetActive(true);
+    public void HideCreditsPanel() => creditsPanel.gameObject.SetActive(false);
+
     private void GameStateChangedCallback(GameState gameState)
     {
         switch(gameState)
@@ -58,6 +68,14 @@ public class UIManager : MonoBehaviour
             case GameState.MENU:
                 ShowPanel(menuPanel);
                 break;
+
+            case GameState.SETTINGS:
+                ShowPanel(settingsPanel);
+                break;
+
+            case GameState.CHARACTERSELECT:
+                ShowPanel(characterSelectPanel);
+                break;            
 
             case GameState.WEAPONSELECT:
                 ShowPanel(weaponSelectPanel);

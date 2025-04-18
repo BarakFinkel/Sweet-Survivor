@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -23,6 +25,9 @@ public class PlayerHealth : MonoBehaviour
     private float regenTimer;
 
     private Queue<(int amount, bool isDamage)> healthEventQueue = new Queue<(int amount, bool isDamage)>();
+
+    [Header("Actions")]
+    public static Action onDamage;
 
     private void Awake()
     {
@@ -60,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
             if (healthEvent.Item2) // Damage
             {
                 totalHealthChange -= healthEvent.Item1;
+                onDamage?.Invoke();
             }
             else // Healing
             {
@@ -75,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         if (currentHealth == 0)
-            Die();
+            Player.instance.Die();
     }
 
     /// <summary>
@@ -123,11 +129,6 @@ public class PlayerHealth : MonoBehaviour
         {
             regenTimer = Mathf.Max(regenTimer - Time.deltaTime, 0);
         }
-    }
-
-    private void Die()
-    {
-        GameManager.instance.SetGameState(GameState.GAMEOVER);
     }
 
     public void UpdateHealthUI()

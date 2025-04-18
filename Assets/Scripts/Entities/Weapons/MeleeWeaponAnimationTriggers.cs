@@ -11,4 +11,6 @@ public class MeleeWeaponAnimationTriggers : MonoBehaviour
     private void DisableAim() => weapon.DisableAim();
 
     private void EnableAim() => weapon.EnableAim();
+
+    private void AttackSoundTrigger() => weapon.PlayAttackSound();
 }

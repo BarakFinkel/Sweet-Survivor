@@ -28,8 +28,16 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Animator animator => GetComponentInChildren<Animator>();
     [SerializeField] protected float lerpFactor = 8.0f;
 
+    [Header("Audio Settings")]
+    protected AudioSource audioSource;
+
     protected virtual void Awake()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = WeaponData.attackSound;
+        audioSource.volume = WeaponData.attackSoundVolume;
+
         Enemy.onDamageTaken               += EnemyTookDamageCallback;
         PlayerStatsManager.onStatsChanged += UpdateStats;
     }
@@ -148,7 +156,7 @@ public class Weapon : MonoBehaviour
         damage                = Mathf.RoundToInt(CalculateStatValue(Stat.Attack));
         attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(Stat.AttackSpeed) / 100);
         criticalHitChance     = Mathf.RoundToInt(CalculateStatValue(Stat.CriticalChance));
-        criticalHitMultiplier = CalculateStatValue(Stat.CriticalDamage) / 100;
+        criticalHitMultiplier = 1.5f + CalculateStatValue(Stat.CriticalDamage) / 100;
         lifeStealFactor       = CalculateStatValue(Stat.Lifesteal) / 100;
     }
 
@@ -174,6 +182,15 @@ public class Weapon : MonoBehaviour
         lifeStealValue = Mathf.Max(lifeStealValue, 1);
 
         PlayerHealth.instance.ApplyHeal(lifeStealValue);
+    }
+
+    public void PlayAttackSound()
+    {
+        if(!AudioManager.instance.IsSFXOn)
+            return;
+
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.Play();
     }
 
     protected virtual void OnDrawGizmosSelected()

@@ -47,17 +47,23 @@ public class CurrencyManager : MonoBehaviour, ISaveAndLoad
             AddCurrency(data.Type, data.Amount);
     }
 
-    public void AddCurrency(CurrencyType type, int amount)
+    public bool HasEnoughCurrency(CurrencyType type, int amount) => handlers[type].HasEnough(amount);
+    
+    public void AddCurrency(CurrencyType type, int amount) => UpdateCurrency(type, amount, true);
+    public void UseCurrency(CurrencyType type, int amount) => UpdateCurrency(type, amount, false);
+
+    private void UpdateCurrency(CurrencyType type, int amount, bool isAdd)
     {
-        handlers[type].Add(amount);
+        if (isAdd)
+            handlers[type].Add(amount);
+        else
+            handlers[type].Use(amount);
+        
         onUpdated?.Invoke();
 
         if (type == CurrencyType.Premium)
-            Save();
+            Save();        
     }
-
-    public bool HasEnoughCurrency(CurrencyType type, int amount) => handlers[type].HasEnough(amount);
-    public void UseCurrency(CurrencyType type, int amount) => handlers[type].Use(amount);
 
     public void Load()
     {

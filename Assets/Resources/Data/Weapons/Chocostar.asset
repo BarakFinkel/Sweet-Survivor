@@ -30,3 +30,5 @@ MonoBehaviour:
   - stat: 11
     value: 0
   <Prefab>k__BackingField: {fileID: 6946140868291207685, guid: d56260b65b0d7b442898ace6caea8d9c, type: 3}
+  <attackSound>k__BackingField: {fileID: 8300000, guid: 5c027ccd282ab3e468363c4e17547bd7, type: 3}
+  <attackSoundVolume>k__BackingField: 0.6

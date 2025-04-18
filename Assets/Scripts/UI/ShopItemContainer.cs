@@ -94,8 +94,6 @@ public class ShopItemContainer : MonoBehaviour
 
     private void CurrencyUpdatedCallback()
     {
-        Debug.Log("Shop container callback for update");
-        
         StartCoroutine(CurrencyUpdatedCallbackDelayed());
     }
 
