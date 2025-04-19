@@ -16,11 +16,15 @@ public class HapticFeedback : MonoBehaviour
 
     private void VibrateMedium()
     {
+#if UNITY_IOS || UNITY_ANDROID
         CandyCoded.HapticFeedback.HapticFeedback.MediumFeedback();
+#endif
     }
 
     private void VibrateHard()
     {
+#if UNITY_IOS || UNITY_ANDROID
         CandyCoded.HapticFeedback.HapticFeedback.HeavyFeedback();
+#endif
     }
 }

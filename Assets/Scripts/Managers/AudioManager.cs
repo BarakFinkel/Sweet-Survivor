@@ -4,8 +4,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public bool IsSFXOn { get; private set; }
-    public bool IsMusicOn { get; private set; }
+    public bool IsSFXOn { get; private set; } = true;
+    public bool IsMusicOn { get; private set; } = true;
 
     private void Awake()
     {

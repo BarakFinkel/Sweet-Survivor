@@ -9,15 +9,18 @@ public class PlayerWeaponsManager : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private Transform weaponsParent;
     private Transform[] weaponPositions;
-
     public static Action onWeaponsChanged;
+
+    int numberOfEquippedWeapons = 0;
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
-            Destroy(gameObject);  
+            Destroy(gameObject);
+
+        WeaponMerger.onMerge += MergeWeaponCallback;
     }
 
     void Start()
@@ -26,6 +29,11 @@ public class PlayerWeaponsManager : MonoBehaviour
         
         for (int i = 0; i < weaponsParent.childCount; i++)
             weaponPositions[i] = weaponsParent.GetChild(i);
+    }
+
+    private void OnDisable()
+    {
+        WeaponMerger.onMerge -= MergeWeaponCallback;
     }
 
     public bool TryAddWeapon(WeaponDataSO weaponData, int weaponLevel)
@@ -48,6 +56,8 @@ public class PlayerWeaponsManager : MonoBehaviour
     {
         Weapon newWeapon = Instantiate(weapon, weaponPosition);
         newWeapon.ConfigureWeapon(weaponLevel);
+
+        numberOfEquippedWeapons++;
     }
 
     public void MeltWeapon(int index)
@@ -64,7 +74,7 @@ public class PlayerWeaponsManager : MonoBehaviour
         );
         
         Destroy(meltWeapon.gameObject);
-
+        numberOfEquippedWeapons--;
         onWeaponsChanged?.Invoke();
     }
 
@@ -85,18 +95,10 @@ public class PlayerWeaponsManager : MonoBehaviour
         return weapons.ToArray();
     }
 
-    public int GetNumberOfWeapons()
+    public int GetNumberOfWeapons() => numberOfEquippedWeapons;
+
+    private void MergeWeaponCallback(Weapon weapon)
     {
-        int counter = 0;
-        
-        for (int i = 0; i < weaponPositions.Length; i++)
-        {
-            Weapon weapon = weaponPositions[i].GetComponentInChildren<Weapon>();
-
-            if (weapon != null)
-                counter++;
-        }
-
-        return counter;
+        numberOfEquippedWeapons--;
     }
 }

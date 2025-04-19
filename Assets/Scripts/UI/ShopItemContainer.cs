@@ -27,11 +27,13 @@ public class ShopItemContainer : MonoBehaviour
     private void Awake()
     {
         CurrencyManager.onUpdated += CurrencyUpdatedCallback;
+        WeaponMerger.onMerge += WeaponMergeCallback;
     }
 
     private void OnDisable()
     {
         CurrencyManager.onUpdated -= CurrencyUpdatedCallback;
+        WeaponMerger.onMerge -= WeaponMergeCallback;
     }
 
     public void Configure(WeaponDataSO _weaponData, int _level)
@@ -51,7 +53,7 @@ public class ShopItemContainer : MonoBehaviour
         // Setting Stat Containers
         StatContainerManager.GenerateStatContainers(WeaponStatsCalculator.GetStats(_weaponData, _level), statContainersParent);
 
-        UpdatePurchaseButtonInteraction(weaponPrice);
+        UpdatePurchaseButtonInteraction(weaponPrice, true);
 
         PurchaseButton.onClick.AddListener(TryPurchase);
     }
@@ -68,7 +70,7 @@ public class ShopItemContainer : MonoBehaviour
         // Setting Stat Containers
         StatContainerManager.GenerateStatContainers(_objectData.Stats, statContainersParent);
 
-        UpdatePurchaseButtonInteraction(_objectData.Price);
+        UpdatePurchaseButtonInteraction(_objectData.Price, false);
 
         PurchaseButton.onClick.AddListener(TryPurchase);
     }
@@ -78,9 +80,9 @@ public class ShopItemContainer : MonoBehaviour
         onTryPurchase?.Invoke(this, weaponLevel);
     }
 
-    private void UpdatePurchaseButtonInteraction(int price)
+    private void UpdatePurchaseButtonInteraction(int price, bool isWeapon)
     {
-        if (CurrencyManager.instance.HasEnoughCurrency(CurrencyType.Normal, price))
+        if (CurrencyManager.instance.HasEnoughCurrency(CurrencyType.Normal, price) && (!isWeapon || PlayerWeaponsManager.instance.GetNumberOfWeapons() < 6))
         {
             PurchaseButton.interactable = true;
             PurchaseButton.image.color = activePrice;
@@ -90,6 +92,11 @@ public class ShopItemContainer : MonoBehaviour
             PurchaseButton.interactable = false;
             PurchaseButton.image.color = inactivePrice;
         }
+    }
+
+    private void WeaponMergeCallback(Weapon weapon)
+    {
+        CurrencyUpdatedCallback();
     }
 
     private void CurrencyUpdatedCallback()
@@ -104,8 +111,13 @@ public class ShopItemContainer : MonoBehaviour
         int itemPrice = purchaseItem.Price;
         
         if (purchaseItem is WeaponDataSO weaponData)
+        {
             itemPrice = WeaponStatsCalculator.GetPurchasePrice(weaponData, weaponLevel);
-
-        UpdatePurchaseButtonInteraction(itemPrice);
+            UpdatePurchaseButtonInteraction(itemPrice, true);
+        }
+        else
+        {
+            UpdatePurchaseButtonInteraction(itemPrice, false);
+        }
     }
 }

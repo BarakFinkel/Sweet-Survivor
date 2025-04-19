@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68a6249a8f3ccef4295a9da256181454, type: 3}
-  m_Name: Chocostar
+  m_Name: Choppermint
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Chocostar
-  <Icon>k__BackingField: {fileID: 21300000, guid: d8952ee087054ca43a0c052022d118f0, type: 3}
+  <Name>k__BackingField: Choppermint
+  <Icon>k__BackingField: {fileID: 21300000, guid: c7ca276150c3fef40843a325b9368a43, type: 3}
   <Price>k__BackingField: 100
   <RecyclePrice>k__BackingField: 25
   StatDatas:
   - stat: 0
-    value: 5
+    value: 10
   - stat: 1
-    value: 20
+    value: 5
   - stat: 2
     value: 0
   - stat: 3
-    value: 0
-  - stat: 6
-    value: 5
+    value: 25
   - stat: 11
     value: 0
-  <Prefab>k__BackingField: {fileID: 6946140868291207685, guid: d56260b65b0d7b442898ace6caea8d9c, type: 3}
-  <attackSound>k__BackingField: {fileID: 8300000, guid: 5c027ccd282ab3e468363c4e17547bd7, type: 3}
-  <attackSoundVolume>k__BackingField: 0.6
+  <Prefab>k__BackingField: {fileID: 8335525820941941196, guid: 97bd7cb9076f64e44826463d86f29712, type: 3}
+  <attackSound>k__BackingField: {fileID: 8300000, guid: 8843e99ec2de4ca46a1a7748efc6fc99, type: 3}
+  <attackSoundVolume>k__BackingField: 0.5
