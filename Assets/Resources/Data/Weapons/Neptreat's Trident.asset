@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68a6249a8f3ccef4295a9da256181454, type: 3}
-  m_Name: Shuricoco
+  m_Name: Neptreat's Trident
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Shuricoco
-  <Icon>k__BackingField: {fileID: 21300000, guid: d8952ee087054ca43a0c052022d118f0, type: 3}
+  <Name>k__BackingField: Neptreat's Trident
+  <Icon>k__BackingField: {fileID: 21300000, guid: 2e9709181567a004397327ef7a20bb23, type: 3}
   <Price>k__BackingField: 100
   <RecyclePrice>k__BackingField: 25
   StatDatas:
   - stat: 0
-    value: 5
-  - stat: 1
-    value: 20
-  - stat: 2
     value: 10
-  - stat: 3
+  - stat: 1
     value: 0
+  - stat: 2
+    value: 0
+  - stat: 3
+    value: 25
   - stat: 6
-    value: 6
+    value: 8
   - stat: 11
     value: 0
-  <Prefab>k__BackingField: {fileID: 6946140868291207685, guid: d56260b65b0d7b442898ace6caea8d9c, type: 3}
-  <attackSound>k__BackingField: {fileID: 8300000, guid: 5c027ccd282ab3e468363c4e17547bd7, type: 3}
-  <attackSoundVolume>k__BackingField: 0.4
+  <Prefab>k__BackingField: {fileID: 6946140868291207685, guid: 20e92e56fa4c0c6428528d355ca2cbd5, type: 3}
+  <attackSound>k__BackingField: {fileID: 8300000, guid: f6bda77eff89d2946ab638b2e42ada46, type: 3}
+  <attackSoundVolume>k__BackingField: 0.25

@@ -1,19 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private bool isTargetPlayer = true; // Otherwise, needs to damage the enemy.
-    [SerializeField] private LayerMask targetLayerMask; 
+    [SerializeField] private LayerMask targetLayerMask;
     private ProjectilesManager myManager;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private int damage;
-    private Enemy target;
     private bool isCritHit;
-    
+
     [Header("Timer Settings")]
     private float lifetime;
     private float timer = 0;
     private bool timerOn = false;
+
+    private List<Enemy> targets = new List<Enemy>();
+    private int maxNumberOfTargets;
+    private int targetsCounter = 0;
 
     private void Awake()
     {
@@ -23,7 +27,7 @@ public class Projectile : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        
+
         if (timer >= lifetime)
         {
             timerOn = false;
@@ -31,50 +35,56 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, float _lifetime ,int _damage, bool _isCritHit)
+    public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, float _lifetime, int _numberOfTargets, int _damage, bool _isCritHit)
     {
         // Set new parameter values for the current cycle.
         damage = _damage;
+        maxNumberOfTargets = _numberOfTargets;
+        targetsCounter = 0;
         myManager = _manager;
         transform.position = _source;
         transform.right = _direction;
         rb.linearVelocity = _direction * _velocity;
         isCritHit = _isCritHit;
-        
+
+        float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle - 45);
+
         // Set the new timer lifetime and turn it on.
         lifetime = _lifetime;
         timer = 0;
         timerOn = true;
 
         // Reset previous indicatiors before new cycle.
-        target = null;
+        targets.Clear();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (timerOn)
         {
-            // Later we should use layer mask to get a more general way of detecting when to hit something.
+            // If the target is a player - the player will take damage and the object will be released.
             if (isTargetPlayer && collider.TryGetComponent(out Player player))
             {
                 player.TakeDamage(damage);
-
                 myManager.ReleaseProjectile(this);
             }
-            else if (!isTargetPlayer && target == null && collider.TryGetComponent(out Enemy enemy))
+            // If the target is an enemy, and we collided with an enemy
+            else if (!isTargetPlayer && collider.TryGetComponent(out Enemy enemy))
             {
-                target = enemy;
-                enemy.TakeDamage(damage, isCritHit);
-                rb.linearVelocity = Vector2.zero;
-                
-                myManager.ReleaseProjectile(this);
+                // If we found a new enemy and have targeted less than the max amount, we add it to the list and make it take damage.
+                if (targetsCounter < maxNumberOfTargets && !targets.Contains(enemy))
+                {
+                    targets.Add(enemy);
+                    enemy.TakeDamage(damage, isCritHit);
+
+                    targetsCounter++;
+                }
+
+                // If we reached the maximum ammount of enemies to be hit, we release the projectile.
+                if (targetsCounter == maxNumberOfTargets)             
+                    myManager.ReleaseProjectile(this);
             }
         }
-    }
-
-    // To check if a layer is within the layerMask using the bitwise-and operation.
-    private bool IsInLayerMask(int layer)
-    {
-        return (targetLayerMask.value & (1 << layer)) != 0;
     }
 }

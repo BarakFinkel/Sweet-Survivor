@@ -170,9 +170,7 @@ public class WaveManager : MonoBehaviour
         waveComplete = true;
 
         if (currentWaveIndex < waves.Length)
-        {
             GameManager.instance.WaveCompleteCallback(GameState.SHOP, 1.0f);
-        }
 
         else
         {
@@ -188,7 +186,9 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     private void ManageCurrentWave()
     {
-        
+        if (currentWaveIndex >= waves.Length)
+            return;
+
         Wave currentWave = waves[currentWaveIndex];
 
         // Iterate over all segments within the current wave.

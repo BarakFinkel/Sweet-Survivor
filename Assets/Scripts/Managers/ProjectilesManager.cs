@@ -42,16 +42,19 @@ public class ProjectilesManager : MonoBehaviour
     }
 
     // Gets a projectile instance and sets it according to the given parameters.
-    public void UseProjectile(Vector2 source, Vector2 direction, float velocity, float range, int damage, bool isCritHit)
+    public void UseProjectile(Vector2 source, Vector2 direction, float velocity, float range, int numberOfTargets, int damage, bool isCritHit)
     {
         Projectile projectileInstance = projectilePool.Get();
-        projectileInstance.SetupProjectile(this, source, direction, velocity, range / velocity, damage, isCritHit);
+        projectileInstance.SetupProjectile(this, source, direction, velocity, range / velocity, numberOfTargets, damage, isCritHit);
     }
 
     public void ReleaseProjectile(Projectile projectile)
     {        
         if (projectile.gameObject.activeSelf)
+        {
+            projectile.rb.linearVelocity = Vector2.zero;
             projectilePool.Release(projectile);
+        }
     }
 
     public static ProjectilesManager FindProjectileManager(GameObject projectilePrefab)
