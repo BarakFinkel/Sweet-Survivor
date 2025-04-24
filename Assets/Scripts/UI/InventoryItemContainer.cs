@@ -54,6 +54,7 @@ public class InventoryItemContainer : MonoBehaviour
             button.interactable = true;
             button.onClick.AddListener(SelectThisContainer);
             button.onClick.AddListener(() => _clickedCallback?.Invoke());
+            button.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         }
         else
         {

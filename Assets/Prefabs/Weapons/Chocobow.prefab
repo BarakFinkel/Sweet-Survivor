@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 2099671859
+  m_SortingLayer: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 267d7175029ede945892d327b8c789c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WeaponData>k__BackingField: {fileID: 11400000, guid: 725b8ed8159659d409fd53d53fadb7c1, type: 2}
-  baseAttackCooldown: 2
+  baseAttackCooldown: 1.25
   attackCheckRadius: 20
   enemyMask:
     serializedVersion: 2
@@ -173,9 +173,10 @@ MonoBehaviour:
   lerpFactor: 6
   projectilePrefab: {fileID: 6127923448084510180, guid: f24828b1158b2254a8717d6fb2b218d2, type: 3}
   projectileVelocity: 15
+  numberOfTargets: 1
   attackDelay: 0.2
   applyingThrowEffect: 1
-  rendererReactivationDelay: 1.8
+  rendererReactivationDelay: 1.25
   sr: {fileID: 9033367143871386447}
 --- !u!1 &6675613244682520955
 GameObject:
@@ -251,9 +252,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 2099671859
+  m_SortingLayer: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c6968b6812dfb2040a6353634b100d57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

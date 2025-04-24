@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-using TMPro;
+
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(EnemyMovement))]
 public class Enemy : MonoBehaviour
@@ -12,18 +13,18 @@ public class Enemy : MonoBehaviour
 
     [Header("General Settings")]
     [SerializeField] protected int maxHealth;
-    [SerializeField] protected TextMeshPro healthText;
     protected int health;
     protected bool hasSpawned = false;
 
     [Header("Spawn Settings")]
+    [SerializeField] protected bool delayedSpawn = true;
     [SerializeField] protected SpriteRenderer spawnIndicator;
     [SerializeField] protected float targetScaleFactor;
     [SerializeField] protected float scaleLoopDuration;
     [SerializeField] protected int numOfLoops;
 
     [Header("Attack Settings")]
-    [SerializeField] protected int damage;
+    [field: SerializeField] public int damage { get; private set; }
     [SerializeField] protected float attackRange;
     [SerializeField] protected float attackCooldown;
     private float attackTimer = 0;
@@ -32,39 +33,51 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected SpriteRenderer sr;
     protected ParticleSystem deathEffect;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip deathSound;
+    [Range(0.0f,1.0f)] [SerializeField] private float clipVolume;
+    private AudioSource audioSource;
+
     [Header("Actions")]
     public static Action<Transform, int, bool> onDamageTaken;
     public static Action<Vector2> onDeath;
+    protected Action onSpawnComplete;
 
     [Header("Debug")]
     [SerializeField] protected bool showGizmos = true;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         health = maxHealth;
-        healthText.text = health.ToString();
 
-        player = FindFirstObjectByType<Player>();
-        
         enemyMovement = GetComponent<EnemyMovement>();
+        cd            = GetComponent<Collider2D>();
+        deathEffect   = GetComponentInChildren<ParticleSystem>();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = attackSound;
+        audioSource.volume = clipVolume;
+    }
+
+    protected virtual void Start()
+    {
+        player = FindFirstObjectByType<Player>();
         enemyMovement.SetPlayer(player);
-
-        cd = GetComponent<Collider2D>();
-
-        deathEffect = gameObject.GetComponentInChildren<ParticleSystem>();
 
         if (player == null)
         {
             Debug.LogWarning("No player found, destroying enemy.");
             Destroy(gameObject);
         }
-        
+
         ToggleSpritesVisibility(false);
 
         HandleSpawn();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!hasSpawned)
             return;
@@ -77,10 +90,17 @@ public class Enemy : MonoBehaviour
 
     private void HandleSpawn()
     {
-        Vector3 targetScale = spawnIndicator.transform.localScale * targetScaleFactor;
-        LeanTween.scale(spawnIndicator.gameObject, targetScale, scaleLoopDuration)
-            .setLoopPingPong(numOfLoops)
-            .setOnComplete(SpawnSequenceComplete);
+        if (delayedSpawn)
+        {
+            Vector3 targetScale = spawnIndicator.transform.localScale * targetScaleFactor;
+            LeanTween.scale(spawnIndicator.gameObject, targetScale, scaleLoopDuration)
+                .setLoopPingPong(numOfLoops)
+                .setOnComplete(SpawnSequenceComplete);
+        }
+        else
+        {
+            SpawnSequenceComplete();
+        }
     }
 
     private void SpawnSequenceComplete()
@@ -89,7 +109,9 @@ public class Enemy : MonoBehaviour
         hasSpawned = true;
         cd.enabled = true;
 
-        enemyMovement.EnableMovement();
+        EnableMovement();
+
+        onSpawnComplete?.Invoke();
     }
 
     #endregion
@@ -106,7 +128,7 @@ public class Enemy : MonoBehaviour
         }    
     }
 
-    protected bool CanAttack()
+    public bool CanAttack()
     {
         if (attackTimer == 0)
         {
@@ -116,13 +138,13 @@ public class Enemy : MonoBehaviour
         else return false;
     }
 
-    protected virtual void Attack()
+    public virtual void Attack()
     {
-        Debug.Log("Dealing " + damage + " to the player!");
         player.TakeDamage(damage);
+        PlayAttackSound();
     }
 
-    private void UpdateAttackTimer()
+    protected virtual void UpdateAttackTimer()
     {
         if (attackTimer > 0)
         {
@@ -135,7 +157,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage, bool isCritHit)
     {
         health = Mathf.Max(health - damage, 0);
-        healthText.text = health.ToString();
         
         onDamageTaken?.Invoke(transform, damage, isCritHit);
 
@@ -145,18 +166,20 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        // Death effects
         deathEffect.transform.SetParent(null);
         deathEffect.Play();
+        
+        PlayDeathSound();
 
         PopUpText[] damageTexts = GetComponentsInChildren<PopUpText>();
         for (int i = 0; i < damageTexts.Length; i++)
         {
             if (damageTexts[i] != null)
-            {
                 damageTexts[i].gameObject.transform.parent = null;
-            }
         }
 
+        // Event invokation;
         onDeath?.Invoke(transform.position);
 
         Destroy(gameObject);
@@ -168,7 +191,24 @@ public class Enemy : MonoBehaviour
         spawnIndicator.enabled = !visibility;
     }
 
-    private void OnDrawGizmos()
+    public void PlayAttackSound()
+    {
+        if (!AudioManager.instance.IsSFXOn || audioSource.clip == null)
+            return;
+
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.Play();
+    }
+
+    public void PlayDeathSound()
+    {
+        if (!AudioManager.instance.IsSFXOn)
+            return;
+
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+    }
+
+    protected virtual void OnDrawGizmos()
     {
         if (!showGizmos)
             return;
@@ -176,4 +216,7 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
+    public void EnableMovement()  => enemyMovement.EnableMovement();
+    public void DisableMovement() => enemyMovement.DisableMovement();
 }

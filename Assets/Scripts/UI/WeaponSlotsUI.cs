@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class WeaponSlotsUI : MonoBehaviour
 {
@@ -13,6 +12,11 @@ public class WeaponSlotsUI : MonoBehaviour
         PlayerWeaponsManager.onWeaponsChanged += WeaponsChangedCallback;
     }
 
+    private void OnEnable()
+    {
+        UpdateText();
+    }
+
     private void OnDestroy()
     {
         PlayerWeaponsManager.onWeaponsChanged -= WeaponsChangedCallback;
@@ -22,13 +26,6 @@ public class WeaponSlotsUI : MonoBehaviour
 
     private void UpdateText()
     {
-        weaponSlotText.text = PlayerWeaponsManager.instance.GetNumberOfWeapons() + "/6";
-    }
-
-    private IEnumerator UpdateTextWithDelay()
-    {
-        yield return null;
-
         weaponSlotText.text = PlayerWeaponsManager.instance.GetNumberOfWeapons() + "/6";
     }
 }

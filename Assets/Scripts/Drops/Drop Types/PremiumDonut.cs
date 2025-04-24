@@ -7,6 +7,7 @@ public class PremiumDonut : Drop
     protected override void HandleCollection()
     {
         onCollect?.Invoke(this);
-        CurrencyManager.instance.AddCurrency(CurrencyType.Premium, 1);
+        CurrencyManager.instance.AddCurrency(CurrencyType.Premium, 5);
+        PlayCollectSound();
     }
 }

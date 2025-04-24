@@ -7,6 +7,7 @@ public class DonutCoin : Drop
     protected override void HandleCollection()
     {
         onCollect?.Invoke(this);
-        CurrencyManager.instance.AddCurrency(CurrencyType.Normal, 1);
+        CurrencyManager.instance.AddCurrency(CurrencyType.Normal, 10);
+        PlayCollectSound();
     }
 }

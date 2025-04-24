@@ -3,39 +3,28 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private bool isTargetPlayer = true; // Otherwise, needs to damage the enemy.
-    [SerializeField] private LayerMask targetLayerMask;
-    private ProjectilesManager myManager;
-    public Rigidbody2D rb;
-    private int damage;
-    private bool isCritHit;
+    [SerializeField] protected bool isTargetPlayer = true; // Otherwise, needs to damage the enemy.
+    [SerializeField] protected LayerMask targetLayerMask;
+    protected ProjectilesManager myManager;
+    public Rigidbody2D rb { get; private set; }
+    protected int damage;
+    protected bool isCritHit;
 
     [Header("Timer Settings")]
-    private float lifetime;
-    private float timer = 0;
-    private bool timerOn = false;
+    protected float lifetime;
+    protected float timer = 0;
+    protected bool timerOn = false;
 
-    private List<Enemy> targets = new List<Enemy>();
-    private int maxNumberOfTargets;
-    private int targetsCounter = 0;
+    protected List<Enemy> targets = new List<Enemy>();
+    protected int maxNumberOfTargets;
+    protected int targetsCounter = 0;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer >= lifetime)
-        {
-            timerOn = false;
-            myManager.ReleaseProjectile(this);
-        }
-    }
-
-    public void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, float _lifetime, int _numberOfTargets, int _damage, bool _isCritHit)
+    public virtual void SetupProjectile(ProjectilesManager _manager, Vector2 _source, Vector2 _direction, float _velocity, float _lifetime, int _numberOfTargets, int _damage, bool _isCritHit)
     {
         // Set new parameter values for the current cycle.
         damage = _damage;
@@ -59,7 +48,18 @@ public class Projectile : MonoBehaviour
         targets.Clear();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    protected virtual void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= lifetime)
+        {
+            timerOn = false;
+            myManager.ReleaseProjectile(this);
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         if (timerOn)
         {

@@ -33,16 +33,8 @@
             "value": "e51973b7d70475f43958d2c23438b8d3"
         },
         {
-            "key": "b05b4e1535afce44d80b3b77cf4466ae",
-            "value": "85c34ce6d39031740bf347e06e2539cb"
-        },
-        {
             "key": "43e98201a224bdb428e9a6002a50d54b",
             "value": "e7330cfb630d2a64f9248719396ea888"
-        },
-        {
-            "key": "3234f0967ab141d4fb79fd6301d2d755",
-            "value": "ce272bdacc7d9bf4db9ed952b84b7f32"
         },
         {
             "key": "5a85418cdb4c34243a2e1f4a479b146a",

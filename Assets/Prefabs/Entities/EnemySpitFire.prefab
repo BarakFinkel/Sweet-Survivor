@@ -5116,20 +5116,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dc71204b3c4284eaade23a8c0cbd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  healthText: {fileID: 4013816648687545626}
+  maxHealth: 25
+  delayedSpawn: 1
   spawnIndicator: {fileID: 8778477795211726461}
   targetScaleFactor: 1.2
   scaleLoopDuration: 0.3
   numOfLoops: 3
-  damage: 5
+  <damage>k__BackingField: 5
   attackRange: 7
   attackCooldown: 1.5
   sr: {fileID: 177846993296289419}
+  attackSound: {fileID: 8300000, guid: 9452b350e2af71d4db2ac087b37d4d4d, type: 3}
+  deathSound: {fileID: 8300000, guid: 78a5ade590abc4e4099db0e15e7b511c, type: 3}
+  clipVolume: 1
   showGizmos: 1
   projectilePrefab: {fileID: 7397702531309376079, guid: cd469625f19aec446b966b23a97ebc7f, type: 3}
   projectileSource: {fileID: 5605340924427308472}
   projectileVelocity: 5
+  projectileRange: 10
 --- !u!114 &9217207590063953993
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public class InventoryItemInfo : MonoBehaviour
 {
@@ -39,6 +38,12 @@ public class InventoryItemInfo : MonoBehaviour
         mergeButton.interactable = WeaponMerger.instance.CanMerge(_weapon);
         mergeButton.onClick.RemoveAllListeners();
         mergeButton.onClick.AddListener(WeaponMerger.instance.Merge);
+        mergeButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
+
+        if (mergeButton.interactable)
+            mergeButton.image.color = meltPossibleColor;
+        else
+            mergeButton.image.color = meltImpossibleColor;        
 
         // Melt Button Configuration - will only be active if the player has more than 1 weapon.
         meltButton.interactable = PlayerWeaponsManager.instance.GetNumberOfWeapons() > 1;
@@ -51,7 +56,8 @@ public class InventoryItemInfo : MonoBehaviour
 
     public void Configure(ObjectDataSO _objectData)
     {
-        Configure(
+        Configure
+        (
             _objectData.Icon,
             _objectData.Name,
             ColorHolder.GetLevelColor(_objectData.Rarity),
@@ -69,7 +75,7 @@ public class InventoryItemInfo : MonoBehaviour
         itemName.color     = containerColor;
         itemMeltPrice.text = "+ " + meltPrice.ToString();
         container.color    = containerColor;
-        
+
         statsParent.Clear();
         StatContainerManager.GenerateStatContainers(stats, statsParent);
     }

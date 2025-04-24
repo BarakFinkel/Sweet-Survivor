@@ -1,0 +1,12 @@
+# ninja log v5
+15	3986	7671924091063487	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ffe252d58916594b
+6	4121	7671924091791540	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	8a3f81e0c44f89bd
+11	4224	7671924092719058	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	59b7025ddbcefe3
+8	4530	7671924095920496	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	354f7b2f9773d360
+13	5241	7671924102767292	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d345c8ba3661704d
+2	5580	7671924107130728	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	11377b9225ff00fa
+4224	5730	7671924108247924	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	864e0d58a2fe6940
+3992	7196	7671924122724979	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	cd99d31d0353bcea
+4121	7223	7671924123921946	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	2aa98c859bea7524
+5731	8145	7671924128300375	F:/Program Files/Github Repositories/Sweet-Survivor/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2g6u245c/obj/arm64-v8a/libswappywrapper.so	feb7271eb82700d7
+7224	8566	7671924134109921	F:/Program Files/Github Repositories/Sweet-Survivor/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2g6u245c/obj/arm64-v8a/libgame.so	434f5ac3762a0030

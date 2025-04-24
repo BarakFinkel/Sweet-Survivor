@@ -9,8 +9,10 @@ public class RangedEnemy : Enemy
     [SerializeField] private float projectileRange = 10.0f;
     private ProjectilesManager projectilesManager;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         projectilesManager = ProjectilesManager.FindProjectileManager(projectilePrefab);   
     }
 
@@ -31,9 +33,10 @@ public class RangedEnemy : Enemy
         }
     }
 
-    protected override void Attack()
+    public override void Attack()
     {
         Vector2 direction = (player.GetCenterPoint() - (Vector2)projectileSource.position).normalized;
         projectilesManager.UseProjectile(transform.position, direction, projectileVelocity, projectileRange, 1, damage, false);
+        PlayAttackSound();
     }
 }

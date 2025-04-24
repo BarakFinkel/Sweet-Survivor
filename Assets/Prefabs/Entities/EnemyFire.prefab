@@ -50,16 +50,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c5dda6f02e5dd4b94acc9456d879dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  healthText: {fileID: 5254279831193053445}
+  maxHealth: 25
+  delayedSpawn: 1
   spawnIndicator: {fileID: 2262341469183009692}
   targetScaleFactor: 1.2
   scaleLoopDuration: 0.3
   numOfLoops: 3
-  damage: 5
+  <damage>k__BackingField: 5
   attackRange: 0.5
   attackCooldown: 0.5
   sr: {fileID: 1851676099132330340}
+  attackSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 78a5ade590abc4e4099db0e15e7b511c, type: 3}
+  clipVolume: 1
   showGizmos: 1
 --- !u!114 &6768065499820111373
 MonoBehaviour:

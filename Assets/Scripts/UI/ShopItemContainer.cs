@@ -56,6 +56,7 @@ public class ShopItemContainer : MonoBehaviour
         UpdatePurchaseButtonInteraction(weaponPrice, true);
 
         PurchaseButton.onClick.AddListener(TryPurchase);
+        PurchaseButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
     }
 
     public void Configure(ObjectDataSO _objectData)
@@ -73,6 +74,7 @@ public class ShopItemContainer : MonoBehaviour
         UpdatePurchaseButtonInteraction(_objectData.Price, false);
 
         PurchaseButton.onClick.AddListener(TryPurchase);
+        PurchaseButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
     }
 
     private void TryPurchase()

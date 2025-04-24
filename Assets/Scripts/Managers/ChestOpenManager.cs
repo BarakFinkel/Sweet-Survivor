@@ -43,9 +43,11 @@ public class ChestOpenManager : MonoBehaviour
         instance.EquipButton.onClick.RemoveAllListeners();
 
         instance.EquipButton.onClick.AddListener(() => EquipButtonCallback(randomObjectData));
+        instance.EquipButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         instance.EquipButton.onClick.AddListener(() => GameManager.instance.SetGameState(GameState.GAME));
 
         instance.MeltButton.onClick.AddListener(() => MeltButtonCallback(randomObjectData));
+        instance.EquipButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         instance.MeltButton.onClick.AddListener(() => GameManager.instance.SetGameState(GameState.GAME));
     }
 

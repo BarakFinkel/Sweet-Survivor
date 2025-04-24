@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSelectionManager : MonoBehaviour
 {
@@ -7,11 +9,13 @@ public class WeaponSelectionManager : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private Transform buttonsContainer;
     [SerializeField] private WeaponSelectionButton buttonPrefab;
+    [SerializeField] private Button startButton;
     
     [Header("Data")]
     [SerializeField] private WeaponDataSO[] starterWeapons;
     private WeaponDataSO selectedWeapon;
     private int initialWeaponLevel;
+    private HashSet<WeaponDataSO> generatedWeapons = new HashSet<WeaponDataSO>();
 
     private void Awake()
     {
@@ -21,6 +25,8 @@ public class WeaponSelectionManager : MonoBehaviour
             Destroy(gameObject);
         
         GameManager.onGameStateChanged += GameStateChangedCallback;
+
+        startButton.interactable = false;
     }
 
     void OnDisable()
@@ -43,7 +49,7 @@ public class WeaponSelectionManager : MonoBehaviour
                     return;
                 
                 PlayerWeaponsManager.instance.TryAddWeapon(selectedWeapon, initialWeaponLevel);
-                
+
                 selectedWeapon     = null;
                 initialWeaponLevel = 0;
 
@@ -53,8 +59,9 @@ public class WeaponSelectionManager : MonoBehaviour
 
     private void Configure()
     {
-        // Clear all current buttons in the container.
+        // Clear all current weapon selection buttons and previously selected weapons.
         buttonsContainer.Clear();
+        generatedWeapons.Clear();
 
         // Generate 3 weapon buttons.
         for (int i = 0; i < 3; i++)
@@ -64,9 +71,20 @@ public class WeaponSelectionManager : MonoBehaviour
     private void GenerateWeaponChoice()
     {
         WeaponSelectionButton buttonInstance = Instantiate(buttonPrefab, buttonsContainer);
-        WeaponDataSO weaponData = starterWeapons[Random.Range(0, starterWeapons.Length)];
+        WeaponDataSO weaponData;
+        
+        while (true)
+        {
+            weaponData = starterWeapons[Random.Range(0, starterWeapons.Length)];
+            
+            if (!generatedWeapons.Contains(weaponData))
+            {
+                generatedWeapons.Add(weaponData);
+                break;
+            }
+        }
 
-        int level = Random.Range(1, 5);
+        int level = Random.Range(1, 3);
 
         buttonInstance.Configure(weaponData, level);
 
@@ -74,6 +92,7 @@ public class WeaponSelectionManager : MonoBehaviour
         // + a callback to set the button's onClick callback.
         buttonInstance.Button.onClick.RemoveAllListeners();
         buttonInstance.Button.onClick.AddListener(() => WeaponSelectedCallback(buttonInstance, weaponData, level));
+        buttonInstance.Button.onClick.AddListener(AudioManager.instance.PlayButtonSound);
     }
 
     private void WeaponSelectedCallback(WeaponSelectionButton weaponButton, WeaponDataSO weaponData, int level)
@@ -92,5 +111,8 @@ public class WeaponSelectionManager : MonoBehaviour
                 button.Deselect();
             }
         }
+
+        if (!startButton.interactable)
+            startButton.interactable = true;
     }
 }

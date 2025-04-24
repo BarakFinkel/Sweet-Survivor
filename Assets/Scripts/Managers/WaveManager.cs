@@ -21,14 +21,9 @@ public class WaveManager : MonoBehaviour
     private WaveManagerUI ui;
     
     /// <summary>
-    /// Duration of each wave in seconds.
-    /// </summary>
-    [Header("General Settings")]
-    [SerializeField] private float waveDuration;
-
-    /// <summary>
     /// Timer tracking the current wave's elapsed time.
     /// </summary>
+    [Header("General Settings")]
     private float timer = 0;
 
     /// <summary>
@@ -58,16 +53,6 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float maxOffset = 18.0f;
 
     /// <summary>
-    /// Horizontal boundary for enemy spawn positions.
-    /// </summary>
-    [SerializeField] private float xBound = 41.0f;
-
-    /// <summary>
-    /// Vertical boundary for enemy spawn positions.
-    /// </summary>
-    [SerializeField] private float yBound = 23.0f;
-
-    /// <summary>
     /// Array of waves containing enemy spawn configurations.
     /// </summary>
     [Header("Waves")]
@@ -82,6 +67,8 @@ public class WaveManager : MonoBehaviour
     /// Tracks the spawn progress of each segment in the current wave.
     /// </summary>
     private List<float> segmentSpawnCounters = new List<float>();
+
+    private bool bossSpawned = false;
 
     /// <summary>
     /// Initializes references to necessary components.
@@ -115,11 +102,13 @@ public class WaveManager : MonoBehaviour
             return;
 
         // If we haven't reached the end of the wave duration, we handle the wave and update the timer.
-        if (timer < waveDuration)
+        if (timer < waves[currentWaveIndex].waveDuration)
         {
             ManageCurrentWave();
             
-            string timerString = Mathf.Max(waveDuration - timer, 0).ToString("F1");
+            Wave currentWave = waves[currentWaveIndex];
+
+            string timerString = Mathf.Max(currentWave.waveDuration - timer, 0).ToString("F1");
             ui.UpdateWaveTimer(timerString);
         }
         else // Otherwise, we have 2 cases:
@@ -151,8 +140,19 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     private void StartWave()
     {
-        ui.UpdateWaveText($"Wave {currentWaveIndex + 1} / {waves.Length}");
-        ui.UpdateWaveTimer(waveDuration.ToString("F2"));
+        Wave currentWave = waves[currentWaveIndex];
+        
+        if (currentWave.bossIndicator)
+        {
+            ui.UpdateWaveText("BOSS FIGHT!");
+            ui.DisableTimerText();
+        }
+        else
+        {
+            ui.UpdateWaveText($"Wave {currentWaveIndex + 1} / {waves.Length}");
+            ui.EnableTimerText();
+            ui.UpdateWaveTimer(currentWave.waveDuration.ToString("F2"));
+        }
 
         ResetSegmentCounters();
         timer = 0.0f;
@@ -168,6 +168,7 @@ public class WaveManager : MonoBehaviour
         isTimerOn = false;
         currentWaveIndex++;
         waveComplete = true;
+        bossSpawned = false;
 
         if (currentWaveIndex < waves.Length)
             GameManager.instance.WaveCompleteCallback(GameState.SHOP, 1.0f);
@@ -191,23 +192,44 @@ public class WaveManager : MonoBehaviour
 
         Wave currentWave = waves[currentWaveIndex];
 
-        // Iterate over all segments within the current wave.
-        for (int i = 0; i < currentWave.segments.Count; i++)
+        if (!currentWave.bossIndicator)
         {
-            WaveSegment currentSegment = currentWave.segments[i];
-            float tStart = currentSegment.t0 * waveDuration;
-            float tEnd = currentSegment.t1 * waveDuration;
-
-            // If the current time falls within this segment’s interval, handle spawning.
-            if (tStart <= timer && timer <= tEnd)
+            // Iterate over all segments within the current wave.
+            for (int i = 0; i < currentWave.segments.Count; i++)
             {
-                float delta = timer - tStart;
-                float delay = 1.0f / currentSegment.spawnFrequency;
+                WaveSegment currentSegment = currentWave.segments[i];
+                float tStart = currentSegment.t0 * currentWave.waveDuration;
+                float tEnd = currentSegment.t1 * currentWave.waveDuration;
 
-                if (delta / delay > segmentSpawnCounters[i])
+                // If the current time falls within this segment’s interval, handle spawning.
+                if (tStart <= timer && timer <= tEnd)
                 {
-                    Instantiate(currentSegment.prefab, GetSpawnPosition(), Quaternion.identity, transform);
-                    segmentSpawnCounters[i]++;
+                    float delta = timer - tStart;
+                    float delay = 1.0f / currentSegment.spawnFrequency;
+
+                    // If we passed the relative delta time for spawning an enemy, we spawn it and increment the counter.
+                    if (delta / delay > segmentSpawnCounters[i])
+                    {
+                        Instantiate(currentSegment.prefab, GetSpawnPosition(), Quaternion.identity, transform);
+                        segmentSpawnCounters[i]++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // If the boss hasn't spawned yet
+            if (!bossSpawned)
+            {
+                // And we have a assigned a boss to the first segment.
+                if (currentWave.segments.Count > 0 && currentWave.segments[0].prefab != null)
+                {
+                    Instantiate(currentWave.segments[0].prefab, GetSpawnPosition(), Quaternion.identity, transform);
+                    bossSpawned = true;
+                }
+                else 
+                {
+                    Debug.LogError("Cannot instantiate boss without a prefab attached to the first segment");
                 }
             }
         }
@@ -222,6 +244,9 @@ public class WaveManager : MonoBehaviour
         Vector2 direction = Random.onUnitSphere.normalized;
         Vector2 offset = direction * Random.Range(minOffset, maxOffset);
         Vector2 targetPosition = (Vector2)player.transform.position + offset;
+
+        float xBound = MapBoundsHolder.instance.GetXBound();
+        float yBound = MapBoundsHolder.instance.GetYBound();
 
         targetPosition.x = Mathf.Clamp(targetPosition.x, -xBound, xBound);
         targetPosition.y = Mathf.Clamp(targetPosition.y, -yBound, yBound);
@@ -257,9 +282,6 @@ public class WaveManager : MonoBehaviour
                 if (waveComplete)
                     StartWave();
                 break;
-
-            default:
-                break;
         }
     }
 
@@ -281,6 +303,17 @@ public struct Wave
     public string name;
 
     /// <summary>
+    /// The wave's duration in seconds.
+    /// </summary>
+    public float waveDuration;
+
+    /// <summary>
+    /// An indication for if this is a boss wave.
+    /// Used in order to notify the manager that we're spawning the boss once.
+    /// </summary>
+    public bool bossIndicator;
+
+    /// <summary>
     /// List of enemy spawn segments within this wave.
     /// </summary>
     public List<WaveSegment> segments;
@@ -298,7 +331,7 @@ public struct WaveSegment
     public GameObject prefab;
 
     /// <summary>
-    /// The spawn frequency (objects per second) for this segment.
+    /// The spawn frequency (enemy prefabs per second) for this segment.
     /// </summary>
     public float spawnFrequency;
     

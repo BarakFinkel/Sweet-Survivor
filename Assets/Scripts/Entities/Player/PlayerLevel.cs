@@ -10,7 +10,7 @@ public class PlayerLevel : MonoBehaviour
     
     [Header("Settings")]
     [SerializeField] private int initRequiredXP = 10;
-    [SerializeField] private float xpRequirementExponent = 1.3f;
+    [SerializeField] private float xpRequirementExponent = 1.1f;
     private int requiredXP;
     private int currentXP = 0;
     private int level = 1;

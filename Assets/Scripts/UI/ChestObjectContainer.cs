@@ -3,6 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// UI Container for details containing the treasure a chest drop contains.
+/// Comes with functional buttons for either equipping the treasure or discarding for currency.
+/// </summary>
 public class ChestObjectContainer : MonoBehaviour
 {
     [Header("Elements")]

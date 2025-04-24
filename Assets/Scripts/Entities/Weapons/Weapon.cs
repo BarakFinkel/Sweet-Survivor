@@ -156,7 +156,7 @@ public class Weapon : MonoBehaviour
         damage                = Mathf.RoundToInt(CalculateStatValue(Stat.Attack));
         attackCooldown        = baseAttackCooldown * (1 - CalculateStatValue(Stat.AttackSpeed) / 100);
         criticalHitChance     = Mathf.RoundToInt(CalculateStatValue(Stat.CriticalChance));
-        criticalHitMultiplier = 1.5f + CalculateStatValue(Stat.CriticalDamage) / 100;
+        criticalHitMultiplier = (150.0f + CalculateStatValue(Stat.CriticalDamage) ) / 100;
         lifeStealFactor       = CalculateStatValue(Stat.Lifesteal) / 100;
     }
 

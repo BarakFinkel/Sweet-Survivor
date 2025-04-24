@@ -25,6 +25,9 @@ public class LevelingManager : MonoBehaviour
     [SerializeField] private Vector2 dodgeChanceRange = new Vector2(1, 10);
     [SerializeField] private Vector2 lifestealRange   = new Vector2(1, 10);
 
+
+    
+
     public void Awake()
     {
         if (instance == null)
@@ -87,6 +90,7 @@ public class LevelingManager : MonoBehaviour
             // + a callback to set the game back to the Game state.
             upgradeButtons[i].Button.onClick.RemoveAllListeners();
             upgradeButtons[i].Button.onClick.AddListener(() => action?.Invoke());
+            upgradeButtons[i].Button.onClick.AddListener(AudioManager.instance.PlayButtonSound);
             upgradeButtons[i].Button.onClick.AddListener(() => GameManager.instance.SetGameState(GameState.GAME));
         }
     }
@@ -121,9 +125,9 @@ public class LevelingManager : MonoBehaviour
 
         value = Random.Range(range.x, range.y);
 
-        if (stat == Stat.CriticalDamage || stat == Stat.Range)
+        if (stat == Stat.Range)
         {
-            buttonString = "+ " + value.ToString("F2") + (stat == Stat.CriticalDamage ? "x" : "");
+            buttonString = "+ " + value.ToString("F2");
         }
         else
         {

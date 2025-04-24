@@ -37,9 +37,10 @@ public class CharacterSelectionManager : MonoBehaviour, ISaveAndLoad
     private void Start()
     {
         characterInfo.Button.onClick.RemoveAllListeners();
+        characterInfo.Button.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         characterInfo.Button.onClick.AddListener(PurchaseSelectedCharacter);
 
-        CharacterClickedCallback(lastSelectedCharacterIndex);
+        CharacterClickedCallback(lastSelectedCharacterIndex, false);
     }
 
     private void Initialize()
@@ -58,11 +59,14 @@ public class CharacterSelectionManager : MonoBehaviour, ISaveAndLoad
         buttonInstance.Configure(characterData.Sprite, unlockedCharacters[index]);
 
         buttonInstance.Button.onClick.RemoveAllListeners();
-        buttonInstance.Button.onClick.AddListener(() => CharacterClickedCallback(index));
+        buttonInstance.Button.onClick.AddListener(() => CharacterClickedCallback(index, true));
     }
 
-    private void CharacterClickedCallback(int index)
+    private void CharacterClickedCallback(int index, bool playSFX)
     {
+        if (playSFX)
+            AudioManager.instance.PlayButtonSound();
+
         lastSelectedCharacterIndex = index;
         selectedCharacterIndex     = index;
 
@@ -90,7 +94,7 @@ public class CharacterSelectionManager : MonoBehaviour, ISaveAndLoad
         buttonsParent.GetChild(selectedCharacterIndex).GetComponent<CharacterButton>().Unlock();
 
         // Update the character info panel
-        CharacterClickedCallback(selectedCharacterIndex);
+        CharacterClickedCallback(selectedCharacterIndex, true);
 
         Save();
     }

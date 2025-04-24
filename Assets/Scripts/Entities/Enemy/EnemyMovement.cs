@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
-        Vector2 targetPosition = (Vector2)(transform.position) + direction * moveSpeed * Time.deltaTime;
+        Vector2 targetPosition = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
         transform.position = targetPosition;
     }
 

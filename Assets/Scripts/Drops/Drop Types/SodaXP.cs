@@ -7,5 +7,6 @@ public class SodaXP : Drop
     protected override void HandleCollection()
     {
         onCollect?.Invoke(this);
+        PlayCollectSound();
     }
 }

@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
+
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Elements")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private AudioClip damageVolumeSound;
+    [Range(0.0f, 1.0f)] [SerializeField] private float damageSoundVolume;
+    private AudioSource audioSource;
     
     [Header("Settings")]
     [SerializeField] private float healthRegenTickCooldown = 1.0f;
@@ -26,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
 
     private Queue<(int amount, bool isDamage)> healthEventQueue = new Queue<(int amount, bool isDamage)>();
 
+    private bool dead;
+
     [Header("Actions")]
     public static Action onDamage;
 
@@ -35,6 +41,11 @@ public class PlayerHealth : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = damageVolumeSound;
+        audioSource.volume = damageSoundVolume;
 
         PlayerStatsManager.onStatsChanged += UpdateStats;        
     }
@@ -65,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
             if (healthEvent.Item2) // Damage
             {
                 totalHealthChange -= healthEvent.Item1;
+                PlayDamageSound();
                 onDamage?.Invoke();
             }
             else // Healing
@@ -80,8 +92,11 @@ public class PlayerHealth : MonoBehaviour
             UpdateHealthUI();
         }
 
-        if (currentHealth == 0)
+        if (currentHealth == 0 && !dead)
+        {
             Player.instance.Die();
+            dead = true;
+        }   
     }
 
     /// <summary>
@@ -151,5 +166,14 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
 
         healthRegen = PlayerStatsManager.instance.GetStatValue(Stat.HealthRegen) / 100;
+    }
+
+    public void PlayDamageSound()
+    {
+        if (!AudioManager.instance.IsSFXOn || audioSource.clip == null)
+            return;
+
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.Play();
     }
 }

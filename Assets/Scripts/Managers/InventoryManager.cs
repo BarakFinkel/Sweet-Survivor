@@ -87,6 +87,7 @@ public class InventoryManager : MonoBehaviour
         itemInfoPanel.Configure(weapon);
         ShopUIManager.instance.ShowItemInfo();
         itemInfoPanel.meltButton.onClick.RemoveAllListeners();
+        itemInfoPanel.meltButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         itemInfoPanel.meltButton.onClick.AddListener(() => MeltWeapon(index));
     }
 
@@ -94,6 +95,7 @@ public class InventoryManager : MonoBehaviour
     {
         itemInfoPanel.Configure(objectData);
         itemInfoPanel.meltButton.onClick.RemoveAllListeners();
+        itemInfoPanel.meltButton.onClick.AddListener(AudioManager.instance.PlayButtonSound);
         itemInfoPanel.meltButton.onClick.AddListener(() => MeltObject(objectData));
 
         ShopUIManager.instance.ShowItemInfo();

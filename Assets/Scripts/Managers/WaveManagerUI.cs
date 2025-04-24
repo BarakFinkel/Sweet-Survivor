@@ -9,4 +9,6 @@ public class WaveManagerUI : MonoBehaviour
 
     public void UpdateWaveText(string waveString) => waveText.text = waveString;
     public void UpdateWaveTimer(string timerString) => timerText.text = timerString;
+    public void EnableTimerText()  => timerText.enabled = true;    
+    public void DisableTimerText() => timerText.enabled = false;
 }

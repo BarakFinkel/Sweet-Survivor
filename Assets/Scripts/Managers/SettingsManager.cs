@@ -6,6 +6,8 @@ using System;
 
 public class SettingsManager : MonoBehaviour, ISaveAndLoad
 {
+    public static SettingsManager instance;
+
     [Header("Elements")]
     [SerializeField] private Button sfxButton;
     [SerializeField] private Button musicButton;
@@ -22,12 +24,20 @@ public class SettingsManager : MonoBehaviour, ISaveAndLoad
     [Header("Data")]
     private const string sfxKey   = "SFX";
     private const string musicKey = "Music";
-    private bool sfxOn = true;
-    private bool musicOn = true;
+    public bool sfxOn { get; private set; } = true;
+    public bool musicOn { get; private set; } = true;
 
     [Header("Action")]
     public static Action<bool> onSFXStateChanged;
-    public static Action<bool> onMusicStateChanged;    
+    public static Action<bool> onMusicStateChanged;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);   
+    }
 
     public void SFXButtonCallback()
     {
@@ -107,7 +117,7 @@ public class SettingsManager : MonoBehaviour, ISaveAndLoad
 
         if (SaveManager.TryLoad(this, musicKey, out object musicStateObject))
             musicOn = (bool)musicStateObject;
-        
+
         UpdateSoundButtonsVisuals();
     }
 
