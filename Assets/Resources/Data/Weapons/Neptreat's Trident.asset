@@ -18,11 +18,11 @@ MonoBehaviour:
   <RecyclePrice>k__BackingField: 25
   StatDatas:
   - stat: 0
-    value: 10
+    value: 15
   - stat: 1
     value: 0
   - stat: 2
-    value: 0
+    value: 10
   - stat: 3
     value: 25
   - stat: 6

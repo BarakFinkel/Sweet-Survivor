@@ -19,6 +19,13 @@ public class GameOverUI : MonoBehaviour
 
     public void SetGameOverDetails(GameState gameState)
     {
+        StartCoroutine(SetGameOverDetailsDelayed(gameState));
+    }
+
+    private IEnumerator SetGameOverDetailsDelayed(GameState gameState)
+    {
+        yield return null;
+
         if (gameState == GameState.GAMEOVER)
         {
             gameOverDetails.text =

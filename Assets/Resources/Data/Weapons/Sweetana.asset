@@ -18,9 +18,9 @@ MonoBehaviour:
   <RecyclePrice>k__BackingField: 25
   StatDatas:
   - stat: 0
-    value: 3
+    value: 7
   - stat: 1
-    value: 10
+    value: 20
   - stat: 2
     value: 10
   - stat: 3
