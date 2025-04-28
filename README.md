@@ -11,7 +11,7 @@ Each stage challenges you to:
 
 The development process heavily incorporates OOP principles and design patterns such as:
 
-- **State Machine** – Conceptually implemented via the GameManager to manage game states efficiently.
+- **State Machine** – Implemented both classically for setting different states for the boss enemy, and conceptually via the GameManager to manage game states efficiently.
 - **Singleton Pattern** – Used for global access to core systems.
 - **Inheritance** – Ensuring clean, maintainable, and scalable code.
 - **Interfaces** – Enabling objects to communicate and execute actions when relevant.
